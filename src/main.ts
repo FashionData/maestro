@@ -1,8 +1,9 @@
 import { VueConstructor } from "vue";
-import { store } from "./store";
-import { routes } from "@/routes";
+import Element from "element-ui";
 
-import ButtonComponent from "@/components/ButtonComponent.vue";
+import { store } from "@/store";
+import { routes } from "@/routes";
+import { components } from "@/components";
 
 type AnyObject = {
   [key: string]: any;
@@ -20,14 +21,18 @@ export default {
     if (!options.router)
       throw new Error("Please initialise plugin with a Vue Router.");
 
+    Vue.use(Element);
+
     options.store.registerModule("maestro", store);
 
     options.router.addRoutes(routes);
     options.router.beforeEach((to: any, from: any, next: any) => {
-      console.log('[MAESTRO]: BEFORE EACH');
+      console.log("[MAESTRO]: BEFORE EACH");
       next();
     });
 
-    Vue.component("button-component", ButtonComponent);
+    components.forEach(component => {
+      Vue.component(component.name, component);
+    });
   }
 };

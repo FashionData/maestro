@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: "m-counter",
   computed: {
     times() {
       return this.$store.getters.counter > 1 ? "times" : "time";
