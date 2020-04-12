@@ -1,4 +1,4 @@
-import MButton from './MButton'
+import MButton from "./MButton";
 
-export { MButton }
-export default MButton
+export { MButton };
+export default MButton;

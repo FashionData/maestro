@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="increment">{{ text }}</button>
+    <el-button @click="increment">{{ text }}</el-button>
   </div>
 </template>
 

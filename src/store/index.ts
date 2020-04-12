@@ -1,6 +1,6 @@
 type State = {
-  counter: number
-}
+  counter: number;
+};
 
 export const store = {
   state: {
@@ -10,8 +10,8 @@ export const store = {
     counter: (state: State) => state.counter
   },
   mutations: {
-    increment (state: State) {
-      state.counter += 1
+    increment(state: State) {
+      state.counter += 1;
     }
   }
 };

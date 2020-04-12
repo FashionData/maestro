@@ -19,9 +19,6 @@ export default {
     //   throw new Error('Vuetify is not properly initialized, see https://vuetifyjs.com/getting-started/quick-start#bootstrapping-the-vuetify-object')
     // }
   },
-  mounted() {
-    console.log('[MAESTRO]', this.$store);
-  },
   render(h: any) {
     return h("div", "WORKING?");
 
