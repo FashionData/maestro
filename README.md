@@ -1,18 +1,14 @@
-# maestro
+# Maestro
+Fully managed administration application framework
 
 ## Project setup
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Build lib
 ```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
+yarn build:lib
 ```
 
 ### Run your unit tests
@@ -24,6 +20,3 @@ yarn test:unit
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
