@@ -12,10 +12,25 @@ export const userStore = {
   mutations: {
     authenticateUser(state: State) {
       state.isAuthenticated = true;
-      // TODO: Push to home or redirect via url params
     },
     logout(state: State) {
       state.isAuthenticated = false;
+    }
+  },
+  actions: {
+    // TODO: Type
+    authenticateUser ({ commit }: any) {
+      return new Promise((resolve, reject) => {
+        commit("authenticateUser");
+        resolve()
+      });
+    },
+    // TODO: Type
+    logout({ commit }: any) {
+      return new Promise((resolve, reject) => {
+        commit("logout");
+        resolve()
+      });
     }
   }
 };
