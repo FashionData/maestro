@@ -4,6 +4,7 @@ import Element from "element-ui";
 export const configureElementUi = (Vue: VueConstructor) => {
   Vue.use(Element);
 
+  // TODO: Check for fonts
   const head = document.head;
   const link = document.createElement("link");
 

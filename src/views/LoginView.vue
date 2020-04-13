@@ -1,12 +1,16 @@
 <template>
   <div>
-    <p>LOGIN</p>
+    <el-button @click="authenticateUser">LOGIN</el-button>
   </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-
-@Component
-export default class LoginView extends Vue {}
+<script>
+export default {
+  name: "login-view",
+  methods: {
+    authenticateUser() {
+      this.$store.commit("authenticateUser");
+    }
+  }
+};
 </script>

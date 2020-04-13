@@ -7,8 +7,11 @@ import { configureStore } from "@/init/store";
 import { configureRouter } from "@/init/router";
 
 import { components } from "@/components";
+import { auth, guest } from "@/router/middleware";
 
 import "./plugins/element";
+
+export { auth, guest };
 
 export default {
   install(Vue: VueConstructor, options: InstallOptions) {
