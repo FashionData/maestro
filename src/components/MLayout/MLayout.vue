@@ -5,8 +5,11 @@
     </el-aside>
 
     <el-container>
-      <el-header style="text-align: right; font-size: 12px">
-        <slot name="header" />
+      <el-header class="header">
+        <i class="el-icon-search" />
+        <i class="el-icon-bell" />
+        <i class="el-icon-chat-square" />
+        <i class="el-icon-star-off" />
 
         <el-dropdown>
           <el-avatar
@@ -48,15 +51,22 @@ export default {
 };
 </script>
 
-<style>
-.el-header {
+<style lang="scss" scoped>
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   background-color: #b3c0d1;
   color: #333;
-  line-height: 60px;
-}
+  font-size: 20px;
 
-.avatar {
-  vertical-align: middle;
+  & > * {
+    margin-right: 17px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
 .el-aside {

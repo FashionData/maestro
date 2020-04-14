@@ -3,3 +3,5 @@ export type AnyObject = {
 }
 
 export type InstallOptions = { store: AnyObject; router: AnyObject }
+
+export type User = {};

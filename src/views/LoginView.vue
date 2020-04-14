@@ -12,8 +12,7 @@ export default {
   methods: {
     authenticateUser() {
       this.$store.dispatch("authenticateUser").then(() => {
-        // TODO: Push to home or redirect via url params
-        this.$router.push(this.$route.query.redirect.toString() || { name: HOME });
+        this.$router.push(this.$route.query.redirect ? this.$route.query.redirect.toString() : { name: HOME });
       });
     }
   }
