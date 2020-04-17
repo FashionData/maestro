@@ -40,6 +40,11 @@ import { LOGOUT, USER } from "@/constants/router/routes-names";
 
 export default {
   name: "m-layout",
+  mounted() {
+    this.$log(this.$store);
+    this.$log(this.$router);
+    this.$log(this.$firebase);
+  },
   computed: {
     userRouteName() {
       return USER;
