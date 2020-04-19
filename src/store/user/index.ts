@@ -7,7 +7,7 @@ type State = {
 
 export const userStore = {
   state: {
-    user: null,
+    user: {},
     isAuthenticated: false
   },
   getters: {
@@ -31,9 +31,10 @@ export const userStore = {
       commit('setUser', user)
     },
     // TODO: Type
-    authenticateUser ({ commit }: any) {
+    authenticateUser ({ commit, dispatch }: any, user: User) {
       return new Promise((resolve, reject) => {
         commit("authenticateUser");
+        dispatch("setCurrentUser", user);
         resolve()
       });
     },

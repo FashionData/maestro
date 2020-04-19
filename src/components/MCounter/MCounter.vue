@@ -13,12 +13,12 @@ export default {
     },
     text() {
       return `I have been clicked ${this.$store.getters.counter} ${this.times}`;
-    }
+    },
   },
   methods: {
     increment() {
       this.$store.commit("increment");
-    }
-  }
+    },
+  },
 };
 </script>
