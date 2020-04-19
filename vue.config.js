@@ -5,5 +5,12 @@ module.exports = {
   // configureWebpack: {
   //   plugins: [new BundleAnalyzerPlugin()],
   // },
-  css: { extract: false },
+  css: {
+    extract: false,
+    loaderOptions: {
+      sass: {
+        prependData: `@import "~@/scss/app.scss";`,
+      },
+    },
+  },
 };

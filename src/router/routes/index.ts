@@ -2,8 +2,9 @@ import LoginView from "@/views/LoginView.vue";
 import LogoutView from "@/views/LogoutView.vue";
 import NotFound from "@/views/NotFound.vue";
 import UserProfile from "@/views/UserProfile.vue";
+import UsersView from "@/views/UsersView.vue";
 
-import { LOGIN, LOGOUT, NOT_FOUND, USER } from "@/constants/router/routes-names";
+import { LOGIN, LOGOUT, NOT_FOUND, USER, USERS } from "@/constants/router/routes-names";
 import { auth, guest } from "@/router/middleware";
 
 export const routes = [
@@ -18,6 +19,13 @@ export const routes = [
     name: LOGOUT,
     meta: { middleware: [auth] },
     component: LogoutView
+  },
+  {
+    path: "/users",
+    name: USERS,
+    // TODO: Add superAdmin
+    meta: { middleware: [auth] },
+    component: UsersView
   },
   {
     path: "/user",
