@@ -16,6 +16,7 @@ export const Maestro = {
     configureFirebase(Vue, options.firebase);
     configureElementUi(Vue);
 
+    // TODO: Add prototype only in Maestro
     Vue.prototype.$log = log;
 
     components.forEach((component) => {

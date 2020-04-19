@@ -1,7 +1,16 @@
 <template>
   <el-container style="height: 100vh;">
-    <el-aside width="200px">
-      <slot name="aside" />
+    <el-aside width="auto">
+      <el-header class="d-flex align-center" :class="{ 'justify-center': isCollapse }">
+        <router-link to="/">
+          <template v-if="isCollapse">X</template>
+          <template v-else>App Name</template>
+        </router-link>
+      </el-header>
+
+      <el-menu class="menu" :collapse="isCollapse" router>
+        <slot name="aside" />
+      </el-menu>
     </el-aside>
 
     <el-container>
@@ -26,6 +35,10 @@
       </el-header>
 
       <el-main>
+        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+          <el-radio-button :label="false">Agrandir</el-radio-button>
+          <el-radio-button :label="true">Réduire</el-radio-button>
+        </el-radio-group>
         <slot name="content" />
       </el-main>
     </el-container>
@@ -37,6 +50,11 @@ import { LOGOUT, USER } from "@/constants/router/routes-names";
 
 export default {
   name: "m-layout",
+  data() {
+    return {
+      isCollapse: false,
+    };
+  },
   computed: {
     userRouteName() {
       return USER;
@@ -49,6 +67,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.menu {
+  height: 100%;
+  border: none;
+
+  &:not(.el-menu--collapse) {
+    width: 200px;
+  }
+}
+
 .header {
   display: flex;
   justify-content: flex-end;
@@ -64,9 +91,5 @@ export default {
       margin-right: 0;
     }
   }
-}
-
-.el-aside {
-  color: #333;
 }
 </style>
