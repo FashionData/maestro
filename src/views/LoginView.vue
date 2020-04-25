@@ -11,9 +11,9 @@
       >
         <el-form-item prop="username">
           <el-input
-            v-model="model.username"
+            v-model="model.email"
             placeholder="Username"
-            prefix-icon="fas fa-user"
+            prefix-icon="fa fa-user"
           />
         </el-form-item>
         <el-form-item prop="password">
@@ -51,13 +51,14 @@
 
 <script>
 import { HOME } from "@/constants/router/routes-names";
+import { Messages } from "@/constants/ui";
 
 export default {
   name: "login-view",
   data() {
     return {
       model: {
-        username: "",
+        email: "",
         password: "",
       },
       isLoading: false,
@@ -76,16 +77,29 @@ export default {
           );
         })
         .catch(() => {
-          // TODO: Add error message in UI
-          this.isLoading = false;
+          this.errorCallback();
         });
     },
     errorCallback() {
-      this.$log("Authentication error");
+      this.isLoading = false;
+      this.$message({
+        type: "error",
+        // TODO: Add translation
+        message: "Authentication failed",
+        duration: Messages.duration,
+      });
     },
     authenticateUser() {
-      this.$log("Authentication...");
-      // TODO: Add authentication
+      const { email, password } = this.model;
+
+      this.isLoading = true;
+      this.$firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((res) => this.successCallback(res.user))
+        .catch(() => {
+          this.errorCallback();
+        });
     },
     googleAuthentication() {
       const provider = new this.$firebase.auth.GoogleAuthProvider();
@@ -94,11 +108,8 @@ export default {
       this.$firebase
         .auth()
         .signInWithPopup(provider)
-        .then((res) => {
-          this.successCallback(res.user);
-        })
+        .then((res) => this.successCallback(res.user))
         .catch(() => {
-          // TODO: Add error message in UI
           this.errorCallback();
         });
     },
@@ -112,7 +123,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  // TODO: Define height
+  // TODO: Define height with mixin to handle safari IOS overlay
 
   .login-form {
     width: 290px;
