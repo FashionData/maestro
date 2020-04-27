@@ -1,4 +1,2 @@
-import MCounter from "@/components/MCounter/MCounter.vue";
-import MLayout from "@/components/MLayout/MLayout.vue";
-
-export const components = [MCounter, MLayout];
+/* eslint-disable import/prefer-default-export */
+export { default as MLayout } from './m-layout.vue';
