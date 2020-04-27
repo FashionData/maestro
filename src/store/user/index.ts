@@ -30,17 +30,17 @@ export const userStore = {
     setCurrentUser: ({ commit }: any, user: User) => {
       commit('setUser', user)
     },
-    // TODO: Type
+    // TODO: Type + reject
     authenticateUser ({ commit, dispatch }: any, user: User) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         commit("authenticateUser");
         dispatch("setCurrentUser", user);
         resolve()
       });
     },
-    // TODO: Type
+    // TODO: Type + reject
     logout({ commit }: any) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         commit("logout");
         resolve()
       });

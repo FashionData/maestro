@@ -5,7 +5,6 @@
       <el-form
         class="login-form"
         :model="model"
-        :rules="rules"
         ref="form"
         @submit.native.prevent="authenticateUser"
       >
