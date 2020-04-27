@@ -45,7 +45,7 @@
   </el-container>
 </template>
 
-<script>
+<script lang="ts">
 import { LOGOUT, USER } from "@/constants/router/routes-names";
 
 export default {
@@ -61,9 +61,9 @@ export default {
     },
     logoutRouteName() {
       return LOGOUT;
-    },
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -36,6 +36,7 @@ export const initializeApp = (
     if (!app) {
       removeLoader();
 
+      // @ts-ignore
       app = new Vue({
         store,
         router,
