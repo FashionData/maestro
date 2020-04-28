@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import { LOGIN } from "@/constants/router/routes-names";
+import { LOGIN } from "@/constants/router/routes";
 
 export default {
   name: "logout-view",
   activated() {
     this.$firebase.auth().signOut();
     this.$store.dispatch("logout").then(() => {
-      this.$router.push({ name: LOGIN });
+      this.$router.push({ name: LOGIN.name });
     });
   },
 };

@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { LOGOUT, USER } from "@/constants/router/routes-names";
+import { LOGOUT, USER } from "@/constants/router/routes";
 
 export default {
   name: "m-layout",
@@ -57,10 +57,10 @@ export default {
   },
   computed: {
     userRouteName() {
-      return USER;
+      return USER.name;
     },
     logoutRouteName() {
-      return LOGOUT;
+      return LOGOUT.name;
     }
   },
 }

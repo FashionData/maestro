@@ -1,7 +1,6 @@
 import _Vue, { VueConstructor, PluginFunction } from 'vue';
 import { InstallOptions } from "@/types";
 import * as components from '@/components';
-import { auth, guest } from "@/router/middleware";
 
 import { checkConfiguration } from "@/init/configuration";
 import { injectLoader, removeLoader } from "@/init/loader";
@@ -17,7 +16,9 @@ interface InstallFunction extends PluginFunction<any> {
   installed?: boolean;
 }
 
-export { auth, guest };
+export * from "@/router/middleware";
+export * from "@/cloud-functions";
+export * from '@/components'; // To allow individual component use => can be registered via Vue.component()
 
 export const initializeApp = (
   Vue: VueConstructor,
@@ -87,7 +88,3 @@ if (GlobalVue) {
 
 // Default export is library as a whole, registered via Vue.use()
 export default plugin;
-
-// To allow individual component use, export components
-// each can be registered via Vue.component()
-export * from '@/components';
