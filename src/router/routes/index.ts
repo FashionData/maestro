@@ -4,38 +4,38 @@ import NotFound from "@/views/NotFound.vue";
 import UserProfile from "@/views/UserProfile.vue";
 import UsersView from "@/views/UsersView.vue";
 
-import { LOGIN, LOGOUT, NOT_FOUND, USER, USERS } from "@/constants/router/routes-names";
+import { LOGIN, LOGOUT, NOT_FOUND, USER, USERS } from "@/constants/router/routes";
 import { auth, guest } from "@/router/middleware";
 
 export const routes = [
   {
-    path: "/login",
-    name: LOGIN,
+    path: LOGIN.path,
+    name: LOGIN.name,
     meta: { middleware: [guest] },
     component: LoginView
   },
   {
-    path: "/logout",
-    name: LOGOUT,
+    path: LOGOUT.path,
+    name: LOGOUT.name,
     meta: { middleware: [auth] },
     component: LogoutView
   },
   {
-    path: "/users",
-    name: USERS,
+    path: USERS.path,
+    name: USERS.name,
     // TODO: Add superAdmin
     meta: { middleware: [auth] },
     component: UsersView
   },
   {
-    path: "/user",
-    name: USER,
+    path: USER.path,
+    name: USER.name,
     meta: { middleware: [auth] },
     component: UserProfile
   },
   {
-    path: "*",
-    name: NOT_FOUND,
+    path: NOT_FOUND.path,
+    name: NOT_FOUND.name,
     meta: { middleware: [auth] },
     component: NotFound
   }

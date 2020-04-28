@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { HOME } from "@/constants/router/routes-names";
+import { HOME } from "@/constants/router/routes";
 import { Messages } from "@/constants/ui";
 
 export default {
@@ -72,7 +72,7 @@ export default {
           this.$router.push(
             this.$route.query.redirect
               ? this.$route.query.redirect.toString()
-              : { name: HOME }
+              : { name: HOME.name }
           );
         })
         .catch(() => {
