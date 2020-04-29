@@ -4,6 +4,6 @@
       "npm --prefix \"$RESOURCE_DIR\" run lint",
       "npm --prefix \"$RESOURCE_DIR\" run build"
     ],
-    "source": "src/dev/functions"
+    "source": "dev/functions"
   }
 }

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VueRouter from 'vue-router';
-import App from '@/dev/App.vue';
+import App from './App.vue';
 import * as firebase from "firebase";
 import { initializeApp } from "@/main";
 
