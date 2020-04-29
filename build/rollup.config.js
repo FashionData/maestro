@@ -5,19 +5,19 @@ import vue from 'rollup-plugin-vue';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
+import resolve from '@rollup/plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 
 // Get browserslist config and remove ie from es build targets
+const argv = minimist(process.argv.slice(2));
+const projectRoot = path.resolve(__dirname, '..');
+const extensions = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
   .toString()
   .split('\n')
   .filter((entry) => entry && entry.substring(0, 2) !== 'ie');
-
-const argv = minimist(process.argv.slice(2));
-
-const projectRoot = path.resolve(__dirname, '..');
 
 const baseConfig = {
   input: 'src/main.ts',
@@ -41,8 +41,12 @@ const baseConfig = {
     },
     babel: {
       exclude: 'node_modules/**',
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      extensions
     },
+    resolve: resolve({
+      mainFields: ['module', 'main', 'jsnext:main', 'browser'],
+      extensions
+    }),
   },
 };
 
@@ -75,6 +79,7 @@ if (!argv.format || argv.format === 'es') {
     },
     plugins: [
       ...baseConfig.plugins.preVue,
+      baseConfig.plugins.resolve,
       vue(baseConfig.plugins.vue),
       babel({
         ...baseConfig.plugins.babel,
@@ -87,7 +92,7 @@ if (!argv.format || argv.format === 'es') {
           ],
         ],
       }),
-      commonjs(),
+      commonjs()
     ],
   };
   buildFormats.push(esConfig);
@@ -107,6 +112,7 @@ if (!argv.format || argv.format === 'cjs') {
     },
     plugins: [
       ...baseConfig.plugins.preVue,
+      baseConfig.plugins.resolve,
       vue({
         ...baseConfig.plugins.vue,
         template: {
@@ -135,6 +141,7 @@ if (!argv.format || argv.format === 'iife') {
     },
     plugins: [
       ...baseConfig.plugins.preVue,
+      baseConfig.plugins.resolve,
       vue(baseConfig.plugins.vue),
       babel(baseConfig.plugins.babel),
       commonjs(),
