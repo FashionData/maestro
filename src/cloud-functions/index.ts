@@ -1,1 +1,1 @@
-export { getAllUsers } from './users/get-all-users'
+export { getAllUsers } from '@/cloud-functions/users/get-all-users'

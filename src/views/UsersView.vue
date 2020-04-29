@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import HttpsCallableResult = firebase.functions.HttpsCallableResult;
+import firebase from "firebase";
 
 export default Vue.extend({
   name: "users-view",
@@ -24,7 +24,7 @@ export default Vue.extend({
   mounted(): void {
     this.isLoading = true;
 
-    this.$httpsCallableFunction("getAllUsers", {}).then((res: HttpsCallableResult) => {
+    this.$httpsCallableFunction("getAllUsers", {}).then((res: firebase.functions.HttpsCallableResult) => {
       this.users = res.data.users;
       this.isLoading = false;
     })

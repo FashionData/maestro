@@ -1,4 +1,5 @@
 import _Vue, { VueConstructor, PluginFunction } from 'vue';
+import { Route } from "vue-router";
 import { InstallOptions } from "@/types";
 import * as components from '@/components';
 
@@ -9,6 +10,10 @@ import { configureRouter } from "@/init/router";
 import { configureFirebase } from "@/init/firebase";
 import { configureElementUi } from "@/init/element-ui";
 import { log } from "@/utils/logs";
+
+import { HOME } from "@/constants/router/routes";
+import { auth } from "@/router/middleware";
+import HomeView from "@/views/placeholders/HomeView.vue";
 
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,6 +35,19 @@ export const initializeApp = (
 
   let app: any;
   const { store, router, firebase } = options;
+
+  if (!router.options.routes || !router.options.routes.find((route: Route) => route.path = "/")) {
+    router.addRoutes([
+      {
+        path: HOME.path,
+        name: HOME.name,
+        meta: { middleware: [auth] },
+        component: HomeView
+      }
+    ]);
+
+    log("Added placeholder HomeView");
+  }
 
   Vue.use(install, { store, router, firebase });
 
