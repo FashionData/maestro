@@ -1,12 +1,13 @@
 import { InstallOptions } from "@/types";
+import { error } from "@/utils/console";
 
 export const checkConfiguration = (options: InstallOptions) => {
   if (!options)
-    throw new Error("Please provide default configuration.");
+    error("Please provide default configuration.");
   if (!options.store)
-    throw new Error("Please initialise plugin with a Vuex store.");
+    error("Please initialise plugin with a Vuex store.");
   if (!options.router)
-    throw new Error("Please initialise plugin with a Vue Router.");
+    error("Please initialise plugin with a Vue Router.");
   if (!options.firebase)
-    throw new Error("Please initialise plugin with Firebase.");
+    error("Please initialise plugin with Firebase.");
 };
