@@ -23,7 +23,7 @@
 		</el-header>
 
 		<el-main>
-			<p>{{ title }}</p>
+			<h1 class="title">{{ title }}</h1>
 			<slot />
 		</el-main>
 	</el-container>
@@ -31,13 +31,13 @@
 
 <script lang="ts">
 	import Vue from 'vue';
-  import { LOGOUT, USER } from "../../constants/router/routes";
+  import { LOGOUT, PROFILE } from "../../constants/router/routes";
 
   export default Vue.extend({
     name: "container-component",
     computed: {
       userRouteName() {
-        return USER.name;
+        return PROFILE.name;
       },
       logoutRouteName() {
         return LOGOUT.name;
