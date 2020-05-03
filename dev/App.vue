@@ -1,14 +1,6 @@
 <template>
   <div v-if="$store.getters.isAuthenticated">
     <m-layout>
-      <template #aside>
-        <el-menu-item :index="usersPath">
-          <i class="el-icon-menu"></i>
-          <!-- TODO: Translate with i18n -->
-          <span slot="title">Users</span>
-        </el-menu-item>
-      </template>
-
       <template #content>
         <keep-alive>
           <router-view :key="$route.fullPath" />
@@ -25,15 +17,8 @@
 </template>
 
 <script lang="ts">
-import { USERS } from "@/constants/router/routes";
-
 export default {
   name: 'app',
-  computed: {
-    usersPath() {
-      return USERS.path
-    }
-  }
 };
 </script>
 
