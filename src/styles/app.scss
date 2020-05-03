@@ -1,1 +1,14 @@
-@import "displays/flex";
+@import "reset";
+@import "shared";
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: applyFontSize(medium);
+}
+
+* {
+	box-sizing: border-box;
+}
