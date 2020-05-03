@@ -15,6 +15,7 @@ import { HOME } from "@/constants/router/routes";
 import { auth } from "@/router/middleware";
 import HomeView from "@/views/placeholders/HomeView.vue";
 
+// TODO: remove when style will be globally exposed
 import "@/styles/app.scss"
 
 // Define typescript interfaces for autoinstaller

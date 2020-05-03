@@ -1,0 +1,46 @@
+.d-flex {
+	display: flex;
+}
+
+.flex {
+	&-wrap {
+		flex-wrap: wrap;
+	}
+
+	&-column {
+		@extend .d-flex;
+		flex-direction: column;
+	}
+}
+
+.align {
+	&-center {
+		align-items: center;
+	}
+
+	&-end {
+		align-items: flex-end;
+	}
+
+	&-stretch {
+		align-items: stretch;
+	}
+
+	&-self-center {
+		align-self: center;
+	}
+}
+
+.justify {
+	&-center {
+		justify-content: center;
+	}
+
+	&-space-between {
+		justify-content: space-between;
+	}
+
+	&-space-around {
+		justify-content: space-around;
+	}
+}

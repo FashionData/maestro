@@ -1,0 +1,12 @@
+@mixin bgImage($repeat: no-repeat, $position: center, $size: cover) {
+	background-repeat: $repeat;
+	background-position: $position;
+	background-size: $size;
+}
+
+@mixin centerAbsolute() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
