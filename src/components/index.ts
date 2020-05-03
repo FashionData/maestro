@@ -1,1 +1,1 @@
-export { default as MLayout } from './m-layout.vue';
+export { default as MLayout } from './m-layout/m-layout.vue';

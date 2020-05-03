@@ -1,15 +1,8 @@
 import { VueConstructor } from "vue";
 import Element from "element-ui";
 
+import "@/styles/theme.scss"
+
 export const configureElementUi = (Vue: VueConstructor) => {
   Vue.use(Element);
-
-  const head = document.head;
-  const link = document.createElement("link");
-
-  link.type = "text/css";
-  link.rel = "stylesheet";
-  link.href = "https://unpkg.com/element-ui/lib/theme-chalk/index.css";
-
-  head.appendChild(link);
 };

@@ -15,6 +15,8 @@ import { HOME } from "@/constants/router/routes";
 import { authMiddleware } from "@/router/middleware";
 import HomeView from "@/views/placeholders/HomeView.vue";
 
+import "@/styles/app.scss"
+
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface InstallFunction extends PluginFunction<any> {
@@ -69,8 +71,6 @@ export const initializeApp = (
 const install: InstallFunction = function installMaestro(Vue: typeof _Vue, options: InstallOptions) {
   if (install.installed) return;
   install.installed = true;
-
-  checkConfiguration(options);
 
   configureStore(options.store);
   configureRouter(options.router);

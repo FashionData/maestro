@@ -1,4 +1,3 @@
-// rollup.config.js
 import fs from 'fs';
 import path from 'path';
 import vue from 'rollup-plugin-vue';
@@ -7,13 +6,15 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
+import json from '@rollup/plugin-json';
+import postcss from 'rollup-plugin-postcss';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 
 // Get browserslist config and remove ie from es build targets
 const argv = minimist(process.argv.slice(2));
 const projectRoot = path.resolve(__dirname, '..');
-const extensions = ['.js', '.jsx', '.ts', '.tsx', '.vue'];
+const extensions = ['.js', '.jsx', '.ts', '.tsx', '.vue', '.json', '.scss'];
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
   .toString()
   .split('\n')
@@ -27,11 +28,13 @@ const baseConfig = {
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
       alias({
-        resolve: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+        resolve: extensions,
         entries: {
           '@': path.resolve(projectRoot, 'src'),
         },
       }),
+      json(),
+      postcss(),
     ],
     vue: {
       css: true,
