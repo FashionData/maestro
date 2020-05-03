@@ -1,10 +1,10 @@
 import LoginView from "@/views/LoginView.vue";
 import LogoutView from "@/views/LogoutView.vue";
 import NotFound from "@/views/NotFound.vue";
-import UserProfile from "@/views/UserProfile.vue";
+import ProfileView from "@/views/ProfileView.vue";
 import UsersView from "@/views/UsersView.vue";
 
-import { LOGIN, LOGOUT, NOT_FOUND, USER, USERS } from "@/constants/router/routes";
+import { LOGIN, LOGOUT, NOT_FOUND, PROFILE, USERS } from "@/constants/router/routes";
 import { auth, guest } from "@/router/middleware";
 
 export const routes = [
@@ -28,10 +28,10 @@ export const routes = [
     component: UsersView
   },
   {
-    path: USER.path,
-    name: USER.name,
+    path: PROFILE.path,
+    name: PROFILE.name,
     meta: { middleware: [auth] },
-    component: UserProfile
+    component: ProfileView
   },
   {
     path: NOT_FOUND.path,
