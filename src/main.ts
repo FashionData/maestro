@@ -12,7 +12,7 @@ import { configureElementUi } from "@/init/element-ui";
 import { log } from "@/utils/logs";
 
 import { HOME } from "@/constants/router/routes";
-import { auth } from "@/router/middleware";
+import { authMiddleware } from "@/router/middleware";
 import HomeView from "@/views/placeholders/HomeView.vue";
 
 // Define typescript interfaces for autoinstaller
@@ -41,7 +41,7 @@ export const initializeApp = (
       {
         path: HOME.path,
         name: HOME.name,
-        meta: { middleware: [auth] },
+        meta: { middleware: [authMiddleware] },
         component: HomeView
       }
     ]);
