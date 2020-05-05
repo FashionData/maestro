@@ -50,11 +50,11 @@
 	.menu-header,
 	.menu {
 		border: none;
+		background: $--color-primary-light-5;
 	}
 
 	.menu {
 		height: 100%;
-		background: $--color-primary;
 		.el-menu-item {
 			// color: $--color-white;
 		}
