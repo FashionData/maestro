@@ -54,7 +54,7 @@
 
 	.menu {
 		height: 100%;
-
+		background: $--color-primary;
 		.el-menu-item {
 			// color: $--color-white;
 		}
