@@ -61,14 +61,31 @@
 		.el-submenu__title:hover,
 		.el-submenu__title:focus {
 			background-color: $--color-primary-light-1;
+			font-weight: bold;
 		}
 	}
 
 	ul.el-menu {
 		height: 100%;
 
+		.el-submenu__title i,
+		.el-menu-item i,
 		.el-menu-item {
-			// color: $--color-white;
+			color: $--color-white;
+		}
+
+		.el-menu-item.is-active {
+			display: block;
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: .5rem;
+				height: 100%;
+				background-color: $--color-text-secondary;
+			}
 		}
 
 		&:not(.el-menu--collapse) {
