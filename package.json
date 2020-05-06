@@ -55,7 +55,8 @@
   },
   "peerDependencies": {
     "element-ui": "^2.13.1",
-    "vue": "^2.6.10"
+    "vue": "^2.6.10",
+    "vue-debounce": "^2.5.3"
   },
   "engines": {
     "node": ">=8"
