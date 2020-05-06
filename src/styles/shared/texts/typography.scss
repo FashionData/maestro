@@ -2,6 +2,10 @@
 	font-size: applyFontSize(heading-1);
 }
 
+.text-highlight {
+	color: $--color-text-secondary;
+}
+
 .bold {
 	font-weight: bold;
 }
