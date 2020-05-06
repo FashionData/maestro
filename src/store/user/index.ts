@@ -33,13 +33,14 @@ export const userStore = {
     },
     // TODO: Type + reject
     authenticateUser ({ commit, dispatch }: any, { firebase, user }: { firebase: AnyObject, user: User }) {
-      const setUser = firebase.firestore().collection(Collections.users).doc(user.uid).set({
+      const setUser = firebase.firestore().collection(Collections.users).doc(user.uid).update({
         id: user.uid,
         disabled: false,
         deleted: false,
         email: user.email,
         displayName: user.displayName,
         photoURL: user.photoURL,
+        creationTime: user.metadata.creationTime,
       })
 
       // TODO: Update collection path
