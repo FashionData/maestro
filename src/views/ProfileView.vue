@@ -15,7 +15,7 @@
         <!-- TODO: Translate with i18n -->
         <div class="bold">
           <!-- TODO: Add main color -->
-          <p>Prénom Nom</p>
+          <p class="text-highlight">{{ userSocialInformation.displayName }}</p>
           <p>User role</p>
         </div>
 
@@ -28,7 +28,7 @@
 
         <div>
           <p>Member since</p>
-          <p class="bold">24/09/2019</p>
+          <p class="bold">{{ userSocialInformation.creationTime }}</p>
         </div>
       </el-card>
     </el-col>
@@ -68,10 +68,13 @@
 </template>
 
 <script>
+import { Collections } from "@/constants/firebase";
+
 export default {
   name: "profile-view",
   data() {
     return {
+      userSocialInformation: {},
       photoURL: this.$store.getters.user.photoURL,
       userEmail: '',
       userPhone: '',
@@ -102,7 +105,12 @@ export default {
     };
   },
   computed: {
-    size: () => 200
+    size: () => 200,
+  },
+  mounted() {
+    this.$firebase.firestore().collection(Collections.users).doc(this.$store.getters.user.uid).get().then((res) => {
+      this.userSocialInformation = res.data()
+    })
   },
   methods: {
     handleAvatarSuccess(res, file) {
@@ -120,7 +128,7 @@ export default {
       }
       return isJPG && isLt2M;
     }
-  }
+  },
 };
 </script>
 

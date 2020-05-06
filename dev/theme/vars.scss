@@ -1,0 +1,7 @@
+$--color-primary: #565578;
+$--color-text-secondary: #74c4ac;
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+// When used in a real application and when maestro will be published, it will be
+// @import "~maestro/src/styles/vars";
+@import "./src/styles/vars";
