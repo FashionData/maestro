@@ -81,7 +81,8 @@
               v-for="item in options"
               :key="item.value"
               :label="item.label"
-              :value="item.value">
+              :value="item.value"
+            >
             </el-option>
           </el-select>
         </div>
@@ -101,26 +102,53 @@ export default {
       editTitle: false,
       photoURL: this.$store.getters.user.photoURL,
       options: [
-        {
-          value: 'Option1',
-          label: 'Option1'
-        },
-        {
-          value: 'Option2',
-          label: 'Option2'
-        },
-        {
-          value: 'Option3',
-          label: 'Option3'
-        },
-        {
-          value: 'Option4',
-          label: 'Option4'
-        },
-        {
-          value: 'Option5',
-          label: 'Option5'
-        }
+        // TODO: Use Axios to fetch API with worldwide results
+        { label: "Amsterdam", value: "Europe/Amsterdam" },
+        { label: "Andorra", value: "Europe/Andorra" },
+        { label: "Astrakhan", value: "Europe/Astrakhan" },
+        { label: "Athens", value: "Europe/Athens" },
+        { label: "Belgrade", value: "Europe/Belgrade" },
+        { label: "Berlin", value: "Europe/Berlin" },
+        { label: "Brussels", value: "Europe/Brussels" },
+        { label: "Bucharest", value: "Europe/Bucharest" },
+        { label: "Budapest", value: "Europe/Budapest" },
+        { label: "Chisinau", value: "Europe/Chisinau" },
+        { label: "Copenhagen", value: "Europe/Copenhagen" },
+        { label: "Dublin", value: "Europe/Dublin" },
+        { label: "Gibraltar", value: "Europe/Gibraltar" },
+        { label: "Helsinki", value: "Europe/Helsinki" },
+        { label: "Istanbul", value: "Europe/Istanbul" },
+        { label: "Kaliningrad", value: "Europe/Kaliningrad" },
+        { label: "Kiev", value: "Europe/Kiev" },
+        { label: "Kirov", value: "Europe/Kirov" },
+        { label: "Lisbon", value: "Europe/Lisbon" },
+        { label: "London", value: "Europe/London" },
+        { label: "Luxembourg", value: "Europe/Luxembourg" },
+        { label: "Madrid", value: "Europe/Madrid" },
+        { label: "Malta", value: "Europe/Malta" },
+        { label: "Minsk", value: "Europe/Minsk" },
+        { label: "Monaco", value: "Europe/Monaco" },
+        { label: "Moscow", value: "Europe/Moscow" },
+        { label: "Oslo", value: "Europe/Oslo" },
+        { label: "Paris", value: "Europe/Paris" },
+        { label: "Prague", value: "Europe/Prague" },
+        { label: "Riga", value: "Europe/Riga" },
+        { label: "Rome", value: "Europe/Rome" },
+        { label: "Samara", value: "Europe/Samara" },
+        { label: "Saratov", value: "Europe/Saratov" },
+        { label: "Simferopol", value: "Europe/Simferopol" },
+        { label: "Sofia", value: "Europe/Sofia" },
+        { label: "Stockholm", value: "Europe/Stockholm" },
+        { label: "Tallinn", value: "Europe/Tallinn" },
+        { label: "Tirane", value: "Europe/Tirane" },
+        { label: "Ulyanovsk", value: "Europe/Ulyanovsk" },
+        { label: "Uzhgorod", value: "Europe/Uzhgorod" },
+        { label: "Vienna", value: "Europe/Vienna" },
+        { label: "Vilnius", value: "Europe/Vilnius" },
+        { label: "Volgograd", value: "Europe/Volgograd" },
+        { label: "Warsaw", value: "Europe/Warsaw" },
+        { label: "Zaporozhye", value: "Europe/Zaporozhye" },
+        { label: "Zurich", value: "Europe/Zurich" }
       ],
     };
   },
