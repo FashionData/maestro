@@ -1,6 +1,6 @@
 <template>
 	<el-aside width="auto">
-		<el-header class="menu-header d-flex align-center" :class="{ 'justify-center': isCollapse }">
+		<el-header class="menu-header d-flex justify-space-between align-center" :class="{ 'justify-center': isCollapse }">
 			<router-link to="/">
 				<template v-if="isCollapse">X</template>
 				<!-- TODO: Use package name (from consumer app) -->
@@ -13,7 +13,7 @@
         </span>
 		</el-header>
 
-		<el-menu class="menu" :collapse="isCollapse" router>
+		<el-menu :collapse="isCollapse" router>
 			<el-menu-item index="history">
 				<i class="el-icon-menu"></i>
 				<!-- TODO: Translate with i18n -->
@@ -46,13 +46,25 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	.menu-header,
-	.menu {
+	ul.el-menu {
 		border: none;
+		background-color: $--color-primary;
+
+		& * {
+			color: $--color-white;
+		}
+
+		.el-menu-item:hover,
+		.el-menu-item:focus,
+		.el-submenu__title:hover,
+		.el-submenu__title:focus {
+			background-color: $--color-primary-light-1;
+		}
 	}
 
-	.menu {
+	ul.el-menu {
 		height: 100%;
 
 		.el-menu-item {

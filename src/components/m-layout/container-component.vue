@@ -22,8 +22,11 @@
 			</el-dropdown>
 		</el-header>
 
-		<el-main>
+		<header v-if="title" class="main-header">
 			<h1 class="title">{{ title }}</h1>
+		</header>
+
+		<el-main>
 			<slot />
 		</el-main>
 	</el-container>
@@ -65,5 +68,23 @@
 				margin-right: 0;
 			}
 		}
+	}
+
+	.main-header {
+		@extend .d-flex;
+		@extend .align-center;
+
+		padding: $--main-padding;
+		min-height: 12rem;
+		background-color: $--color-primary-light-9;
+
+		.title {
+			margin: 0;
+		}
+	}
+
+	main.el-main {
+		padding-top: $--main-padding * 2;
+		padding-bottom: $--main-padding * 2;
 	}
 </style>
