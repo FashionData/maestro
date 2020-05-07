@@ -22,12 +22,14 @@
 			</el-dropdown>
 		</el-header>
 
-		<header v-if="title" class="main-header">
-			<h1 class="title">{{ title }}</h1>
-		</header>
+		<el-main style="padding: 0">
+			<header v-if="title" class="main-header">
+				<h1 class="title">{{ title }}</h1>
+			</header>
 
-		<el-main>
-			<slot />
+			<div class="main">
+				<slot />
+			</div>
 		</el-main>
 	</el-container>
 </template>
@@ -83,8 +85,7 @@
 		}
 	}
 
-	main.el-main {
-		padding-top: $--main-padding * 2;
-		padding-bottom: $--main-padding * 2;
+	.main {
+		padding: $--main-padding * 2 $--main-padding;
 	}
 </style>
