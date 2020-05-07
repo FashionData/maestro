@@ -3,11 +3,11 @@
 ## Installation
 
 ```bash
-$ yarn add element-ui vue-debounce maestro
+$ yarn add element-ui maestro
 ```
 or
 ```bash
-$ npm i element-ui vue-debounce maestro
+$ npm i element-ui maestro
 ```
 
 ### Theme

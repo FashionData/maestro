@@ -38,6 +38,7 @@ const baseConfig = {
     ],
     vue: {
       css: true,
+      data: { scss: fs.readFileSync('./src/styles/vars.scss').toString() + fs.readFileSync('./src/styles/app.scss').toString() },
       template: {
         isProduction: true,
       },
@@ -58,7 +59,8 @@ const baseConfig = {
 const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
-  'vue',
+  'element-ui',
+  'vue'
 ];
 
 // UMD/IIFE shared settings: output.globals
@@ -76,7 +78,7 @@ if (!argv.format || argv.format === 'es') {
     ...baseConfig,
     external,
     output: {
-      file: 'dist/maestro.esm.js',
+      dir: 'dist',
       format: 'esm',
       exports: 'named',
     },

@@ -2,10 +2,10 @@
   "name": "maestro",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/maestro.ssr.js",
-  "browser": "dist/maestro.esm.js",
-  "module": "dist/maestro.esm.js",
-  "unpkg": "dist/maestro.min.js",
+  "main": "dist/main.js",
+  "browser": "dist/main.js",
+  "module": "dist/main.js",
+  "unpkg": "dist/main.js",
   "types": "maestro.d.ts",
   "files": [
     "dist/*",
@@ -55,10 +55,12 @@
   },
   "peerDependencies": {
     "element-ui": "^2.13.1",
-    "vue": "^2.6.10",
-    "vue-debounce": "^2.5.3"
+    "vue": "^2.6.10"
   },
   "engines": {
     "node": ">=8"
+  },
+  "dependencies": {
+    "vue-debounce": "^2.5.3"
   }
 }

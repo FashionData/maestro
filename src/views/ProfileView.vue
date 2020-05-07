@@ -102,7 +102,7 @@ export default {
       editTitle: false,
       photoURL: this.$store.getters.user.photoURL,
       options: [
-        // TODO: Use Axios to fetch API with worldwide results
+        // TODO: Use Axios to fetch API with worldwide results http://worldtimeapi.org/
         { label: "Amsterdam", value: "Europe/Amsterdam" },
         { label: "Andorra", value: "Europe/Andorra" },
         { label: "Astrakhan", value: "Europe/Astrakhan" },

@@ -16,9 +16,6 @@ import { HOME } from "@/constants/router/routes";
 import { authMiddleware } from "@/router/middleware";
 import HomeView from "@/views/placeholders/HomeView.vue";
 
-// TODO: remove when style will be globally exposed
-import "@/styles/app.scss"
-
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface InstallFunction extends PluginFunction<any> {

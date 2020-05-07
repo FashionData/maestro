@@ -35,10 +35,9 @@
 </template>
 
 <script lang="ts">
-	import Vue from 'vue';
   import { LOGOUT, PROFILE } from "../../constants/router/routes";
 
-  export default Vue.extend({
+  export default {
     name: "container-component",
     computed: {
       userRouteName() {
@@ -52,7 +51,7 @@
         return formattedPath.charAt(0).toUpperCase() + formattedPath.slice(1);
       }
     },
-	})
+	}
 </script>
 
 <style lang="scss">
