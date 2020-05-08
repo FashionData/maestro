@@ -67,6 +67,7 @@ const external = [
 const globals = {
   // Provide global variable names to replace your external imports
   // eg. jquery: '$'
+  'element-ui': 'Element',
   vue: 'Vue',
 };
 
@@ -77,7 +78,7 @@ if (!argv.format || argv.format === 'es') {
     ...baseConfig,
     external,
     output: {
-      dir: 'dist/esm',
+      file: 'dist/maestro.esm.js',
       format: 'esm',
       exports: 'named',
     },
@@ -102,14 +103,13 @@ if (!argv.format || argv.format === 'es') {
   buildFormats.push(esConfig);
 }
 
-// TODO: Fix
 if (!argv.format || argv.format === 'cjs') {
   const umdConfig = {
     ...baseConfig,
     external,
     output: {
       compact: true,
-      dir: 'dist/cjs',
+      file: 'dist/maestro.ssr.js',
       format: 'cjs',
       name: 'Maestro',
       exports: 'named',
@@ -138,7 +138,7 @@ if (!argv.format || argv.format === 'iife') {
     external,
     output: {
       compact: true,
-      dir: 'dist/iife',
+      file: 'dist/maestro.min.js',
       format: 'iife',
       name: 'Maestro',
       exports: 'named',
@@ -160,5 +160,4 @@ if (!argv.format || argv.format === 'iife') {
   buildFormats.push(unpkgConfig);
 }
 
-// Export config
 export default buildFormats;
