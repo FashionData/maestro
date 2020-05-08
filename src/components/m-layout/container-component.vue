@@ -53,38 +53,3 @@
     },
 	}
 </script>
-
-<style lang="scss">
-	.header {
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		font-size: 20px;
-		box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
-
-		& > * {
-			margin-right: 17px;
-
-			&:last-child {
-				margin-right: 0;
-			}
-		}
-	}
-
-	.main-header {
-		@extend .d-flex;
-		@extend .align-center;
-
-		padding: $--main-padding;
-		min-height: 12rem;
-		background-color: $--color-primary-light-9;
-
-		.title {
-			margin: 0;
-		}
-	}
-
-	.main {
-		padding: $--main-padding * 2 $--main-padding;
-	}
-</style>

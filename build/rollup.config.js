@@ -38,7 +38,6 @@ const baseConfig = {
     ],
     vue: {
       css: true,
-      data: { scss: fs.readFileSync('./src/styles/vars.scss').toString() + fs.readFileSync('./src/styles/app.scss').toString() },
       template: {
         isProduction: true,
       },
@@ -78,6 +77,7 @@ if (!argv.format || argv.format === 'es') {
     ...baseConfig,
     external,
     output: {
+      // TODO: Put file output
       dir: 'dist',
       format: 'esm',
       exports: 'named',

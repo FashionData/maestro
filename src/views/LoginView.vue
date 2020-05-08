@@ -49,12 +49,11 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { User } from "@/types";
 import { HOME } from "@/constants/router/routes";
 import { Messages } from "@/constants/ui";
 
-export default Vue.extend({
+export default {
   name: "login-view",
   data() {
     return {
@@ -115,19 +114,5 @@ export default Vue.extend({
         });
     },
   },
-});
+};
 </script>
-
-<style lang="scss" scoped>
-.login-view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  // TODO: Define height with mixin to handle safari IOS overlay
-
-  .login-form {
-    width: 290px;
-  }
-}
-</style>

@@ -1,0 +1,51 @@
+@import "../common/vars";
+@import "../../shared/functions";
+
+.profile-card {
+	padding: applySpace(x-large);
+
+	& > div > * {
+		margin-bottom: applySpace(x-large);
+	}
+}
+
+.user-title {
+	position: relative;
+
+	i {
+		opacity: .4;
+		margin-left: .8rem;
+		transition: $--fade-transition;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		&.el-icon-circle-check {
+			transition: $--color-transition-base $--fade-transition;
+
+			&:hover {
+				color: $--color-success;
+			}
+		}
+	}
+}
+
+.form-group {
+	@extend .d-flex;
+	@extend .flex-column;
+	max-width: 70%;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+
+	&--reduced {
+		max-width: 45%;
+	}
+
+	label {
+		@extend .bold;
+		margin-bottom: applySpace(small);
+	}
+}

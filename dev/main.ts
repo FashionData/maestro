@@ -14,4 +14,5 @@ Vue.config.productionTip = false;
 const store = new Vuex.Store({});
 const router = new VueRouter({ mode: 'history' });
 
-initializeApp(Vue, App, { store, router, firebase, theme: require('./theme/theme.scss') })
+// theme: require('./theme/theme.scss')
+initializeApp(Vue, App, { store, router, firebase })
