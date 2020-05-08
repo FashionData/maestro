@@ -77,8 +77,7 @@ if (!argv.format || argv.format === 'es') {
     ...baseConfig,
     external,
     output: {
-      // TODO: Put file output
-      dir: 'dist',
+      dir: 'dist/esm',
       format: 'esm',
       exports: 'named',
     },
@@ -103,13 +102,14 @@ if (!argv.format || argv.format === 'es') {
   buildFormats.push(esConfig);
 }
 
+// TODO: Fix
 if (!argv.format || argv.format === 'cjs') {
   const umdConfig = {
     ...baseConfig,
     external,
     output: {
       compact: true,
-      file: 'dist/maestro.ssr.js',
+      dir: 'dist/cjs',
       format: 'cjs',
       name: 'Maestro',
       exports: 'named',
@@ -138,7 +138,7 @@ if (!argv.format || argv.format === 'iife') {
     external,
     output: {
       compact: true,
-      file: 'dist/maestro.min.js',
+      dir: 'dist/iife',
       format: 'iife',
       name: 'Maestro',
       exports: 'named',
