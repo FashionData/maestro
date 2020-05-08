@@ -1,7 +1,7 @@
 # Maestro
 
 ## Installation
-
+### Add to project
 ```bash
 $ yarn add element-ui maestro
 ```
@@ -10,56 +10,60 @@ or
 $ npm i element-ui maestro
 ```
 
-### Theme
-
-When using a custom theme, you can import a scss file by providing it in the `theme` option
-of Maestro
+### Use in your Vue application
+Considering that your already have:
+- `vuex`
+- `vue-router`
+- `firebase`
 
 ```javascript
-initializeApp(Vue, App, { store, router, firebase, theme: require('@/theme/theme.scss') })
+// src/main.js
+
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+import { initializeApp } from "maestro";
+import * as firebase from "firebase";
+
+import "./config/firebase"; // Firebase initialization
+
+Vue.config.productionTip = false;
+
+initializeApp(Vue, App, { store, router, firebase });
 ```
 
-where `theme.scss` is your base theme file. You must at least provide a valid font path and a theme to extends.
-You must also create a `vars.scss` file if you want to override any of the base Element UI colors. 
+You now have a running application 🎉
 
-Here is a basic valid `theme.scss` file with some colors overridden in `vars.scss`
-
+### Theme
+#### Default
+Import sass file into your `main.js` that imports maestro default theme.
 ```scss
-// @/theme/vars.scss
-
-$--color-primary: violet;
-$--font-path: '~element-ui/lib/theme-chalk/fonts';
-
-// Important: it should be the last thing to be imported, 
-// to correctly overrides colors
-@import "~maestro/src/styles/vars";
+@import '~maestro/src/styles/theme/index';
 ```
 
-```scss
-// @/theme/theme.scss
+If you want to override variables (for colors erc...) you just have to add them before importing ` ~maestro/src/styles/theme/index`
 
-// Import your vars scss file
-@import "./vars";
+Please refer to [this file](https://github.com/ElemeFE/element/blob/dev/packages/theme-chalk/src/common/var.scss) to see available variables.
 
-// The element UI theme to use
-@import "node_modules/element-ui/packages/theme-chalk/src/index";
-```
+#### Custom
+If you want to start from scratch, you don't have to import any scss file, so you can start building your own custom theme.
 
-If you want to use those variables in your .vue components, you can 
-extends the `vue.config.js` like this
+#### Use scss variables into .vue files
+If you want to use scss variables in your .vue components, you can extend the `vue.config.js` like this
 
-```js
+```javascript
 module.exports = {
   css: {
     loaderOptions: {
       sass: {
         prependData: `
-          @import "@/theme/vars.scss";
+          @import "@/theme/vars.scss"; // File that import your custom variables
+          // OR
+          @import "~maestro/src/styles/theme/common/vars"; // For none overridden default theme  
         `
       }
     }
   }
 };
 ```
-
-If you wanna see the full reference of what you can overrides, [see here](https://github.com/ElementUI/theme-chalk/blob/master/src/common/var.scss)

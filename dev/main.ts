@@ -16,6 +16,3 @@ const store = new Vuex.Store({});
 const router = new VueRouter({ mode: 'history' });
 
 initializeApp(Vue, App, { store, router, firebase })
-
-// Uncomment if you want to dev with a custom theme
-// initializeApp(Vue, App, { store, router, firebase, theme: require('./theme/theme.scss') })
