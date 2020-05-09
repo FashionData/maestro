@@ -1,0 +1,10 @@
+@import "../variables/spaces";
+@import "../variables/text-sizes";
+
+@function applySpace($space) {
+  @return map-get($spaces, $space);
+}
+
+@function applyFontSize($text) {
+  @return map-get($text-sizes, $text);
+}

@@ -1,0 +1,14 @@
+$--color-primary: #565578;
+$--color-text-secondary: #74c4ac;
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+/**
+ * When used in a real application, add this to import default maestro theme with your custom variables
+ * @import "path/to/custom/variables" // IMPORTANT: Has to be placed before default theme import
+ * @import "~maestro/src/styles/theme/index";
+ *
+ * Or to import only maestro variables to develop a custom theme
+ * @import "~maestro/src/styles/theme/common/vars";
+ */
+
+@import "src/styles/theme/common/vars";

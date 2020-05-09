@@ -1,0 +1,26 @@
+@import "common/vars";
+@import "../reset";
+@import "../shared/index";
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	margin: 0;
+	font-size: applyFontSize(medium);
+	font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+$--font-path: '~element-ui/lib/theme-chalk/fonts' !default;
+
+@import "views/index";
+@import "components/index";
+
+@import "node_modules/element-ui/packages/theme-chalk/src/index";

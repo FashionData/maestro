@@ -8,8 +8,9 @@ import { injectLoader, removeLoader } from "@/init/loader";
 import { configureStore } from "@/init/store";
 import { configureRouter } from "@/init/router";
 import { configureFirebase } from "@/init/firebase";
-import { configureElementUi } from "@/init/element-ui";
-import { log } from "@/utils/logs";
+import { installElementUi } from "@/init/plugins/element-ui";
+import { installVueDebounce } from "@/init/plugins/vue-debounce";
+import { log } from "@/utils/console";
 
 import { HOME } from "@/constants/router/routes";
 import { authMiddleware } from "@/router/middleware";
@@ -70,15 +71,11 @@ const install: InstallFunction = function installMaestro(Vue: typeof _Vue, optio
   if (install.installed) return;
   install.installed = true;
 
-  checkConfiguration(options);
-
   configureStore(options.store);
   configureRouter(options.router);
   configureFirebase(Vue, options.firebase);
-  configureElementUi(Vue);
-
-  // TODO: Add prototype only in Maestro
-  Vue.prototype.$log = log;
+  installElementUi(Vue);
+  installVueDebounce(Vue);
 
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);

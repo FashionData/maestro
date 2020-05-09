@@ -1,0 +1,15 @@
+@import "src/styles/reset";
+@import "src/styles/shared/index";
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	margin: 0;
+	font-size: applyFontSize(medium);
+}
+
+* {
+	box-sizing: border-box;
+}

@@ -48,7 +48,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { User } from "@/types";
 import { HOME } from "@/constants/router/routes";
 import { Messages } from "@/constants/ui";
 
@@ -64,9 +65,9 @@ export default {
     };
   },
   methods: {
-    successCallback(user) {
+    successCallback(user: User) {
       this.$store
-        .dispatch("authenticateUser", user)
+        .dispatch("authenticateUser", { firebase: this.$firebase, user })
         .then(() => {
           this.isLoading = false;
           this.$router.push(
@@ -95,7 +96,7 @@ export default {
       this.$firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then((res) => this.successCallback(res.user))
+        .then(({ user }) => this.successCallback(user))
         .catch(() => {
           this.errorCallback();
         });
@@ -107,7 +108,7 @@ export default {
       this.$firebase
         .auth()
         .signInWithPopup(provider)
-        .then((res) => this.successCallback(res.user))
+        .then(({ user }) => this.successCallback(user))
         .catch(() => {
           this.errorCallback();
         });
@@ -115,17 +116,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.login-view {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  // TODO: Define height with mixin to handle safari IOS overlay
-
-  .login-form {
-    width: 290px;
-  }
-}
-</style>

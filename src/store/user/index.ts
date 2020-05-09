@@ -1,4 +1,5 @@
-import { User } from "@/types";
+import { AnyObject, User } from "@/types";
+import { Collections } from "@/constants/firebase";
 
 type State = {
   user: User;
@@ -31,11 +32,31 @@ export const userStore = {
       commit('setUser', user)
     },
     // TODO: Type + reject
-    authenticateUser ({ commit, dispatch }: any, user: User) {
-      return new Promise((resolve) => {
-        commit("authenticateUser");
-        dispatch("setCurrentUser", user);
-        resolve()
+    authenticateUser ({ commit, dispatch }: any, { firebase, user }: { firebase: AnyObject, user: User }) {
+      const setUser = firebase.firestore().collection(Collections.users).doc(user.uid).update({
+        id: user.uid,
+        disabled: false,
+        deleted: false,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        creationTime: user.metadata.creationTime,
+      })
+
+      // TODO: Update collection path
+      const setConnectionHistory = firebase.firestore().collection(`${Collections.users}/${user.uid}/connections-history`).doc().set({
+        userId: user!.uid,
+        date: firebase.firestore.Timestamp.now(),
+      })
+
+      return new Promise((resolve, reject) => {
+        Promise.all([setUser, setConnectionHistory])
+          .then(() => {
+            commit("authenticateUser");
+            dispatch("setCurrentUser", user);
+            resolve()
+          })
+          .catch((e) => reject(e))
       });
     },
     // TODO: Type + reject
