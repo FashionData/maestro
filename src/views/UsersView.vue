@@ -12,15 +12,13 @@
 <script lang="ts">
 import Vue from "vue";
 import firebase from "firebase";
+import Component from "vue-class-component";
 
-export default Vue.extend({
-  name: "users-view",
-  data() {
-    return {
-      users: {},
-      isLoading: false
-    }
-  },
+@Component({ name: 'users-view'})
+export default class UsersView extends Vue {
+      users: object = {}
+      isLoading = false
+
   mounted(): void {
     this.isLoading = true;
 

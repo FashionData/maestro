@@ -63,6 +63,7 @@
     "node": ">=8"
   },
   "dependencies": {
+    "vue-class-component": "^7.2.3",
     "vue-debounce": "^2.5.3"
   }
 }
