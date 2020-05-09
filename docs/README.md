@@ -35,6 +35,30 @@ initializeApp(Vue, App, { store, router, firebase });
 
 You now have a running application 🎉
 
+### Typescript
+To extends the Vue prototypes types, you must include a *.d.ts file in your
+project root. For example, you could add a `maestro-env.d.ts` with the following content:
+
+```typescript
+/// <reference types="maestro" />
+/// <reference types="maestro/shims-vue" />
+```
+
+It uses the Typescript [Triple Slash Directives](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-types-) to 
+references maestro's types in your own Vue instance. Then, you should add an entry in your `tsconfig.json`
+
+```json
+{
+  ...
+  "include": [
+    "maestro-env.d.ts"
+  ]
+}
+```
+
+You now have access to the types that maestro adds in your Vue instance (e.g `this.$firebase`) when 
+creating component in your application
+
 ### Theme
 #### Default
 Import sass file into your `main.js` that imports maestro default theme.

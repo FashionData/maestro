@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Element from 'element-ui';
 
 var script = {
@@ -418,6 +417,7 @@ var engines = {
   node: ">=8"
 };
 var dependencies = {
+  "vue-class-component": "^7.2.3",
   "vue-debounce": "^2.5.3"
 };
 var packageJson = {
@@ -1281,7 +1281,7 @@ const __vue_component__$6 = normalizeComponent({
   staticRenderFns: __vue_staticRenderFns__$6
 }, __vue_inject_styles__$6, __vue_script__$6, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);
 
-var script$7 = Vue.extend({
+var script$7 = {
   name: "users-view",
 
   data() {
@@ -1299,7 +1299,7 @@ var script$7 = Vue.extend({
     });
   }
 
-});
+};
 
 /* script */
 const __vue_script__$7 = script$7;

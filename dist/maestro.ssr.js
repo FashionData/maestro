@@ -1,4 +1,4 @@
-'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var Vue=_interopDefault(require('vue')),Element=_interopDefault(require('element-ui'));function _defineProperty(obj, key, value) {
+'use strict';Object.defineProperty(exports,'__esModule',{value:true});function _interopDefault(e){return(e&&(typeof e==='object')&&'default'in e)?e['default']:e}var Element=_interopDefault(require('element-ui'));function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -456,6 +456,7 @@ var engines = {
   node: ">=8"
 };
 var dependencies = {
+  "vue-class-component": "^7.2.3",
   "vue-debounce": "^2.5.3"
 };
 var packageJson = {
@@ -1227,7 +1228,7 @@ var __vue_is_functional_template__$6 = false;
 var __vue_component__$6 = normalizeComponent({
   render: __vue_render__$6,
   staticRenderFns: __vue_staticRenderFns__$6
-}, __vue_inject_styles__$6, __vue_script__$6, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);var script$7 = Vue.extend({
+}, __vue_inject_styles__$6, __vue_script__$6, __vue_scope_id__$6, __vue_is_functional_template__$6, __vue_module_identifier__$6, false, undefined, undefined, undefined);var script$7 = {
   name: "users-view",
   data: function data() {
     return {
@@ -1244,7 +1245,7 @@ var __vue_component__$6 = normalizeComponent({
       _this.isLoading = false;
     });
   }
-});/* script */
+};/* script */
 var __vue_script__$7 = script$7;
 /* template */
 
@@ -1267,7 +1268,7 @@ var __vue_inject_styles__$7 = undefined;
 var __vue_scope_id__$7 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$7 = "data-v-e5557764";
+var __vue_module_identifier__$7 = "data-v-c17d4c68";
 /* functional template */
 
 var __vue_is_functional_template__$7 = false;
