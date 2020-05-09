@@ -10,8 +10,8 @@ interface InstallFunction extends PluginFunction<any> {
 declare const initializeApp: (Vue: VueConstructor<_Vue>, App: any, options: InstallOptions) => void;
 declare const authMiddleware: Middleware;
 declare const guestMiddleware: Middleware;
-declare const getAllUsers: (admin: any, data: any, _: any) => any;
 declare const plugin: {
   install: InstallFunction;
 };
-export { plugin as default, authMiddleware, guestMiddleware, getAllUsers, initializeApp };
+export { plugin as default, authMiddleware, guestMiddleware, initializeApp };
+
