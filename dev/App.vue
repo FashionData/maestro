@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$store.getters.isAuthenticated">
+  <div v-if="$store.getters.isAuthenticated && $route.name !== 'login'">
     <m-layout>
       <template #content>
         <keep-alive>

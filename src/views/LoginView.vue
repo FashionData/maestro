@@ -9,12 +9,14 @@
         @submit.native.prevent="authenticateUser"
       >
         <el-form-item prop="username">
+          <!-- TODO: Translate placeholder -->
           <el-input
             v-model="model.email"
-            placeholder="Username"
+            placeholder="Email"
             prefix-icon="fa fa-user"
           />
         </el-form-item>
+        <!-- TODO: Translate placeholder -->
         <el-form-item prop="password">
           <el-input
             v-model="model.password"
@@ -76,9 +78,7 @@ export default {
               : { name: HOME.name }
           );
         })
-        .catch(() => {
-          this.errorCallback();
-        });
+        .catch(() => this.errorCallback());
     },
     errorCallback() {
       this.isLoading = false;
@@ -97,9 +97,7 @@ export default {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then(({ user }) => this.successCallback(user))
-        .catch(() => {
-          this.errorCallback();
-        });
+        .catch(() => this.errorCallback());
     },
     googleAuthentication() {
       const provider = new this.$firebase.auth.GoogleAuthProvider();
@@ -109,9 +107,7 @@ export default {
         .auth()
         .signInWithPopup(provider)
         .then(({ user }) => this.successCallback(user))
-        .catch(() => {
-          this.errorCallback();
-        });
+        .catch(() => this.errorCallback());
     },
   },
 };

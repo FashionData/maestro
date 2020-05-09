@@ -10,10 +10,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import firebase from "firebase";
 
-export default Vue.extend({
+export default {
   name: "users-view",
   data() {
     return {
@@ -29,5 +28,5 @@ export default Vue.extend({
       this.isLoading = false;
     })
   }
-});
+};
 </script>
