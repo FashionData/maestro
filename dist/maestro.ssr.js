@@ -456,7 +456,6 @@ var engines = {
   node: ">=8"
 };
 var dependencies = {
-  "vue-class-component": "^7.2.3",
   "vue-debounce": "^2.5.3"
 };
 var packageJson = {
