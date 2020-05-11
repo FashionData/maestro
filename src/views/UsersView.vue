@@ -18,15 +18,17 @@ export default {
     return {
       users: {},
       isLoading: false
-    }
+    };
   },
   mounted(): void {
     this.isLoading = true;
 
-    this.$httpsCallableFunction("getAllUsers", {}).then((res: firebase.functions.HttpsCallableResult) => {
-      this.users = res.data.users;
-      this.isLoading = false;
-    })
+    this.$httpsCallableFunction("getAllUsers", {}).then(
+      (res: firebase.functions.HttpsCallableResult) => {
+        this.users = res.data.users;
+        this.isLoading = false;
+      }
+    );
   }
 };
 </script>

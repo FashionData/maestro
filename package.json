@@ -13,7 +13,9 @@
   "unpkg": "dist/maestro.min.js",
   "types": "maestro.d.ts",
   "files": [
-    "dist/*",
+    "dist",
+    "cloud-functions.js",
+    "cloud-functions.d.ts",
     "maestro.d.ts",
     "src/**/*.vue",
     "!src/dev"
