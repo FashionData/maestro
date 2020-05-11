@@ -2,6 +2,11 @@
   "name": "@fashiondata/maestro",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://fashiondata.github.io/maestro/",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/FashionData/maestro"
+  },
   "main": "dist/maestro.ssr.js",
   "browser": "dist/maestro.esm.js",
   "module": "dist/maestro.esm.js",
