@@ -17,6 +17,8 @@
     "cloud-functions.d.ts",
     "maestro.d.ts",
     "src/**/*.vue",
+    "src/**/*.d.ts",
+    "src/types/*",
     "!src/dev"
   ],
   "scripts": {
