@@ -20,6 +20,7 @@
     "src/**/*.vue",
     "src/**/*.d.ts",
     "src/types/*",
+    "src/styles/*",
     "!src/dev"
   ],
   "scripts": {
