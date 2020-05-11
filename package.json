@@ -1,11 +1,10 @@
 {
   "name": "@fashiondata/maestro",
   "version": "1.0.0",
-  "description": "",
   "homepage": "https://fashiondata.github.io/maestro/",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/FashionData/maestro"
+    "type": "git",
+    "url": "git+https://github.com/FashionData/maestro.git"
   },
   "main": "dist/maestro.ssr.js",
   "browser": "dist/maestro.esm.js",
@@ -69,5 +68,20 @@
   },
   "dependencies": {
     "vue-debounce": "^2.5.3"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/FashionData/maestro/issues"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [
+    "admin"
+  ],
+  "contributors": [
+    "Erwann Letue <erwann.letue@fashiondata.io>",
+    "Omar Jbara <omar.jbara@fashiondata.io>"
+  ],
+  "license": "ISC",
+  "description": ""
 }
