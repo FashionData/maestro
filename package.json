@@ -16,6 +16,7 @@
     "cloud-functions.js",
     "cloud-functions.d.ts",
     "maestro.d.ts",
+    "shims-vue.d.ts",
     "src/**/*.vue",
     "src/**/*.d.ts",
     "src/types/*",
