@@ -66,6 +66,9 @@
     "vuepress": "^1.4.1",
     "vuex": "^3.3.0"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "peerDependencies": {
     "element-ui": "^2.13.1",
     "vue": "^2.6.10"
