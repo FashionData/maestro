@@ -1,6 +1,6 @@
 {
   "name": "@fashiondata/maestro",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "homepage": "https://fashiondata.github.io/maestro/",
   "repository": {
     "type": "git",
@@ -31,7 +31,8 @@
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "release": "dotenv release-it"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -46,10 +47,12 @@
     "@vue/cli-plugin-typescript": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "cross-env": "^6.0.3",
+    "dotenv-cli": "^3.1.0",
     "firebase": "^7.14.2",
     "install-peers-cli": "^2.2.0",
     "minimist": "^1.2.0",
     "node-sass": "^4.14.0",
+    "release-it": "^13.5.8",
     "rollup": "^1.27.13",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-postcss": "^3.1.1",
