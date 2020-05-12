@@ -31,7 +31,8 @@
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
+    "release": "release-it"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -50,6 +51,7 @@
     "install-peers-cli": "^2.2.0",
     "minimist": "^1.2.0",
     "node-sass": "^4.14.0",
+    "release-it": "^13.5.8",
     "rollup": "^1.27.13",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-postcss": "^3.1.1",
