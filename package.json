@@ -32,7 +32,7 @@
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-    "release": "release-it"
+    "release": "dotenv release-it"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -47,6 +47,7 @@
     "@vue/cli-plugin-typescript": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "cross-env": "^6.0.3",
+    "dotenv-cli": "^3.1.0",
     "firebase": "^7.14.2",
     "install-peers-cli": "^2.2.0",
     "minimist": "^1.2.0",
