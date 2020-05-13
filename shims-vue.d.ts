@@ -7,7 +7,8 @@ declare module "vue/types/vue" {
     $perf: any;
     $httpsCallableFunction: (
       name: string,
-      data: any
+      query?: { [key: string]: string | number },
+      data?: any
     ) => Promise<firebase.functions.HttpsCallableResult>;
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@fashiondata/maestro",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "homepage": "https://fashiondata.github.io/maestro/",
   "repository": {
     "type": "git",
@@ -65,6 +65,9 @@
     "vue-template-compiler": "^2.6.10",
     "vuepress": "^1.4.1",
     "vuex": "^3.3.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
     "element-ui": "^2.13.1",

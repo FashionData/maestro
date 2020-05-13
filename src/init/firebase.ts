@@ -13,13 +13,20 @@ export const configureFirebase = (
 
   Vue.prototype.$httpsCallableFunction = (
     name: string,
+    query: { [key: string]: string | number } = {},
     data: AnyObject = {}
   ) => {
+    const parsedQuery = Object.entries(query)
+      .reduce((acc, entry) => {
+        return acc + entry[0] + "=" + entry[1] + "&";
+      }, "")
+      .slice(0, -1);
+    const hasQuery = Object.keys(parsedQuery).length > 0;
     return new Promise((resolve, reject) => {
       const callableFunction = firebase
         .app()
         .functions(REGION)
-        .httpsCallable(name);
+        .httpsCallable(`${name}${hasQuery ? "?" + parsedQuery : ""}`);
 
       callableFunction(data)
         .then(resolve)
