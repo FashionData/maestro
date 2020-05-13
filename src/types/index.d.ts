@@ -2,7 +2,17 @@ export type AnyObject = {
   [key: string]: any;
 }
 
-export type InstallOptions = { store: AnyObject; router: AnyObject, firebase: AnyObject }
+export type ConfigurationOptions = {
+  analytics?: boolean,
+  performance?: boolean,
+}
+
+export type InstallOptions = {
+  store: AnyObject,
+  router: AnyObject,
+  firebase: AnyObject,
+  config?: ConfigurationOptions,
+}
 
 export type User = {
   uid: string,

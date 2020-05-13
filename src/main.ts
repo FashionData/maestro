@@ -35,7 +35,7 @@ export const initializeApp = (
   injectLoader();
 
   let app: any;
-  const { store, router, firebase } = options;
+  const { store, router, firebase, config } = options;
 
   if (!router.options.routes || !router.options.routes.find((route: Route) => route.path = "/")) {
     router.addRoutes([
@@ -50,7 +50,7 @@ export const initializeApp = (
     log("Added placeholder HomeView");
   }
 
-  Vue.use(install, { store, router, firebase });
+  Vue.use(install, { store, router, firebase, config });
 
   firebase.auth().onAuthStateChanged(() => {
     if (!app) {
@@ -73,7 +73,7 @@ const install: InstallFunction = function installMaestro(Vue: typeof _Vue, optio
 
   configureStore(options.store);
   configureRouter(options.router);
-  configureFirebase(Vue, options.firebase);
+  configureFirebase(Vue, options.firebase, options.config);
   installElementUi(Vue);
   installVueDebounce(Vue);
 

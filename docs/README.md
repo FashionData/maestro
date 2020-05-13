@@ -14,7 +14,7 @@ $ npm i element-ui maestro
 Considering that your already have:
 - `vuex`
 - `vue-router`
-- `firebase`
+- `firebase` (Explain analytics + performance associated in config part)
 
 ```javascript
 // src/main.js
@@ -34,6 +34,16 @@ initializeApp(Vue, App, { store, router, firebase });
 ```
 
 You now have a running application 🎉
+
+#### Configuration
+You can use `config` to modify maestro behavior inside of your project :
+`initializeApp(Vue, App, { store, router, firebase, config: { ... } });`
+
+List of options:
+- `analytics`: Add firebase analytics (must have `appId`) provided wile you configured firebase inside of your project
+- `performance`: Add firebase performance (must have `measurementId`) provided wile you configured firebase inside of your project => Expose `$perf` into Vue instance.
+
+
 
 ### Typescript
 To extends the Vue prototypes types, you must include a *.d.ts file in your
