@@ -13,6 +13,9 @@ import { installElementUi } from "@/init/plugins/element-ui";
 import { installVueDebounce } from "@/init/plugins/vue-debounce";
 import * as components from "@/components";
 import HomeView from "@/views/placeholders/HomeView.vue";
+import VueI18n from "vue-i18n";
+import enLocale from "element-ui/lib/locale/lang/en";
+import zhLocale from "element-ui/lib/locale/lang/zh-CN";
 
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,6 +51,14 @@ export const initializeApp = (
   }
 
   Vue.use(install, { store, router, firebase, config });
+  Vue.use(VueI18n);
+
+  const messages = {
+    en: { message: 'hello', ...enLocale },
+    zh: { message: '你好', ...zhLocale }
+  }
+
+  const i18n = new VueI18n({ locale: 'en', messages })
 
   firebase.auth().onAuthStateChanged(() => {
     if (!app) {
@@ -57,6 +68,7 @@ export const initializeApp = (
       app = new Vue({
         store,
         router,
+        i18n,
         render: h => h(App)
       }).$mount("#app");
     }

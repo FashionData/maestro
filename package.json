@@ -77,7 +77,8 @@
     "node": ">=8"
   },
   "dependencies": {
-    "vue-debounce": "^2.5.3"
+    "vue-debounce": "^2.5.3",
+    "vue-i18n": "^8.17.5"
   },
   "bugs": {
     "url": "https://github.com/FashionData/maestro/issues"
