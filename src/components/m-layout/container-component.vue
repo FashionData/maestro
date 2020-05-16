@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-  import { LOGOUT, PROFILE } from "../../constants/router/routes";
+  import { LOGOUT, PROFILE } from "../../constants/routes";
 
   export default {
     name: "container-component",

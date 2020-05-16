@@ -4,7 +4,7 @@ import NotFound from "@/views/NotFound.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import UsersView from "@/views/UsersView.vue";
 
-import { LOGIN, LOGOUT, NOT_FOUND, PROFILE, USERS } from "@/constants/router/routes";
+import { LOGIN, LOGOUT, NOT_FOUND, PROFILE, USERS } from "@/constants/routes";
 import { authMiddleware, guestMiddleware } from "@/router/middleware";
 
 export const routes = [
