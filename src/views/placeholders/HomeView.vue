@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>HOME VIEW OF MAESTRO DEV</p>
-    <pre>{{ $t('hello') }}</pre>
+    <p>{{ $t('hello') }}</p>
   </div>
 </template>
 

@@ -3,8 +3,8 @@ export type AnyObject = {
 }
 
 export type ConfigurationOptions = {
-  analytics?: boolean,
-  performance?: boolean,
+  analytics?: boolean;
+  performance?: boolean;
 }
 
 export type InstallOptions = {

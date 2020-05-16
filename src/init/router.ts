@@ -3,6 +3,11 @@ import { Context, Middleware } from "@/types/router";
 import { routes } from "@/router/routes";
 import { userStore } from "@/store/user";
 import { middlewarePipeline } from "@/router/middleware/pipeline";
+import { Route } from "vue-router";
+import { HOME } from "@/constants";
+import { authMiddleware } from "@/router/middleware";
+import HomeView from "@/views/placeholders/HomeView.vue";
+import { log } from "@/utils/console";
 
 export const configureRouter = (router: AnyObject) => {
   router.addRoutes(routes);
@@ -20,3 +25,21 @@ export const configureRouter = (router: AnyObject) => {
     );
   });
 };
+
+export const injectHomePage = (router: AnyObject) => {
+  if (
+    !router.options.routes ||
+    !router.options.routes.find((route: Route) => (route.path = "/"))
+  ) {
+    router.addRoutes([
+      {
+        path: HOME.path,
+        name: HOME.name,
+        meta: { middleware: [authMiddleware] },
+        component: HomeView
+      }
+    ]);
+
+    log("Added placeholder HomeView");
+  }
+}

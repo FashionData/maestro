@@ -10,4 +10,6 @@ export const checkConfiguration = (options: InstallOptions) => {
     error("Please initialise plugin with a Vue Router.");
   if (!options.firebase)
     error("Please initialise plugin with Firebase.");
+
+  // TODO: Check config object
 };
