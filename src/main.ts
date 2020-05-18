@@ -1,105 +1,11 @@
-import _Vue, { VueConstructor, PluginFunction } from 'vue';
-import { Route } from "vue-router";
-import { InstallOptions } from "@/types";
-import * as components from '@/components';
+import { install, InstallFunction } from "@/init";
 
-import { checkConfiguration } from "@/init/configuration";
-import { injectLoader, removeLoader } from "@/init/loader";
-import { configureStore } from "@/init/store";
-import { configureRouter } from "@/init/router";
-import { configureFirebase } from "@/init/firebase";
-import { installElementUi } from "@/init/plugins/element-ui";
-import { installVueDebounce } from "@/init/plugins/vue-debounce";
-import { log } from "@/utils/console";
-
-import { HOME } from "@/constants/router/routes";
-import { authMiddleware } from "@/router/middleware";
-import HomeView from "@/views/placeholders/HomeView.vue";
-
-// Define typescript interfaces for autoinstaller
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface InstallFunction extends PluginFunction<any> {
-  installed?: boolean;
-}
-
+export { initializeApp } from "@/init";
 export * from "@/router/middleware";
 export * from "@/cloud-functions";
-export * from '@/components'; // To allow individual component use => can be registered via Vue.component()
+export * from "@/components";
+export * from "@/constants";
 
-export const initializeApp = (
-  Vue: VueConstructor,
-  App: any,
-  options: InstallOptions
-) => {
-  checkConfiguration(options);
-  injectLoader();
+const plugin: { install: InstallFunction } = { install };
 
-  let app: any;
-  const { store, router, firebase, config } = options;
-
-  if (!router.options.routes || !router.options.routes.find((route: Route) => route.path = "/")) {
-    router.addRoutes([
-      {
-        path: HOME.path,
-        name: HOME.name,
-        meta: { middleware: [authMiddleware] },
-        component: HomeView
-      }
-    ]);
-
-    log("Added placeholder HomeView");
-  }
-
-  Vue.use(install, { store, router, firebase, config });
-
-  firebase.auth().onAuthStateChanged(() => {
-    if (!app) {
-      removeLoader();
-
-      // @ts-ignore
-      app = new Vue({
-        store,
-        router,
-        render: (h) => h(App),
-      }).$mount("#app");
-    }
-  });
-};
-
-// install function executed by Vue.use()
-const install: InstallFunction = function installMaestro(Vue: typeof _Vue, options: InstallOptions) {
-  if (install.installed) return;
-  install.installed = true;
-
-  configureStore(options.store);
-  configureRouter(options.router);
-  configureFirebase(Vue, options.firebase, options.config);
-  installElementUi(Vue);
-  installVueDebounce(Vue);
-
-  Object.entries(components).forEach(([componentName, component]) => {
-    Vue.component(componentName, component);
-  });
-};
-
-// Create module definition for Vue.use()
-const plugin = {
-  install,
-};
-
-// To auto-install when vue is found
-// eslint-disable-next-line no-redeclare
-/* global window, global */
-let GlobalVue = null;
-if (typeof window !== 'undefined') {
-  GlobalVue = window.Vue;
-} else if (typeof global !== 'undefined') {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  GlobalVue = (global as any).Vue;
-}
-if (GlobalVue) {
-  (GlobalVue as typeof _Vue).use(plugin);
-}
-
-// Default export is library as a whole, registered via Vue.use()
 export default plugin;
