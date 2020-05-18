@@ -1,62 +1,62 @@
 {
   "login-view": {
-    "title": "Login",
+    "title": "Connexion",
     "form": {
       "email-placeholder": "Email",
-      "password-placeholder": "Password",
+      "password-placeholder": "Mot de passe",
       "buttons": {
-        "classic": "Login",
+        "classic": "Se connecter",
         "socials": {
           "google": "Google"
         }
       }
     },
     "message": {
-      "error": "Authentication failed"
+      "error": "Echec de l'authentification"
     }
   },
   "profile-view": {
-    "title": "Title",
-    "member-since": "Member since",
+    "title": "Titre",
+    "member-since": "Membre depuis",
     "email": {
       "label": "Email",
       "placeholder": "Email"
     },
     "phone": {
-      "label": "Phone",
-      "placeholder": "Phone"
+      "label": "Téléphone",
+      "placeholder": "Téléphone"
     },
     "location": {
-      "label": "Location",
-      "placeholder": "Location"
+      "label": "Localisation",
+      "placeholder": "Localisation"
     },
     "timezone": {
       "label": "Timezone",
       "placeholder": "Select"
     },
     "language": {
-      "label": "Language",
-      "placeholder": "Language"
+      "label": "Langue",
+      "placeholder": "Langue"
     },
     "message": {
-      "success": "Updated field successfully!"
+      "success": "Champ mis à jour avec succès !"
     }
   },
   "not-found": {
-    "title": "Page not found"
+    "title": "Page non trouvée"
   },
   "m-layout": {
     "aside-component": {
-      "history": "History",
+      "history": "Historique",
       "settings": {
-        "title": "Settings",
-        "users": "Users"
+        "title": "Réglages",
+        "users": "Utilisateurs"
       }
     },
     "container-component": {
       "dropdown-menu": {
         "profile": "Profile",
-        "logout": "Logout"
+        "logout": "Se déconnecter"
       }
     }
   }

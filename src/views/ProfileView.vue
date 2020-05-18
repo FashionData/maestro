@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="32" class="d-flex align-stretch">
     <el-col :span="8">
-      <el-card class="profile-card t-align-center">
+      <el-card class="profile-card t-align-center full-height">
         <el-upload
           class="avatar-uploader"
           action="https://jsonplaceholder.typicode.com/posts/"
@@ -14,24 +14,22 @@
 
         <div class="bold">
           <p class="text-highlight">{{ userSocialInformation.displayName }}</p>
+          <!-- TODO: Add user role with translations -->
           <p>User role</p>
         </div>
 
-        <!-- TODO: Translate with i18n -->
         <div>
           <p class="uppercase">{{ userSocialInformation.organization }}</p>
         </div>
 
         <div class="user-title">
-          <!-- TODO: Translate with i18n -->
-          <p class="bold">Title</p>
+          <p class="bold">{{ $t('profile-view.title') }}</p>
           <template>
             <transition name="fade" mode="out-in">
-              <!-- TODO: Translate placeholder with i18n -->
               <div v-if="editTitle" key="title-input" class="d-flex justify-center align-center">
                 <el-input
                   v-model="userSocialInformation.title"
-                  placeholder="Title"
+                  :placeholder="$t('profile-view.title')"
                 />
 
                 <i class="el-icon-circle-check" @click="validateTitle"></i>
@@ -46,8 +44,7 @@
         </div>
 
         <div>
-          <!-- TODO: Translate with i18n -->
-          <p>Member since</p>
+          <p>{{ $t('profile-view.member-since') }}</p>
           <p class="bold">{{ userSocialInformation.creationTime }}</p>
         </div>
       </el-card>
@@ -68,12 +65,11 @@
         </div>
 
         <div class="form-group form-group--reduced">
-          <!-- TODO: Translate with i18n -->
-          <label for="timezone">Timezone</label>
+          <label for="timezone">{{ $t('profile-view.timezone.label') }}</label>
           <el-select
             v-model="userSocialInformation.timezone"
             id="timezone"
-            placeholder="Select"
+            :placeholder="$t('profile-view.timezone.placeholder')"
             clearable
             @change="(value) => saveUserInformation('timezone', value)"
           >
@@ -84,6 +80,19 @@
               :value="item.value"
             >
             </el-option>
+          </el-select>
+        </div>
+
+        <div class="form-group form-group--reduced">
+          <label for="language">{{ $t('profile-view.language.label') }}</label>
+
+          <el-select
+            v-model="$i18n.locale"
+            id="language"
+            :placeholder="$t('profile-view.language.placeholder')"
+            @change="value => $changeLanguage($store.getters.user.uid, value)"
+          >
+            <el-option v-for="(lang, i) in languages" :key="`Lang${i}`" :value="lang">{{ lang }}</el-option>
           </el-select>
         </div>
       </el-card>
@@ -154,13 +163,13 @@ export default {
   },
   computed: {
     size: () => 200,
+    languages: () => ['en', 'fr'],
     information() {
       return [
         {
           id: 'email',
-          // TODO: Translate with i18n
-          label: 'Email',
-          placeholder: 'Email',
+          label: this.$t('profile-view.email.label'),
+          placeholder: this.$t('profile-view.email.placeholder'),
           props: {
             disabled: true
           },
@@ -169,15 +178,13 @@ export default {
           class: 'form-group--reduced',
           id: 'phone',
           type: 'tel',
-          // TODO: Translate with i18n
-          label: 'Phone',
-          placeholder: 'Phone',
+          label: this.$t('profile-view.phone.label'),
+          placeholder: this.$t('profile-view.phone.placeholder'),
         },
         {
           id: 'location',
-          // TODO: Translate with i18n
-          label: 'Location',
-          placeholder: 'Location',
+          label: this.$t('profile-view.location.label'),
+          placeholder: this.$t('profile-view.location.placeholder'),
         },
       ]
     }
@@ -196,9 +203,11 @@ export default {
       const isLt2M = file.size / 1024 / 1024 < 2;
 
       if (!isJPG) {
+        // TODO: Translate with i18n
         this.$message.error('Avatar picture must be JPG format!');
       }
       if (!isLt2M) {
+        // TODO: Translate with i18n
         this.$message.error('Avatar picture size can not exceed 2MB!');
       }
       return isJPG && isLt2M;
@@ -211,8 +220,7 @@ export default {
       this.$firebase.firestore().collection(Collections.users).doc(this.$store.getters.user.uid).update({
         [key]: value
       }).then(() => {
-        // TODO: Translate with i18n
-        this.$message.success('Successfully updated field');
+        this.$message.success(this.$t('profile-view.message.success'));
       }).catch((err) => {
         console.log('ERROR', err)
       })

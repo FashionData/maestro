@@ -14,20 +14,18 @@
 		</el-header>
 
 		<el-menu :collapse="isCollapse" router>
+			<!-- TODO: Add route constant -->
 			<el-menu-item index="history">
 				<i class="el-icon-menu"></i>
-				<!-- TODO: Translate with i18n -->
-				<span slot="title">History</span>
+				<span slot="title">{{ $t('m-layout.aside-component.history') }}</span>
 			</el-menu-item>
 
 			<el-submenu index="1">
 				<template slot="title">
 					<i class="el-icon-location"></i>
-					<span>Configuration</span>
+					<span>{{ $t('m-layout.aside-component.settings.title') }}</span>
 				</template>
-				<el-menu-item-group title="Group One">
-					<el-menu-item index="users">Users</el-menu-item>
-				</el-menu-item-group>
+				<el-menu-item :index="userPath">{{ $t('m-layout.aside-component.settings.users') }}</el-menu-item>
 			</el-submenu>
 
 			<slot />
@@ -36,6 +34,8 @@
 </template>
 
 <script lang="ts">
+  import { USERS } from "@/constants";
+
   export default {
     name: "aside-component",
     data() {
@@ -43,5 +43,8 @@
         isCollapse: false,
       };
     },
+		computed: {
+      userPath: () => USERS.path
+		}
 	}
 </script>

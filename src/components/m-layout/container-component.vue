@@ -11,12 +11,14 @@
 
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item>
-						<!-- TODO: Translate with i18n -->
-						<router-link :to="{ name: userRouteName }">Profile</router-link>
+						<router-link :to="{ name: userRouteName }">
+							{{ $t('m-layout.container-component.dropdown-menu.profile') }}
+						</router-link>
 					</el-dropdown-item>
 					<el-dropdown-item>
-						<!-- TODO: Translate with i18n -->
-						<router-link :to="{ name: logoutRouteName }">Logout</router-link>
+						<router-link :to="{ name: logoutRouteName }">
+							{{ $t('m-layout.container-component.dropdown-menu.logout') }}
+						</router-link>
 					</el-dropdown-item>
 				</el-dropdown-menu>
 			</el-dropdown>

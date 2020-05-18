@@ -1,7 +1,6 @@
 <template>
   <div>
     <p>HOME VIEW OF MAESTRO DEV</p>
-    <p>{{ $t('hello') }}</p>
   </div>
 </template>
 

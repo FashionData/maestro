@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>NOT FOUND</p>
+    <p>{{ $t('not-found.title') }}</p>
   </div>
 </template>
 

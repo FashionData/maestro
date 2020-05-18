@@ -1,7 +1,7 @@
 <template>
   <div class="login-view">
     <el-card>
-      <h2>Login</h2>
+      <h2>{{ $t('login-view.title') }}</h2>
       <el-form
         class="login-form"
         :model="model"
@@ -9,18 +9,16 @@
         @submit.native.prevent="authenticateUser"
       >
         <el-form-item prop="username">
-          <!-- TODO: Translate placeholder -->
           <el-input
             v-model="model.email"
-            placeholder="Email"
+            :placeholder="$t('login-view.form.email-placeholder')"
             prefix-icon="fa fa-user"
           />
         </el-form-item>
-        <!-- TODO: Translate placeholder -->
         <el-form-item prop="password">
           <el-input
             v-model="model.password"
-            placeholder="Password"
+            :placeholder="$t('login-view.form.password-placeholder')"
             type="password"
             prefix-icon="fas fa-lock"
           />
@@ -32,7 +30,7 @@
             native-type="submit"
             block
           >
-            Login
+            {{ $t('login-view.form.buttons.classic') }}
           </el-button>
         </el-form-item>
         <el-form-item>
@@ -42,7 +40,7 @@
             block
             @click="googleAuthentication"
           >
-            Google
+            {{ $t('login-view.form.buttons.socials.google') }}
           </el-button>
         </el-form-item>
       </el-form>
@@ -52,7 +50,7 @@
 
 <script lang="ts">
 import { User } from "@/types";
-import { HOME } from "@/constants/router/routes";
+import { HOME } from "@/constants/routes";
 import { Messages } from "@/constants/ui";
 
 export default {
@@ -72,6 +70,7 @@ export default {
         .dispatch("authenticateUser", { firebase: this.$firebase, user })
         .then(() => {
           this.isLoading = false;
+          this.$changeLanguage(this.$store.getters.user.uid)
           this.$router.push(
             this.$route.query.redirect
               ? this.$route.query.redirect.toString()
@@ -84,8 +83,7 @@ export default {
       this.isLoading = false;
       this.$message({
         type: "error",
-        // TODO: Add translation
-        message: "Authentication failed",
+        message: this.$t('login-view.message.error'),
         duration: Messages.duration,
       });
     },
