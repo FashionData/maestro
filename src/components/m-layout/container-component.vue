@@ -36,7 +36,7 @@
 	</el-container>
 </template>
 
-<script lang="ts">
+<script>
   import { LOGOUT, PROFILE } from "../../constants/routes";
 
   export default {
@@ -48,7 +48,7 @@
       logoutRouteName() {
         return LOGOUT.name;
       },
-      title(): string {
+      title() {
         const formattedPath = this.$route.path.replace('/', '').replace(/[^\w\s]/gi, ' ')
         return formattedPath.charAt(0).toUpperCase() + formattedPath.slice(1);
       }

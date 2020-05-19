@@ -9,9 +9,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import firebase from "firebase";
-
+<script>
 export default {
   name: "users-view",
   data() {
@@ -20,15 +18,13 @@ export default {
       isLoading: false
     };
   },
-  mounted(): void {
+  mounted() {
     this.isLoading = true;
 
-    this.$httpsCallableFunction("getAllUsers", {}).then(
-      (res: firebase.functions.HttpsCallableResult) => {
-        this.users = res.data.users;
-        this.isLoading = false;
-      }
-    );
+    this.$httpsCallableFunction("getAllUsers", {}).then(res => {
+      this.users = res.data.users;
+      this.isLoading = false;
+    });
   }
 };
 </script>
