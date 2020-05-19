@@ -1,8 +1,8 @@
 import { AnyObject, User } from "@/types";
+import { IVueI18n } from "vue-i18n";
+import firebase from "firebase";
 import { fallbackLocale, LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
-import { IVueI18n } from "vue-i18n";
-import DocumentData = firebase.firestore.DocumentData;
 
 type State = {
   user: User;
@@ -48,7 +48,7 @@ export const userStore = {
             .collection(Collections.users)
             .doc(user.uid)
             .get()
-            .then((res: DocumentData) => {
+            .then((res: firebase.firestore.DocumentData) => {
               const language = res.data().language;
               if (language) {
                 localStorage.setItem(LS_LANGUAGE_KEY, language);
