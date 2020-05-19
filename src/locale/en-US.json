@@ -39,7 +39,8 @@
       "placeholder": "Language"
     },
     "message": {
-      "success": "Updated field successfully!"
+      "success": "Updated field successfully!",
+      "error": "Error while updating field"
     }
   },
   "not-found": {

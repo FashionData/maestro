@@ -90,7 +90,7 @@
             v-model="$i18n.locale"
             id="language"
             :placeholder="$t('profile-view.language.placeholder')"
-            @change="value => $changeLanguage($store.getters.user.uid, value)"
+            @change="changeLanguage"
           >
             <el-option v-for="(lang, i) in languages" :key="`Lang${i}`" :value="lang">{{ lang }}</el-option>
           </el-select>
@@ -102,6 +102,7 @@
 
 <script>
 import { Collections } from "@/constants/firebase";
+import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 
 export default {
   name: "profile-view",
@@ -222,8 +223,12 @@ export default {
       }).then(() => {
         this.$message.success(this.$t('profile-view.message.success'));
       }).catch((err) => {
-        console.log('ERROR', err)
+        this.$message.success(this.$t('profile-view.message.error'));
       })
+    },
+    changeLanguage(language) {
+      this.saveUserInformation('language', language)
+      localStorage.setItem(LS_LANGUAGE_KEY, language);
     }
   },
 };

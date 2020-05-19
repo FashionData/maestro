@@ -39,7 +39,8 @@
       "placeholder": "Langue"
     },
     "message": {
-      "success": "Champ mis à jour avec succès !"
+      "success": "Champ mis à jour avec succès !",
+      "error": "Erreur lors de la mise à jour du champ"
     }
   },
   "not-found": {

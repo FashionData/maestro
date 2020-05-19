@@ -1,5 +1,5 @@
 import _Vue, { PluginFunction, VueConstructor } from "vue";
-import { InstallOptions } from "@/types";
+import { InstallOptions, User } from "@/types";
 import { checkConfiguration } from "@/init/configuration";
 import { injectLoader, removeLoader } from "@/init/loader";
 import { configureStore } from "@/init/store";
@@ -8,6 +8,7 @@ import { configureFirebase } from "@/init/firebase";
 import { installElementUi } from "@/init/plugins/element-ui";
 import { installVueDebounce } from "@/init/plugins/vue-debounce";
 import { i18n } from "@/init/plugins/vue-i18n";
+import { userStore } from "@/store/user";
 import * as components from "@/components";
 
 // Define typescript interfaces for autoinstaller
@@ -31,7 +32,12 @@ export const initializeApp = (
 
   Vue.use(install, { store, router, firebase, config });
 
-  firebase.auth().onAuthStateChanged(() => {
+  firebase.auth().onAuthStateChanged((user: User) => {
+    if (user) {
+      userStore.state.user = user;
+      userStore.state.isAuthenticated = true;
+    }
+
     if (!app) {
       removeLoader();
 

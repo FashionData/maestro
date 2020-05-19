@@ -48,8 +48,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import { User } from "@/types";
+<script>
 import { HOME } from "@/constants/routes";
 import { Messages } from "@/constants/ui";
 
@@ -65,12 +64,11 @@ export default {
     };
   },
   methods: {
-    successCallback(user: User) {
+    successCallback(user) {
       this.$store
-        .dispatch("authenticateUser", { firebase: this.$firebase, user })
+        .dispatch("authenticateUser", { firebase: this.$firebase, i18n: this.$i18n, user })
         .then(() => {
           this.isLoading = false;
-          this.$changeLanguage(this.$store.getters.user.uid)
           this.$router.push(
             this.$route.query.redirect
               ? this.$route.query.redirect.toString()
