@@ -114,7 +114,7 @@ export default {
         photoURL: this.user.photoURL,
         displayName: this.user.displayName,
         password: "",
-        role: Roles.Suspended
+        role: this.user.customClaims?.role ?? null
       }
     };
   }

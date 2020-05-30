@@ -54,16 +54,17 @@
 import { User } from "@/types";
 import { HOME } from "@/constants/router/routes";
 import { Messages } from "@/constants/ui";
-
+let callback: any = null;
+let metadataRef: any = null;
 export default {
   name: "login-view",
   data() {
     return {
       model: {
         email: "",
-        password: "",
+        password: ""
       },
-      isLoading: false,
+      isLoading: false
     };
   },
   methods: {
@@ -86,7 +87,7 @@ export default {
         type: "error",
         // TODO: Add translation
         message: "Authentication failed",
-        duration: Messages.duration,
+        duration: Messages.duration
       });
     },
     authenticateUser() {
@@ -101,14 +102,35 @@ export default {
     },
     googleAuthentication() {
       const provider = new this.$firebase.auth.GoogleAuthProvider();
-
+      this.$firebase.auth().onAuthStateChanged(user => {
+        console.log({ user }, "CHANGED");
+        if (callback) {
+          metadataRef.off("value", callback);
+        }
+        // On user login add new listener.
+        if (user) {
+          // Check if refresh is required.
+          metadataRef = this.$firebase
+            .database()
+            .ref("metadata/" + user.uid + "/refreshTime");
+          callback = _ => {
+            // Force refresh to pick up the latest custom claims changes.
+            // Note this is always triggered on first call. Further optimization could be
+            // added to avoid the initial trigger when the token is issued and already contains
+            // the latest claims.
+            user.getIdToken(true);
+          };
+          // Subscribe new listener to changes on that node.
+          metadataRef.on("value", callback);
+        }
+      });
       this.isLoading = true;
       this.$firebase
         .auth()
         .signInWithPopup(provider)
         .then(({ user }) => this.successCallback(user))
         .catch(() => this.errorCallback());
-    },
-  },
+    }
+  }
 };
 </script>
