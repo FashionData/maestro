@@ -20,7 +20,19 @@
           <el-table-column prop="displayName" label="Name"></el-table-column>
           <el-table-column fixed="right" label="Operations" width="120">
             <template slot-scope="scope">
-              <el-button type="text" size="small">Edit</el-button>
+              <el-button
+                type="text"
+                size="small"
+                @click="showEditModal(scope.row.uid)"
+                >Edit</el-button
+              >
+              <update-user-dialog
+                :key="scope.row.uid"
+                :user="scope.row"
+                :show="!!modals.user.edit[scope.row.uid]"
+                @submit="handleUserUpdateSubmit"
+                @close="closeEditModal(scope.row.uid)"
+              />
             </template>
           </el-table-column>
         </el-table>
@@ -31,14 +43,15 @@
 
 <script>
 import CreateUserDialog from "@/components/dialogs/CreateUserDialog.vue";
+import UpdateUserDialog from "@/components/dialogs/UpdateUserDialog";
 export default {
   name: "users-view",
-  components: { CreateUserDialog },
+  components: { UpdateUserDialog, CreateUserDialog },
   data() {
     return {
       modals: {
         user: {
-          edit: false,
+          edit: {},
           create: false
         }
       },
@@ -62,8 +75,14 @@ export default {
     handleUserCreateSubmit(data) {
       console.log(data);
     },
-    showEditModal() {
-      this.modals.user.edit = true;
+    handleUserUpdateSubmit(data) {
+      console.log(data);
+    },
+    showEditModal(uid) {
+      this.$set(this.modals.user.edit, uid, true);
+    },
+    closeEditModal(uid) {
+      this.$set(this.modals.user.edit, uid, undefined);
     }
   }
 };
