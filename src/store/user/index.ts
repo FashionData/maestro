@@ -1,7 +1,7 @@
 import { AnyObject, User } from "@/types";
 import { IVueI18n } from "vue-i18n";
 import firebase from "firebase";
-import { fallbackLocale, LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
+import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
 
 type State = {
@@ -54,9 +54,9 @@ export const userStore = {
                 localStorage.setItem(LS_LANGUAGE_KEY, language);
                 i18n.locale = language;
               } else {
-                localStorage.setItem(LS_LANGUAGE_KEY, fallbackLocale);
-                firebase.firestore().collection(Collections.users).doc(user.uid).update({ language: fallbackLocale });
-                i18n.locale = fallbackLocale;
+                localStorage.setItem(LS_LANGUAGE_KEY, i18n.fallbackLocale as string);
+                firebase.firestore().collection(Collections.users).doc(user.uid).update({ language: i18n.fallbackLocale });
+                i18n.locale = i18n.fallbackLocale as string;
               }
               resolve();
             })

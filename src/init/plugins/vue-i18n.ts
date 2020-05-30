@@ -7,14 +7,12 @@ import enLocale from "element-ui/lib/locale/lang/en";
 import frLocale from "element-ui/lib/locale/lang/fr";
 
 export const LS_LANGUAGE_KEY = 'i18n-language';
-// TODO: Add custom fallbackLocale
-// TODO: Move custom fallback into const and use i18n defaultLocale value into templates etc
-export const fallbackLocale = 'en';
-export const locale = localStorage.getItem(LS_LANGUAGE_KEY) ? localStorage.getItem(LS_LANGUAGE_KEY) : fallbackLocale;
 
 export const i18n = (Vue: VueConstructor, i18nConfig: I18nConfig | undefined) => {
   Vue.use(VueI18n);
 
+  const fallbackLocale = i18nConfig?.fallbackLocale || 'en';
+  const locale = localStorage.getItem(LS_LANGUAGE_KEY) ? localStorage.getItem(LS_LANGUAGE_KEY) : fallbackLocale;
   const messages = {
     en: { ...enUS, ...i18nConfig?.en, ...enLocale },
     fr: { ...frFR, ...i18nConfig?.fr, ...frLocale }
