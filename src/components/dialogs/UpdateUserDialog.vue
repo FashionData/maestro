@@ -110,6 +110,8 @@ export default {
       form: {
         uid: this.user.uid,
         email: this.user.email,
+        emailVerified: false,
+        photoURL: this.user.photoURL,
         displayName: this.user.displayName,
         password: "",
         role: Roles.Suspended

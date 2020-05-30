@@ -44,6 +44,7 @@
 <script>
 import CreateUserDialog from "@/components/dialogs/CreateUserDialog.vue";
 import UpdateUserDialog from "@/components/dialogs/UpdateUserDialog";
+
 export default {
   name: "users-view",
   components: { UpdateUserDialog, CreateUserDialog },
@@ -59,21 +60,33 @@ export default {
       isLoading: false
     };
   },
-  async mounted() {
-    this.isLoading = true;
-
-    this.users = (
-      await this.$httpsCallableFunction("getAllUsers", {})
-    ).data.users;
-    console.log(this.users);
-    this.isLoading = false;
+  mounted() {
+    this.fetchUsers();
   },
   methods: {
+    async fetchUsers() {
+      this.isLoading = true;
+
+      this.users = (
+        await this.$httpsCallableFunction("getAllUsers", {})
+      ).data.users;
+      console.log(this.users);
+      this.isLoading = false;
+    },
     showCreateModal() {
       this.modals.user.create = true;
     },
-    handleUserCreateSubmit(data) {
-      console.log(data);
+    closeCreateModal() {
+      this.modals.user.create = false;
+    },
+    async handleUserCreateSubmit(data) {
+      try {
+        await this.$httpsCallableFunction("createUser", {}, data);
+        this.closeCreateModal();
+        await this.fetchUsers();
+      } catch {
+        console.error(error);
+      }
     },
     handleUserUpdateSubmit(data) {
       console.log(data);
