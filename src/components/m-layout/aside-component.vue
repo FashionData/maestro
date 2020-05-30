@@ -20,6 +20,8 @@
 				<span slot="title">{{ $t('m-layout.aside-component.history') }}</span>
 			</el-menu-item>
 
+			<slot />
+
 			<el-submenu index="1">
 				<template slot="title">
 					<i class="el-icon-location"></i>
@@ -27,8 +29,6 @@
 				</template>
 				<el-menu-item :index="userPath">{{ $t('m-layout.aside-component.settings.users') }}</el-menu-item>
 			</el-submenu>
-
-			<slot />
 		</el-menu>
 	</el-aside>
 </template>

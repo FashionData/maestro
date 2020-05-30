@@ -1,3 +1,5 @@
+import VueI18n from "vue-i18n";
+
 export type AnyObject = {
   [key: string]: any;
 }
@@ -5,13 +7,23 @@ export type AnyObject = {
 export type ConfigurationOptions = {
   analytics?: boolean;
   performance?: boolean;
+  i18n?: {
+    locale?: string;
+    fallbackLocale?: string;
+    en?: AnyObject;
+    fr?: AnyObject;
+  }
 }
 
-export type InstallOptions = {
+export type InitializeOptions = {
   store: AnyObject,
   router: AnyObject,
   firebase: AnyObject,
   config?: ConfigurationOptions,
+}
+
+export type InstallOptions = InitializeOptions & {
+  i18n: VueI18n,
 }
 
 export type User = {

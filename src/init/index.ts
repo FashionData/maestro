@@ -1,5 +1,5 @@
 import _Vue, { PluginFunction, VueConstructor } from "vue";
-import { InstallOptions, User } from "@/types";
+import { InitializeOptions, InstallOptions, User } from "@/types";
 import { checkConfiguration } from "@/init/configuration";
 import { injectLoader, removeLoader } from "@/init/loader";
 import { configureStore } from "@/init/store";
@@ -20,17 +20,19 @@ export interface InstallFunction extends PluginFunction<any> {
 export const initializeApp = (
   Vue: VueConstructor,
   App: any,
-  options: InstallOptions
+  options: InitializeOptions
 ) => {
   checkConfiguration(options);
   injectLoader();
 
   let app: any;
+  const i18nInstance = i18n(Vue);
   const { store, router, firebase, config } = options;
+  const installOptions: InstallOptions = { store, router, firebase, i18n: i18nInstance, config };
 
   injectHomePage(router);
 
-  Vue.use(install, { store, router, firebase, config });
+  Vue.use(install, installOptions);
 
   firebase.auth().onAuthStateChanged((user: User) => {
     if (user) {
@@ -45,7 +47,7 @@ export const initializeApp = (
       app = new Vue({
         store,
         router,
-        i18n: i18n(Vue),
+        i18n: i18nInstance,
         render: h => h(App)
       }).$mount("#app");
     }
@@ -63,7 +65,7 @@ export const install: InstallFunction = function installMaestro(
   configureStore(options.store);
   configureRouter(options.router);
   configureFirebase(Vue, options.firebase, options.config);
-  installElementUi(Vue);
+  installElementUi(Vue, options.i18n);
   installVueDebounce(Vue);
 
   Object.entries(components).forEach(([componentName, component]) => {
