@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import CreateUserDialog from "@/components/CreateUserDialog.vue";
+import CreateUserDialog from "@/components/dialogs/CreateUserDialog.vue";
 export default {
   name: "users-view",
   components: { CreateUserDialog },
