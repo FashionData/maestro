@@ -5,4 +5,5 @@ export interface CreateUserPayload {
   displayName?: string;
   photoURL?: string;
   disabled: string;
+  role?: number;
 }
