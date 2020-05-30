@@ -113,12 +113,13 @@ export default {
             trigger: ["blur"]
           },
           {
-            min: 4,
-            message: "Your password must contains at least 4 characters"
+            min: 6,
+            message: "Your password must contains at least 6 characters"
           }
         ]
       },
       form: {
+        emailVerified: false,
         email: "",
         displayName: "",
         password: "",
