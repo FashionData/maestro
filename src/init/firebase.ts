@@ -23,10 +23,17 @@ export const configureFirebase = (
       .slice(0, -1);
     const hasQuery = Object.keys(parsedQuery).length > 0;
     return new Promise((resolve, reject) => {
-      const callableFunction = firebase
-        .app()
-        .functions(REGION)
-        .httpsCallable(`${name}${hasQuery ? "?" + parsedQuery : ""}`);
+      const functions = firebase.app().functions(REGION);
+
+      if (process.env.VUE_APP_LOCAL_FIREBASE_CF_URL) {
+        functions.useFunctionsEmulator(
+          process.env.VUE_APP_LOCAL_FIREBASE_CF_URL
+        );
+      }
+
+      const callableFunction = functions.httpsCallable(
+        `${name}${hasQuery ? "?" + parsedQuery : ""}`
+      );
 
       callableFunction(data)
         .then(resolve)
