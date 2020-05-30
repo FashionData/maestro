@@ -7,12 +7,13 @@ export type AnyObject = {
 export type ConfigurationOptions = {
   analytics?: boolean;
   performance?: boolean;
-  i18n?: {
-    locale?: string;
-    fallbackLocale?: string;
-    en?: AnyObject;
-    fr?: AnyObject;
-  }
+  i18n?: I18nConfig
+}
+
+export type I18nConfig = {
+  fallbackLocale?: string;
+  en?: AnyObject;
+  fr?: AnyObject;
 }
 
 export type InitializeOptions = {

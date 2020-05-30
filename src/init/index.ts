@@ -26,7 +26,7 @@ export const initializeApp = (
   injectLoader();
 
   let app: any;
-  const i18nInstance = i18n(Vue);
+  const i18nInstance = i18n(Vue, options.config?.i18n);
   const { store, router, firebase, config } = options;
   const installOptions: InstallOptions = { store, router, firebase, i18n: i18nInstance, config };
 
