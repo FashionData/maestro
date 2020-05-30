@@ -4,6 +4,10 @@ export interface CreateUserPayload {
   password?: string;
   displayName?: string;
   photoURL?: string;
-  disabled: string;
+  disabled: boolean;
   role?: number;
+}
+
+export interface UpdateUserPayload extends CreateUserPayload {
+  uid: string;
 }

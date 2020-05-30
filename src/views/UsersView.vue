@@ -88,8 +88,14 @@ export default {
         console.error(error);
       }
     },
-    handleUserUpdateSubmit(data) {
-      console.log(data);
+    async handleUserUpdateSubmit(data) {
+      try {
+        await this.$httpsCallableFunction("updateUser", {}, data);
+        this.closeEditModal(data.uid);
+        await this.fetchUsers();
+      } catch {
+        console.error(error);
+      }
     },
     showEditModal(uid) {
       this.$set(this.modals.user.edit, uid, true);

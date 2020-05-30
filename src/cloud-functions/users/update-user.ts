@@ -1,17 +1,31 @@
-import { CreateUserPayload } from "@/types/cloud-functions";
+import { UpdateUserPayload } from "@/types/cloud-functions";
 import { Roles, ROLES } from "../../constants/roles";
 
-export const createUser = (admin: any, data: CreateUserPayload, _: any) => {
+const shouldNotTouchField = (obj: any, path: string) =>
+  typeof obj[path] === "undefined" || obj[path] === null;
+
+const cleanUpdatePayload = (
+  payload: UpdateUserPayload
+): Partial<UpdateUserPayload> => {
+  let result = {
+    email: payload.email,
+    emailVerified: false,
+    password: payload.password,
+    displayName: payload.displayName,
+    photoURL: payload.photoURL,
+    disabled: false
+  };
+  if (shouldNotTouchField(result, "password") || result.password === "") {
+    delete result.password;
+  }
+
+  return result;
+};
+
+export const updateUser = (admin: any, data: UpdateUserPayload, _: any) => {
   return admin
     .auth()
-    .createUser({
-      email: data.email,
-      emailVerified: false,
-      password: data.password,
-      displayName: data.displayName,
-      photoURL: data.photoURL,
-      disabled: false
-    })
+    .updateUser(data.uid, cleanUpdatePayload(data))
     .then((user: any) => {
       return { data: user };
     })
