@@ -9,6 +9,12 @@
         @close="modals.user.create = false"
       />
       <el-row type="flex" justify="end">
+        <p>
+          Your role:
+          {{ $store.getters.user.role.name }} ({{
+            $store.getters.user.role.code
+          }})
+        </p>
         <el-button type="primary" icon="el-icon-plus" @click="showCreateModal"
           >Add</el-button
         >

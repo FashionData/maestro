@@ -1,3 +1,6 @@
+import { Store } from "vuex";
+import { Role } from "@/constants";
+
 export type AnyObject = {
   [key: string]: any;
 };
@@ -8,7 +11,7 @@ export type ConfigurationOptions = {
 };
 
 export type InstallOptions = {
-  store: AnyObject;
+  store: Store<any>;
   router: AnyObject;
   firebase: AnyObject;
   config?: ConfigurationOptions;
@@ -17,6 +20,7 @@ export type InstallOptions = {
 export type User = {
   uid: string;
   email: string;
+  role: Role;
   displayName: string;
   photoURL: string;
   metadata: {
