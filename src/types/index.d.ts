@@ -1,3 +1,5 @@
+import { Store } from "vuex";
+import { Role } from "@/constants";
 import VueI18n from "vue-i18n";
 
 export type AnyObject = {
@@ -18,11 +20,11 @@ export type ConfigurationOptions = {
 };
 
 export type InitializeOptions = {
-  store: AnyObject,
-  router: AnyObject,
-  firebase: AnyObject,
-  config?: ConfigurationOptions,
-}
+  store: Store<any>;
+  router: AnyObject;
+  firebase: AnyObject;
+  config?: ConfigurationOptions;
+};
 
 export type InstallOptions = InitializeOptions & {
   i18n: VueI18n,
@@ -31,6 +33,7 @@ export type InstallOptions = InitializeOptions & {
 export type User = {
   uid: string;
   email: string;
+  role: Role;
   displayName: string;
   photoURL: string;
   metadata: {

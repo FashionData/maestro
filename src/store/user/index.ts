@@ -3,6 +3,7 @@ import { IVueI18n } from "vue-i18n";
 import firebase from "firebase";
 import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
+import * as fb from "firebase";
 
 type State = {
   user: User;
@@ -15,7 +16,7 @@ export const userStore = {
     isAuthenticated: false
   },
   getters: {
-    user: (state: State) => state.user,
+    user: (state: State): User => state.user,
     isAuthenticated: (state: State) => state.isAuthenticated
   },
   mutations: {
