@@ -14,7 +14,14 @@ declare const initializeApp: (
 ) => void;
 declare const authMiddleware: Middleware;
 declare const guestMiddleware: Middleware;
+declare const superAdminMiddleware: Middleware;
 declare const plugin: {
   install: InstallFunction;
 };
-export { plugin as default, authMiddleware, guestMiddleware, initializeApp };
+export {
+  plugin as default,
+  authMiddleware,
+  guestMiddleware,
+  superAdminMiddleware,
+  initializeApp
+};

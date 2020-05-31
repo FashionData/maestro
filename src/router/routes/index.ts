@@ -4,8 +4,15 @@ import NotFound from "@/views/NotFound.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import UsersView from "@/views/UsersView.vue";
 
-import { LOGIN, LOGOUT, NOT_FOUND, PROFILE, USERS } from "@/constants/routes";
+import {
+  LOGIN,
+  LOGOUT,
+  NOT_FOUND,
+  PROFILE,
+  USERS
+} from "@/constants/routes";
 import { authMiddleware, guestMiddleware } from "@/router/middleware";
+import { superAdminMiddleware } from "@/router/middleware/user/super-admin";
 
 export const routes = [
   {
@@ -23,8 +30,7 @@ export const routes = [
   {
     path: USERS.path,
     name: USERS.name,
-    // TODO: Add superAdmin
-    meta: { middleware: [authMiddleware] },
+    meta: { middleware: [authMiddleware, superAdminMiddleware] },
     component: UsersView
   },
   {
