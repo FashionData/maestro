@@ -104,7 +104,7 @@ export const install: InstallFunction = function installMaestro(
   if (install.installed) return;
   install.installed = true;
 
-  configureStore(options.store);
+  configureStore(Vue, options.store);
   configureRouter(options.router);
   configureFirebase(Vue, options.firebase, options.config);
   installElementUi(Vue, options.i18n);
