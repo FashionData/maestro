@@ -1,6 +1,7 @@
 import { AnyObject, User } from "@/types";
 import { Collections } from "@/constants/firebase";
 import * as fb from "firebase";
+import { Roles } from "@/constants";
 
 type State = {
   user: User;
@@ -14,6 +15,7 @@ export const userStore = {
   },
   getters: {
     user: (state: State): User => state.user,
+    isGranted: (state: State) => (role: Roles) => state.user.role.code >= role,
     isAuthenticated: (state: State) => state.isAuthenticated
   },
   mutations: {
