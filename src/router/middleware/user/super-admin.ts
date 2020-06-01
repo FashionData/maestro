@@ -1,5 +1,5 @@
 import { Context, Middleware, MiddlewarePipeline } from "@/types/router";
-import { HOME } from "@/constants/router/routes";
+import { HOME } from "@/constants/routes";
 import { Roles } from "@/constants";
 
 export const superAdminMiddleware: Middleware = (

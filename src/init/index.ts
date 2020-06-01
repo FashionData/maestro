@@ -1,5 +1,5 @@
 import _Vue, { PluginFunction, VueConstructor } from "vue";
-import { InitializeOptions, InstallOptions, User } from "@/types";
+import { InitializeOptions, InstallOptions } from "@/types";
 import { checkConfiguration } from "@/init/configuration";
 import { injectLoader, removeLoader } from "@/init/loader";
 import { configureStore } from "@/init/store";
@@ -10,7 +10,6 @@ import { installVueDebounce } from "@/init/plugins/vue-debounce";
 import * as fb from "firebase";
 import { i18n } from "@/init/plugins/vue-i18n";
 import * as components from "@/components";
-import HomeView from "@/views/placeholders/HomeView.vue";
 import { VueRouter } from "vue-router/types/router";
 import { Role, ROLES, Roles } from "@/constants";
 import { Store } from "vuex";
@@ -55,45 +54,43 @@ export const initializeApp = (
 
   const i18nInstance = i18n(Vue, options.config?.i18n);
   const { store, router, firebase, config } = options;
-  const installOptions: InstallOptions = { store, router, firebase, i18n: i18nInstance, config };
+  const installOptions: InstallOptions = {
+    store,
+    router,
+    firebase,
+    i18n: i18nInstance,
+    config
+  };
 
   injectHomePage(router);
 
   Vue.use(install, installOptions);
 
-  firebase.auth().onAuthStateChanged((user: User) => {
-    if (user) {
-      userStore.state.user = user;
-      userStore.state.isAuthenticated = true;
+  firebase.auth().onAuthStateChanged(async (user: fb.User) => {
+    if (callback) {
+      metadataRef.off("value", callback);
     }
-
-  Vue.use(install, { store, router, firebase, config });
-
-    firebase.auth().onAuthStateChanged(async (user: fb.User) => {
-      if (callback) {
-        metadataRef.off("value", callback);
-      }
-      if (user) {
-        let role = getRole(await user.getIdTokenResult());
+    if (user) {
+      let role = getRole(await user.getIdTokenResult());
+      store.commit("authenticateUser");
+      store.commit("setUser", { ...user.toJSON(), role });
+      metadataRef = firebase.database().ref(`metadata/${user.uid}/refreshTime`);
+      callback = async () => {
+        role = getRole(await user.getIdTokenResult(true));
         store.commit("authenticateUser");
         store.commit("setUser", { ...user.toJSON(), role });
-        metadataRef = firebase.database().ref(`metadata/${user.uid}/refreshTime`);
-        callback = async () => {
-          role = getRole(await user.getIdTokenResult(true));
-          store.commit("authenticateUser");
-          store.commit("setUser", { ...user.toJSON(), role });
-          if (!hasRefreshedToken && !app) {
-            mountApp(Vue, App, router as VueRouter, store);
-          }
-          hasRefreshedToken = true;
-        };
-        metadataRef.on("value", callback);
-      } else {
-        if (!app) {
+        if (!hasRefreshedToken && !app) {
           mountApp(Vue, App, router as VueRouter, store);
         }
+        hasRefreshedToken = true;
+      };
+      metadataRef.on("value", callback);
+    } else {
+      if (!app) {
+        mountApp(Vue, App, router as VueRouter, store);
       }
-    });
+    }
+  });
 };
 
 // install function executed by Vue.use()
@@ -109,6 +106,7 @@ export const install: InstallFunction = function installMaestro(
   configureFirebase(Vue, options.firebase, options.config);
   installElementUi(Vue, options.i18n);
   installVueDebounce(Vue);
+  console.log("INSTALL VUE ");
 
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);

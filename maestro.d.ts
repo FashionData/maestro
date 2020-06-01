@@ -1,6 +1,6 @@
 import Vue, { PluginFunction, VueConstructor } from "vue";
 import _Vue from "vue";
-import { InstallOptions } from "./src/types";
+import { InitializeOptions } from "./src/types";
 import { Middleware } from "./src/types/router";
 import { Roles, Collections } from "./src/constants";
 
@@ -11,7 +11,7 @@ interface InstallFunction extends PluginFunction<any> {
 declare const initializeApp: (
   Vue: VueConstructor<_Vue>,
   App: any,
-  options: InstallOptions
+  options: InitializeOptions
 ) => void;
 declare const authMiddleware: Middleware;
 declare const guestMiddleware: Middleware;
