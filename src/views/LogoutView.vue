@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { LOGIN } from "@/constants/router/routes";
+import { LOGIN } from "@/constants/routes";
 
 export default {
   name: "logout-view",

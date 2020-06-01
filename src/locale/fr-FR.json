@@ -1,0 +1,64 @@
+{
+  "login-view": {
+    "title": "Connexion",
+    "form": {
+      "email-placeholder": "Email",
+      "password-placeholder": "Mot de passe",
+      "buttons": {
+        "classic": "Se connecter",
+        "socials": {
+          "google": "Google"
+        }
+      }
+    },
+    "message": {
+      "error": "Echec de l'authentification"
+    }
+  },
+  "profile-view": {
+    "title": "Titre",
+    "member-since": "Membre depuis",
+    "email": {
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "phone": {
+      "label": "Téléphone",
+      "placeholder": "Téléphone"
+    },
+    "location": {
+      "label": "Localisation",
+      "placeholder": "Localisation"
+    },
+    "timezone": {
+      "label": "Timezone",
+      "placeholder": "Select"
+    },
+    "language": {
+      "label": "Langue",
+      "placeholder": "Langue"
+    },
+    "message": {
+      "success": "Champ mis à jour avec succès !",
+      "error": "Erreur lors de la mise à jour du champ"
+    }
+  },
+  "not-found": {
+    "title": "Page non trouvée"
+  },
+  "m-layout": {
+    "aside-component": {
+      "history": "Historique",
+      "settings": {
+        "title": "Réglages",
+        "users": "Utilisateurs"
+      }
+    },
+    "container-component": {
+      "dropdown-menu": {
+        "profile": "Profile",
+        "logout": "Se déconnecter"
+      }
+    }
+  }
+}

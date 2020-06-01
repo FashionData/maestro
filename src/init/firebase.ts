@@ -1,6 +1,5 @@
 import { VueConstructor } from "vue";
-import { AnyObject, ConfigurationOptions, User } from "@/types";
-import { userStore } from "@/store/user";
+import { AnyObject, ConfigurationOptions } from "@/types";
 import { REGION } from "@/constants/firebase";
 import { log } from "@/utils/console";
 
@@ -45,11 +44,4 @@ export const configureFirebase = (
     };
     log("Firebase performance enabled");
   }
-
-  firebase.auth().onAuthStateChanged((user: User) => {
-    if (user) {
-      userStore.state.user = user;
-      userStore.state.isAuthenticated = true;
-    }
-  });
 };

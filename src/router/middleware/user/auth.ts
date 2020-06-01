@@ -1,5 +1,5 @@
 import { Context, Middleware, MiddlewarePipeline } from "@/types/router";
-import { LOGIN } from '@/constants/router/routes';
+import { LOGIN } from '@/constants/routes';
 
 export const auth: Middleware = ({ to, next, userStore }: Context, nextPipeline: ReturnType<MiddlewarePipeline>) => {
   if (!userStore.state.isAuthenticated) {

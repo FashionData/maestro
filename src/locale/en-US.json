@@ -1,0 +1,64 @@
+{
+  "login-view": {
+    "title": "Login",
+    "form": {
+      "email-placeholder": "Email",
+      "password-placeholder": "Password",
+      "buttons": {
+        "classic": "Login",
+        "socials": {
+          "google": "Google"
+        }
+      }
+    },
+    "message": {
+      "error": "Authentication failed"
+    }
+  },
+  "profile-view": {
+    "title": "Title",
+    "member-since": "Member since",
+    "email": {
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "phone": {
+      "label": "Phone",
+      "placeholder": "Phone"
+    },
+    "location": {
+      "label": "Location",
+      "placeholder": "Location"
+    },
+    "timezone": {
+      "label": "Timezone",
+      "placeholder": "Select"
+    },
+    "language": {
+      "label": "Language",
+      "placeholder": "Language"
+    },
+    "message": {
+      "success": "Updated field successfully!",
+      "error": "Error while updating field"
+    }
+  },
+  "not-found": {
+    "title": "Page not found"
+  },
+  "m-layout": {
+    "aside-component": {
+      "history": "History",
+      "settings": {
+        "title": "Settings",
+        "users": "Users"
+      }
+    },
+    "container-component": {
+      "dropdown-menu": {
+        "profile": "Profile",
+        "logout": "Logout"
+      }
+    }
+  }
+}

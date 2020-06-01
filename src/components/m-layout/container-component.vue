@@ -11,12 +11,14 @@
 
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item>
-						<!-- TODO: Translate with i18n -->
-						<router-link :to="{ name: userRouteName }">Profile</router-link>
+						<router-link :to="{ name: userRouteName }">
+							{{ $t('m-layout.container-component.dropdown-menu.profile') }}
+						</router-link>
 					</el-dropdown-item>
 					<el-dropdown-item>
-						<!-- TODO: Translate with i18n -->
-						<router-link :to="{ name: logoutRouteName }">Logout</router-link>
+						<router-link :to="{ name: logoutRouteName }">
+							{{ $t('m-layout.container-component.dropdown-menu.logout') }}
+						</router-link>
 					</el-dropdown-item>
 				</el-dropdown-menu>
 			</el-dropdown>
@@ -34,8 +36,8 @@
 	</el-container>
 </template>
 
-<script lang="ts">
-  import { LOGOUT, PROFILE } from "../../constants/router/routes";
+<script>
+  import { LOGOUT, PROFILE } from "../../constants/routes";
 
   export default {
     name: "container-component",
@@ -46,7 +48,7 @@
       logoutRouteName() {
         return LOGOUT.name;
       },
-      title(): string {
+      title() {
         const formattedPath = this.$route.path.replace('/', '').replace(/[^\w\s]/gi, ' ')
         return formattedPath.charAt(0).toUpperCase() + formattedPath.slice(1);
       }
