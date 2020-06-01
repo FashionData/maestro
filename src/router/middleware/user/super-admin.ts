@@ -8,6 +8,7 @@ export const superAdminMiddleware: Middleware = (
 ) => {
   if (
     userStore.state.user &&
+    userStore.state.user.role &&
     userStore.state.user.role.code >= Roles.SuperAdmin
   ) {
     return nextPipeline();

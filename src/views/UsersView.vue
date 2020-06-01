@@ -1,38 +1,53 @@
 <template>
   <div>
-    <p v-if="isLoading">Loading...</p>
+    <p v-if="isLoading">{{ $t("global.loading") }}</p>
 
     <template v-else>
       <create-user-dialog
+        :is-loading="isSubmitting"
         :show="modals.user.create"
         @submit="handleUserCreateSubmit"
         @close="modals.user.create = false"
       />
       <el-row type="flex" justify="end">
         <p>
-          Your role:
-          {{ $store.getters.user.role.name }} ({{
-            $store.getters.user.role.code
-          }})
+          {{
+            $t("users-view.your-role", {
+              role: $t($store.getters.user.role.name)
+            })
+          }}
         </p>
-        <el-button type="primary" icon="el-icon-plus" @click="showCreateModal"
-          >Add</el-button
+        <el-button
+          type="primary"
+          icon="el-icon-plus"
+          @click="showCreateModal"
+          >{{ $t("global.add") }}</el-button
         >
       </el-row>
       <el-row>
         <el-table :data="users" style="width: 100%">
-          <!-- TODO: i18n -->
-          <el-table-column prop="email" label="Email"></el-table-column>
-          <el-table-column prop="displayName" label="Name"></el-table-column>
-          <el-table-column fixed="right" label="Operations" width="120">
+          <el-table-column
+            prop="email"
+            :label="$t('users-view.table.header.email')"
+          ></el-table-column>
+          <el-table-column
+            prop="displayName"
+            :label="$t('users-view.table.header.displayName')"
+          ></el-table-column>
+          <el-table-column
+            fixed="right"
+            :label="$t('users-view.table.header.operations')"
+            width="120"
+          >
             <template slot-scope="scope">
               <el-button
                 type="text"
                 size="small"
                 @click="showEditModal(scope.row.uid)"
-                >Edit</el-button
+                >{{ $t("global.edit") }}</el-button
               >
               <update-user-dialog
+                :is-loading="isSubmitting"
                 :key="scope.row.uid"
                 :user="scope.row"
                 :show="!!modals.user.edit[scope.row.uid]"
@@ -63,7 +78,8 @@ export default {
         }
       },
       users: [],
-      isLoading: false
+      isLoading: false,
+      isSubmitting: false
     };
   },
   mounted() {
@@ -71,12 +87,12 @@ export default {
   },
   methods: {
     async fetchUsers() {
+      this.isSubmitting = false;
       this.isLoading = true;
 
       this.users = (
         await this.$httpsCallableFunction("getAllUsers", {})
       ).data.users;
-      console.log(this.users);
       this.isLoading = false;
     },
     showCreateModal() {
@@ -87,19 +103,23 @@ export default {
     },
     async handleUserCreateSubmit(data) {
       try {
+        this.isSubmitting = true;
         await this.$httpsCallableFunction("createUser", {}, data);
         this.closeCreateModal();
         await this.fetchUsers();
       } catch {
+        this.isSubmitting = false;
         console.error(error);
       }
     },
     async handleUserUpdateSubmit(data) {
       try {
+        this.isSubmitting = true;
         await this.$httpsCallableFunction("updateUser", {}, data);
         this.closeEditModal(data.uid);
         await this.fetchUsers();
       } catch {
+        this.isSubmitting = false;
         console.error(error);
       }
     },

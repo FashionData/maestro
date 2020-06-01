@@ -15,26 +15,26 @@ export interface Role {
 export const ROLES: { [role in Roles]: Role } = {
   [Roles.Suspended]: {
     code: Roles.Suspended,
-    name: "Suspended"
+    name: "role.suspended"
   },
   [Roles.Viewer]: {
     code: Roles.Viewer,
-    name: "Viewer"
+    name: "role.viewer"
   },
   [Roles.User]: {
     code: Roles.User,
-    name: "User"
+    name: "role.user"
   },
   [Roles.Writer]: {
     code: Roles.Writer,
-    name: "Writer"
+    name: "role.writer"
   },
   [Roles.Admin]: {
     code: Roles.Admin,
-    name: "Admin"
+    name: "role.admin"
   },
   [Roles.SuperAdmin]: {
     code: Roles.SuperAdmin,
-    name: "Super Admin"
+    name: "role.superAdmin"
   }
 };

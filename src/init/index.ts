@@ -13,6 +13,7 @@ import * as components from "@/components";
 import { VueRouter } from "vue-router/types/router";
 import { Role, ROLES, Roles } from "@/constants";
 import { Store } from "vuex";
+import VueI18n from "vue-i18n";
 
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -32,7 +33,8 @@ const mountApp = (
   Vue: typeof _Vue,
   App: any,
   router: VueRouter,
-  store: Store<any>
+  store: Store<any>,
+  i18n: VueI18n
 ) => {
   removeLoader();
 
@@ -40,6 +42,7 @@ const mountApp = (
   app = new Vue({
     store,
     router,
+    i18n,
     render: h => h(App)
   }).$mount("#app");
 };
@@ -80,14 +83,14 @@ export const initializeApp = (
         store.commit("authenticateUser");
         store.commit("setUser", { ...user.toJSON(), role });
         if (!hasRefreshedToken && !app) {
-          mountApp(Vue, App, router as VueRouter, store);
+          mountApp(Vue, App, router as VueRouter, store, i18nInstance);
         }
         hasRefreshedToken = true;
       };
       metadataRef.on("value", callback);
     } else {
       if (!app) {
-        mountApp(Vue, App, router as VueRouter, store);
+        mountApp(Vue, App, router as VueRouter, store, i18nInstance);
       }
     }
   });
@@ -106,7 +109,6 @@ export const install: InstallFunction = function installMaestro(
   configureFirebase(Vue, options.firebase, options.config);
   installElementUi(Vue, options.i18n);
   installVueDebounce(Vue);
-  console.log("INSTALL VUE ");
 
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);
