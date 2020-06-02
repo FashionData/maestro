@@ -78,6 +78,7 @@
     "node": ">=8"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "vue-debounce": "^2.5.3",
     "vue-i18n": "^8.17.5"
   },

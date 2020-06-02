@@ -3,7 +3,6 @@ import { IVueI18n } from "vue-i18n";
 import firebase from "firebase";
 import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
-import * as fb from "firebase";
 import { Roles } from "@/constants";
 
 type State = {
@@ -40,7 +39,11 @@ export const userStore = {
     // TODO: Type + reject
     authenticateUser(
       { commit, dispatch }: any,
-      { firebase, i18n, user }: { firebase: AnyObject; i18n: IVueI18n; user: User }
+      {
+        firebase,
+        i18n,
+        user
+      }: { firebase: AnyObject; i18n: IVueI18n; user: User }
     ) {
       const setLocale = new Promise((resolve, reject) => {
         if (localStorage.getItem(LS_LANGUAGE_KEY)) {
@@ -57,8 +60,15 @@ export const userStore = {
                 localStorage.setItem(LS_LANGUAGE_KEY, language);
                 i18n.locale = language;
               } else {
-                localStorage.setItem(LS_LANGUAGE_KEY, i18n.fallbackLocale as string);
-                firebase.firestore().collection(Collections.users).doc(user.uid).update({ language: i18n.fallbackLocale });
+                localStorage.setItem(
+                  LS_LANGUAGE_KEY,
+                  i18n.fallbackLocale as string
+                );
+                firebase
+                  .firestore()
+                  .collection(Collections.users)
+                  .doc(user.uid)
+                  .update({ language: i18n.fallbackLocale });
                 i18n.locale = i18n.fallbackLocale as string;
               }
               resolve();
