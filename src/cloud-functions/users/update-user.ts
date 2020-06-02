@@ -1,4 +1,4 @@
-import { UpdateUserPayload } from "@/types/cloud-functions";
+import { UpdateUserPayload } from "../../types/cloud-functions";
 import { Roles, ROLES } from "../../constants/roles";
 
 const shouldNotTouchField = (obj: any, path: string) =>

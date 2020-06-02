@@ -1,4 +1,4 @@
-import { CreateUserPayload } from "@/types/cloud-functions";
+import { CreateUserPayload } from "../../types/cloud-functions";
 import { Roles, ROLES } from "../../constants/roles";
 
 export const createUser = (admin: any, data: CreateUserPayload, _: any) => {
