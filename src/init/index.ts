@@ -23,8 +23,7 @@ export interface InstallFunction extends PluginFunction<any> {
 
 let metadataRef: any = null;
 let callback: any = null;
-let hasRefreshedToken = false;
-let app: any;
+let app: any = null;
 
 const getRole = (token: fb.auth.IdTokenResult): Role =>
   ROLES[(token.claims.role as Roles) ?? 0];
@@ -77,15 +76,15 @@ export const initializeApp = (
       let role = getRole(await user.getIdTokenResult());
       store.commit("authenticateUser");
       store.commit("setUser", { ...user.toJSON(), role });
+      if (!app) {
+        mountApp(Vue, App, router as VueRouter, store, i18nInstance);
+      }
+
       metadataRef = firebase.database().ref(`metadata/${user.uid}/refreshTime`);
       callback = async () => {
         role = getRole(await user.getIdTokenResult(true));
         store.commit("authenticateUser");
         store.commit("setUser", { ...user.toJSON(), role });
-        if (!hasRefreshedToken && !app) {
-          mountApp(Vue, App, router as VueRouter, store, i18nInstance);
-        }
-        hasRefreshedToken = true;
       };
       metadataRef.on("value", callback);
     } else {
