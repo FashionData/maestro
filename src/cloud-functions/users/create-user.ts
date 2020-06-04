@@ -1,5 +1,7 @@
 import { CreateUserPayload } from "../../types/cloud-functions";
 import { Roles, ROLES } from "../../constants/roles";
+import { Collections } from "../../constants";
+import * as fb from "firebase";
 
 export const createUser = (admin: any, data: CreateUserPayload, _: any) => {
   return admin
@@ -12,8 +14,23 @@ export const createUser = (admin: any, data: CreateUserPayload, _: any) => {
       photoURL: data.photoURL,
       disabled: false
     })
-    .then((user: any) => {
-      return { data: user };
+    .then((user: fb.User) => {
+      console.log(`Updating ${user.email} social informations`);
+      return admin
+        .firestore()
+        .collection(Collections.users)
+        .doc(user.uid)
+        .set(
+          {
+            id: user.uid,
+            displayName: user.displayName
+          },
+          { merge: true }
+        )
+        .then(() => {
+          console.log("Social informations successfully updated");
+          return { data: user };
+        });
     })
     .then((result: any) => {
       const userRole = ROLES[(data.role ?? 0) as Roles];

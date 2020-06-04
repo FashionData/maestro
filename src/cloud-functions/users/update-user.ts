@@ -1,5 +1,7 @@
 import { UpdateUserPayload } from "../../types/cloud-functions";
+import { Collections } from "../../constants";
 import { Roles, ROLES } from "../../constants/roles";
+import * as fb from "firebase";
 
 const shouldNotTouchField = (obj: any, path: string) =>
   typeof obj[path] === "undefined" || obj[path] === null;
@@ -9,11 +11,10 @@ const cleanUpdatePayload = (
 ): Partial<UpdateUserPayload> => {
   let result = {
     email: payload.email,
-    emailVerified: false,
     password: payload.password,
     displayName: payload.displayName,
     photoURL: payload.photoURL,
-    disabled: false
+    disabled: payload.disabled
   };
   if (shouldNotTouchField(result, "password") || result.password === "") {
     delete result.password;
@@ -26,7 +27,7 @@ export const updateUser = (admin: any, data: UpdateUserPayload, _: any) => {
   return admin
     .auth()
     .updateUser(data.uid, cleanUpdatePayload(data))
-    .then((user: any) => {
+    .then((user: fb.User) => {
       return { data: user };
     })
     .then((result: any) => {
@@ -44,6 +45,24 @@ export const updateUser = (admin: any, data: UpdateUserPayload, _: any) => {
             .database()
             .ref("metadata/" + result.data.uid);
           return metadataRef.set({ refreshTime: new Date().getTime() });
+        });
+    })
+    .then(() => {
+      console.log(`Updating ${data.email} social informations`);
+      return admin
+        .firestore()
+        .collection(Collections.users)
+        .doc(data.uid)
+        .set(
+          {
+            id: data.uid,
+            displayName: data.displayName
+          },
+          { merge: true }
+        )
+        .then(() => {
+          console.log("Social informations successfully updated");
+          return { data };
         });
     })
     .catch((error: Error) => error);

@@ -4,7 +4,7 @@ import firebase from "firebase";
 import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
 import { Roles } from "@/constants";
-import { getRole } from "@/init";
+import { getRole } from "@/utils/role";
 
 type State = {
   user: User;

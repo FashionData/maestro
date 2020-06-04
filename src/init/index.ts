@@ -11,9 +11,9 @@ import * as fb from "firebase";
 import { i18n } from "@/init/plugins/vue-i18n";
 import * as components from "@/components";
 import { VueRouter } from "vue-router/types/router";
-import { Role, ROLES, Roles } from "@/constants";
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
+import { getRole } from "@/utils/role";
 
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,9 +24,6 @@ export interface InstallFunction extends PluginFunction<any> {
 let metadataRef: any = null;
 let callback: any = null;
 let app: any = null;
-
-export const getRole = (token: fb.auth.IdTokenResult): Role =>
-  ROLES[(token.claims.role as Roles) ?? 0];
 
 const mountApp = (
   Vue: typeof _Vue,
