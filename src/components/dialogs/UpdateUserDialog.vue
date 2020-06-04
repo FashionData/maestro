@@ -4,6 +4,7 @@
     :title="$t('users-view.dialog.update.title', { email: user.email })"
     :visible="show"
     width="80%"
+    @close="$emit('close')"
     :before-close="beforeClose"
   >
     <el-form ref="form" :model="form" :rules="rules">

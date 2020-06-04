@@ -3,6 +3,7 @@
     :title="$t('users-view.dialog.create.title')"
     :visible="show"
     width="80%"
+    @close="$emit('close')"
     :before-close="beforeClose"
   >
     <el-form ref="form" :model="form" :rules="rules">
