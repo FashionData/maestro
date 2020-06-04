@@ -1,4 +1,19 @@
 {
+  "global": {
+    "add": "Ajouter",
+    "loading": "Chargement...",
+    "edit": "Éditer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer"
+  },
+  "role": {
+    "suspended": "Suspendu",
+    "viewer":"Invité",
+    "user": "Utilisateur",
+    "writer":"Auteur",
+    "admin": "Administrateur",
+    "superAdmin":"Super administrateur"
+  },
   "login-view": {
     "title": "Connexion",
     "form": {
@@ -58,6 +73,49 @@
       "dropdown-menu": {
         "profile": "Profile",
         "logout": "Se déconnecter"
+      }
+    }
+  },
+  "users-view": {
+    "your-role": "Votre rôle : {role}",
+    "table": {
+      "header": {
+        "email": "Email",
+        "displayName": "Nom",
+        "operations": "Opérations"
+      }
+    },
+    "dialog": {
+      "create": {
+        "title": "Ajouter un utilisateur"
+      },
+      "update": {
+        "title": "Éditer {email}"
+      }
+    },
+    "form": {
+      "rules": {
+        "email": {
+          "blank": "L'email ne peut pas être vide",
+          "invalid": "Veuillez entrer une adresse mail valide"
+        },
+        "role": {
+          "blank": "Le rôle ne peut pas être vide"
+        },
+        "displayName": {
+          "blank": "Le nom ne peut pas être vide"
+        },
+        "password": {
+          "blank": "Le mot de passe ne peut pas être vide",
+          "min": "Le mot de passe doit contenir au moins {nb} caractères"
+        }
+      },
+      "email": "Email",
+      "displayName": "Nom",
+      "password": "Mot de passe",
+      "role": {
+        "name": "Rôle",
+        "placeholder": "Choisissez un rôle"
       }
     }
   }

@@ -29,6 +29,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
     "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:watch": "cross-env NODE_ENV=production rollup --watch --config build/rollup.config.js",
     "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
@@ -70,13 +71,14 @@
     "registry": "https://registry.npmjs.org/"
   },
   "peerDependencies": {
-    "element-ui": "^2.13.1",
+    "element-ui": "^2.13.2",
     "vue": "^2.6.10"
   },
   "engines": {
     "node": ">=8"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "vue-debounce": "^2.5.3",
     "vue-i18n": "^8.17.5"
   },

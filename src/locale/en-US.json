@@ -1,4 +1,19 @@
 {
+  "global": {
+    "add": "Add",
+    "loading": "Loading...",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "role": {
+    "suspended": "Suspended",
+    "viewer":"Viewer",
+    "user": "User",
+    "writer":"Writer",
+    "admin": "Admin",
+    "superAdmin":"Super admin"
+  },
   "login-view": {
     "title": "Login",
     "form": {
@@ -58,6 +73,49 @@
       "dropdown-menu": {
         "profile": "Profile",
         "logout": "Logout"
+      }
+    }
+  },
+  "users-view": {
+    "your-role": "Your role: {role}",
+    "table": {
+      "header": {
+        "email": "Email",
+        "displayName": "Name",
+        "operations": "Operations"
+      }
+    },
+    "dialog": {
+      "create": {
+        "title": "Add a user"
+      },
+      "update": {
+        "title": "Update {email}"
+      }
+    },
+    "form": {
+      "rules": {
+        "email": {
+          "blank": "Email cannot be blank",
+          "invalid": "Please enter a valid email address"
+        },
+        "role": {
+          "blank": "Role cannot be blank"
+        },
+        "displayName": {
+          "blank": "Display name cannot be blank"
+        },
+        "password": {
+          "blank": "Password cannot be blank",
+          "min": "Your password must contains at least {nb} characters"
+        }
+      },
+      "email": "Email",
+      "displayName": "Display name",
+      "password": "Password",
+      "role": {
+        "name": "Role",
+        "placeholder": "Select a role"
       }
     }
   }

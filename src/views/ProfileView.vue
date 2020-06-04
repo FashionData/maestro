@@ -7,15 +7,20 @@
           action="https://jsonplaceholder.typicode.com/posts/"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload">
+          :before-upload="beforeAvatarUpload"
+        >
           <el-avatar v-if="photoURL" :size="size" :src="photoURL" />
-          <el-avatar v-else :size="size" icon="el-icon-plus" style="font-size: 50px" />
+          <el-avatar
+            v-else
+            :size="size"
+            icon="el-icon-plus"
+            style="font-size: 50px"
+          />
         </el-upload>
 
         <div class="bold">
           <p class="text-highlight">{{ userSocialInformation.displayName }}</p>
-          <!-- TODO: Add user role with translations -->
-          <p>User role</p>
+          <p>{{ $t($store.getters.user.role.name) }}</p>
         </div>
 
         <div>
@@ -23,10 +28,14 @@
         </div>
 
         <div class="user-title">
-          <p class="bold">{{ $t('profile-view.title') }}</p>
+          <p class="bold">{{ $t("profile-view.title") }}</p>
           <template>
             <transition name="fade" mode="out-in">
-              <div v-if="editTitle" key="title-input" class="d-flex justify-center align-center">
+              <div
+                v-if="editTitle"
+                key="title-input"
+                class="d-flex justify-center align-center"
+              >
                 <el-input
                   v-model="userSocialInformation.title"
                   :placeholder="$t('profile-view.title')"
@@ -35,7 +44,11 @@
                 <i class="el-icon-circle-check" @click="validateTitle"></i>
               </div>
 
-              <div v-else="!editTitle" key="title-value" class="d-flex justify-center align-center">
+              <div
+                v-else="!editTitle"
+                key="title-value"
+                class="d-flex justify-center align-center"
+              >
                 <p>{{ userSocialInformation.title }}</p>
                 <i class="el-icon-edit" @click="editTitle = !editTitle"></i>
               </div>
@@ -44,7 +57,7 @@
         </div>
 
         <div>
-          <p>{{ $t('profile-view.member-since') }}</p>
+          <p>{{ $t("profile-view.member-since") }}</p>
           <p class="bold">{{ userSocialInformation.creationTime }}</p>
         </div>
       </el-card>
@@ -56,7 +69,7 @@
           <label :for="item.id">{{ item.label }}</label>
           <el-input
             v-model="userSocialInformation[item.id]"
-            v-debounce:1s="(value) => saveUserInformation(item.id, value)"
+            v-debounce:1s="value => saveUserInformation(item.id, value)"
             v-bind="item.props"
             :type="item.type || 'text'"
             :id="item.id"
@@ -65,13 +78,13 @@
         </div>
 
         <div class="form-group form-group--reduced">
-          <label for="timezone">{{ $t('profile-view.timezone.label') }}</label>
+          <label for="timezone">{{ $t("profile-view.timezone.label") }}</label>
           <el-select
             v-model="userSocialInformation.timezone"
             id="timezone"
             :placeholder="$t('profile-view.timezone.placeholder')"
             clearable
-            @change="(value) => saveUserInformation('timezone', value)"
+            @change="value => saveUserInformation('timezone', value)"
           >
             <el-option
               v-for="item in options"
@@ -84,7 +97,7 @@
         </div>
 
         <div class="form-group form-group--reduced">
-          <label for="language">{{ $t('profile-view.language.label') }}</label>
+          <label for="language">{{ $t("profile-view.language.label") }}</label>
 
           <el-select
             v-model="$i18n.locale"
@@ -92,7 +105,12 @@
             :placeholder="$t('profile-view.language.placeholder')"
             @change="changeLanguage"
           >
-            <el-option v-for="(lang, i) in languages" :key="`Lang${i}`" :value="lang">{{ lang }}</el-option>
+            <el-option
+              v-for="(lang, i) in languages"
+              :key="`Lang${i}`"
+              :value="lang"
+              >{{ lang }}</el-option
+            >
           </el-select>
         </div>
       </el-card>
@@ -159,77 +177,88 @@ export default {
         { label: "Warsaw", value: "Europe/Warsaw" },
         { label: "Zaporozhye", value: "Europe/Zaporozhye" },
         { label: "Zurich", value: "Europe/Zurich" }
-      ],
+      ]
     };
   },
   computed: {
     size: () => 200,
-    languages: () => ['en', 'fr'],
+    languages: () => ["en", "fr"],
     information() {
       return [
         {
-          id: 'email',
-          label: this.$t('profile-view.email.label'),
-          placeholder: this.$t('profile-view.email.placeholder'),
+          id: "email",
+          label: this.$t("profile-view.email.label"),
+          placeholder: this.$t("profile-view.email.placeholder"),
           props: {
             disabled: true
-          },
+          }
         },
         {
-          class: 'form-group--reduced',
-          id: 'phone',
-          type: 'tel',
-          label: this.$t('profile-view.phone.label'),
-          placeholder: this.$t('profile-view.phone.placeholder'),
+          class: "form-group--reduced",
+          id: "phone",
+          type: "tel",
+          label: this.$t("profile-view.phone.label"),
+          placeholder: this.$t("profile-view.phone.placeholder")
         },
         {
-          id: 'location',
-          label: this.$t('profile-view.location.label'),
-          placeholder: this.$t('profile-view.location.placeholder'),
-        },
-      ]
+          id: "location",
+          label: this.$t("profile-view.location.label"),
+          placeholder: this.$t("profile-view.location.placeholder")
+        }
+      ];
     }
   },
   mounted() {
-    this.$firebase.firestore().collection(Collections.users).doc(this.$store.getters.user.uid).get().then((res) => {
-      this.userSocialInformation = res.data()
-    })
+    this.$firebase
+      .firestore()
+      .collection(Collections.users)
+      .doc(this.$store.getters.user.uid)
+      .get()
+      .then(res => {
+        this.userSocialInformation = res.data();
+      });
   },
   methods: {
     handleAvatarSuccess(res, file) {
       this.photoURL = URL.createObjectURL(file.raw);
     },
     beforeAvatarUpload(file) {
-      const isJPG = file.type === 'image/jpeg';
+      const isJPG = file.type === "image/jpeg";
       const isLt2M = file.size / 1024 / 1024 < 2;
 
       if (!isJPG) {
         // TODO: Translate with i18n
-        this.$message.error('Avatar picture must be JPG format!');
+        this.$message.error("Avatar picture must be JPG format!");
       }
       if (!isLt2M) {
         // TODO: Translate with i18n
-        this.$message.error('Avatar picture size can not exceed 2MB!');
+        this.$message.error("Avatar picture size can not exceed 2MB!");
       }
       return isJPG && isLt2M;
     },
     validateTitle() {
-      this.saveUserInformation('title', this.userSocialInformation.title);
-      this.editTitle = !this.editTitle
+      this.saveUserInformation("title", this.userSocialInformation.title);
+      this.editTitle = !this.editTitle;
     },
     saveUserInformation(key, value) {
-      this.$firebase.firestore().collection(Collections.users).doc(this.$store.getters.user.uid).update({
-        [key]: value
-      }).then(() => {
-        this.$message.success(this.$t('profile-view.message.success'));
-      }).catch((err) => {
-        this.$message.success(this.$t('profile-view.message.error'));
-      })
+      this.$firebase
+        .firestore()
+        .collection(Collections.users)
+        .doc(this.$store.getters.user.uid)
+        .update({
+          [key]: value
+        })
+        .then(() => {
+          this.$message.success(this.$t("profile-view.message.success"));
+        })
+        .catch(err => {
+          this.$message.success(this.$t("profile-view.message.error"));
+        });
     },
     changeLanguage(language) {
-      this.saveUserInformation('language', language)
+      this.saveUserInformation("language", language);
       localStorage.setItem(LS_LANGUAGE_KEY, language);
     }
-  },
+  }
 };
 </script>
