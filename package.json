@@ -21,6 +21,7 @@
     "src/**/*.d.ts",
     "src/types/*",
     "src/styles/*",
+    "src/constants/*",
     "!src/dev"
   ],
   "scripts": {
