@@ -70,7 +70,7 @@ export const initializeApp = (
       metadataRef.off("value", callback);
     }
     if (user) {
-      let role = getRole(await user.getIdTokenResult(true));
+      let role = getRole(await user.getIdTokenResult());
       store.commit("authenticateUser");
       store.commit("setUser", { ...user.toJSON(), role });
       if (!app) {

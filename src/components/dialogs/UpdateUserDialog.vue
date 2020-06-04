@@ -142,7 +142,7 @@ export default {
 .role--container {
   display: flex;
   flex-direction: column;
-  & >>> label {
+  &::v-deep label {
     text-align: left;
   }
 }
