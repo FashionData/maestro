@@ -1,7 +1,7 @@
 <template>
   <div class="login-view">
     <el-card>
-      <h2>{{ $t('login-view.title') }}</h2>
+      <h2>{{ $t("login-view.title") }}</h2>
       <el-form
         class="login-form"
         :model="model"
@@ -30,7 +30,7 @@
             native-type="submit"
             block
           >
-            {{ $t('login-view.form.buttons.classic') }}
+            {{ $t("login-view.form.buttons.classic") }}
           </el-button>
         </el-form-item>
         <el-form-item>
@@ -40,7 +40,7 @@
             block
             @click="googleAuthentication"
           >
-            {{ $t('login-view.form.buttons.socials.google') }}
+            {{ $t("login-view.form.buttons.socials.google") }}
           </el-button>
         </el-form-item>
       </el-form>
@@ -66,7 +66,11 @@ export default {
   methods: {
     successCallback(user) {
       this.$store
-        .dispatch("authenticateUser", { firebase: this.$firebase, i18n: this.$i18n, user })
+        .dispatch("authenticateUser", {
+          firebase: this.$firebase,
+          i18n: this.$i18n,
+          user
+        })
         .then(() => {
           this.isLoading = false;
           this.$router.push(
@@ -81,7 +85,7 @@ export default {
       this.isLoading = false;
       this.$message({
         type: "error",
-        message: this.$t('login-view.message.error'),
+        message: this.$t("login-view.message.error"),
         duration: Messages.duration
       });
     },

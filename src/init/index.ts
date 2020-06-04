@@ -25,7 +25,7 @@ let metadataRef: any = null;
 let callback: any = null;
 let app: any = null;
 
-const getRole = (token: fb.auth.IdTokenResult): Role =>
+export const getRole = (token: fb.auth.IdTokenResult): Role =>
   ROLES[(token.claims.role as Roles) ?? 0];
 
 const mountApp = (

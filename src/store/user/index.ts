@@ -4,6 +4,7 @@ import firebase from "firebase";
 import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
 import { Roles } from "@/constants";
+import { getRole } from "@/init";
 
 type State = {
   user: User;
@@ -43,7 +44,7 @@ export const userStore = {
         firebase,
         i18n,
         user
-      }: { firebase: AnyObject; i18n: IVueI18n; user: User }
+      }: { firebase: AnyObject; i18n: IVueI18n; user: firebase.User }
     ) {
       const setLocale = new Promise((resolve, reject) => {
         if (localStorage.getItem(LS_LANGUAGE_KEY)) {
@@ -104,11 +105,12 @@ export const userStore = {
           date: firebase.firestore.Timestamp.now()
         });
 
-      return new Promise((resolve, reject) => {
+      return new Promise(async (resolve, reject) => {
+        const role = getRole(await user.getIdTokenResult(true));
         Promise.all([setLocale, setUser, setConnectionHistory])
           .then(() => {
             commit("authenticateUser");
-            dispatch("setCurrentUser", user);
+            dispatch("setCurrentUser", { ...user.toJSON(), role });
             resolve();
           })
           .catch(e => reject(e));
