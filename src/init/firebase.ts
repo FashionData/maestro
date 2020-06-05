@@ -23,8 +23,10 @@ export const configureFirebase = (
     const hasQuery = Object.keys(parsedQuery).length > 0;
     return new Promise((resolve, reject) => {
       const functions = firebase.app().functions(REGION);
-
-      if (process.env.VUE_APP_LOCAL_FIREBASE_CF_URL) {
+      if (
+        process.env.NODE_ENV === "development" &&
+        process.env.VUE_APP_LOCAL_FIREBASE_CF_URL
+      ) {
         functions.useFunctionsEmulator(
           process.env.VUE_APP_LOCAL_FIREBASE_CF_URL
         );
