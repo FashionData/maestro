@@ -18,7 +18,30 @@ ul.el-menu {
 	}
 }
 
+.menu-header {
+  .logo-wrapper {
+    display: flex;
+    align-items: center;
+    width: 85%;
+    height: 70%;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &--collapse {
+    .logo-wrapper {
+      width: 100%;
+    }
+  }
+}
+
 ul.el-menu {
+  $expand-menu-arrow-height: 50px;
+
+  padding-bottom: $expand-menu-arrow-height;
 	height: 100%;
 
 	.el-submenu__title i,
@@ -41,7 +64,16 @@ ul.el-menu {
 		}
 	}
 
-	&:not(.el-menu--collapse) {
-		width: 250px;
-	}
+  .expand-menu-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    padding: 0 17px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: $expand-menu-arrow-height;
+    font-size: 30px;
+  }
 }
