@@ -34,9 +34,10 @@
         <el-menu-item :index="userPath"
           >{{ $t("m-layout.aside-component.settings.users") }}
         </el-menu-item>
-        <template #menu-settings-items>
-          <slot name="menu-settings-items" />
-        </template>
+        <el-menu-item index="/accounts">
+          <i class="el-icon-goods"></i>
+          <span slot="title">{{ $t("aside.accounts") }}</span>
+        </el-menu-item>
       </el-submenu>
 
       <i

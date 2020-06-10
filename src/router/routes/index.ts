@@ -3,8 +3,10 @@ import LogoutView from "@/views/LogoutView.vue";
 import NotFound from "@/views/NotFound.vue";
 import ProfileView from "@/views/ProfileView.vue";
 import UsersView from "@/views/UsersView.vue";
+import AccountsView from "@/views/AccountsView.vue";
 
 import {
+  ACCOUNTS,
   LOGIN,
   LOGOUT,
   NOT_FOUND,
@@ -44,5 +46,11 @@ export const routes = [
     name: NOT_FOUND.name,
     meta: { middleware: [authMiddleware] },
     component: NotFound
+  },
+  {
+    path: ACCOUNTS.path,
+    name: ACCOUNTS.name,
+    meta: { middleware: [superAdminMiddleware] },
+    component: AccountsView
   }
 ];
