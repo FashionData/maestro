@@ -107,7 +107,7 @@ export default {
         await this.$httpsCallableFunction("createUser", {}, data);
         this.closeCreateModal();
         await this.fetchUsers();
-      } catch {
+      } catch (error) {
         this.isSubmitting = false;
         console.error(error);
       }
@@ -118,7 +118,7 @@ export default {
         await this.$httpsCallableFunction("updateUser", {}, data);
         this.closeEditModal(data.uid);
         await this.fetchUsers();
-      } catch {
+      } catch (error) {
         this.isSubmitting = false;
         console.error(error);
       }

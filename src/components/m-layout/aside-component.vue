@@ -10,13 +10,17 @@
           <slot v-else name="header-extended" />
         </router-link>
 
-        <i v-if="!isCollapse" class="el-icon-arrow-left" @click="toggleCollapse" />
+        <i
+          v-if="!isCollapse"
+          class="el-icon-arrow-left"
+          @click="toggleCollapse"
+        />
       </el-header>
 
       <!-- TODO: Add route constant -->
       <el-menu-item index="history">
         <i class="el-icon-files"></i>
-        <span slot="title">{{ $t('m-layout.aside-component.history') }}</span>
+        <span slot="title">{{ $t("m-layout.aside-component.history") }}</span>
       </el-menu-item>
 
       <slot name="menu-items" />
@@ -24,38 +28,46 @@
       <el-submenu v-if="isSuperAdmin" index="1">
         <template slot="title">
           <i class="el-icon-setting"></i>
-          <span>{{ $t('m-layout.aside-component.settings.title') }}</span>
+          <span>{{ $t("m-layout.aside-component.settings.title") }}</span>
         </template>
 
-        <el-menu-item :index="userPath">{{ $t('m-layout.aside-component.settings.users') }}
+        <el-menu-item :index="userPath"
+          >{{ $t("m-layout.aside-component.settings.users") }}
         </el-menu-item>
+        <template #menu-settings-items>
+          <slot name="menu-settings-items" />
+        </template>
       </el-submenu>
 
-      <i v-if="isCollapse" class="expand-menu-arrow el-icon-arrow-right" @click="toggleCollapse" />
+      <i
+        v-if="isCollapse"
+        class="expand-menu-arrow el-icon-arrow-right"
+        @click="toggleCollapse"
+      />
     </el-menu>
   </el-aside>
 </template>
 
 <script>
-  import { USERS, Roles } from "@/constants";
+import { USERS, Roles } from "@/constants";
 
-  export default {
-    name: "aside-component",
-    data() {
-      return {
-        isCollapse: false,
-      };
+export default {
+  name: "aside-component",
+  data() {
+    return {
+      isCollapse: false
+    };
+  },
+  computed: {
+    isSuperAdmin() {
+      return this.$isGranted(Roles.SuperAdmin);
     },
-		computed: {
-      isSuperAdmin() {
-        return this.$isGranted(Roles.SuperAdmin);
-      },
-      userPath: () => USERS.path
-		},
-    methods: {
-      toggleCollapse() {
-        this.isCollapse = !this.isCollapse;
-      }
+    userPath: () => USERS.path
+  },
+  methods: {
+    toggleCollapse() {
+      this.isCollapse = !this.isCollapse;
     }
-	}
+  }
+};
 </script>
