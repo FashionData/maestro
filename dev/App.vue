@@ -1,6 +1,14 @@
 <template>
   <div v-if="$store.getters.isAuthenticated && $route.name !== 'login'">
     <m-layout>
+      <template #header-extended>
+        <h2>MAESTRO</h2>
+      </template>
+
+      <template #header-collapse>
+        <h2>M</h2>
+      </template>
+
       <template #content>
         <keep-alive>
           <router-view :key="$route.fullPath" />

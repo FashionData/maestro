@@ -6,10 +6,8 @@
         :class="{ 'menu-header--collapse justify-center': isCollapse }"
       >
         <router-link to="/" class="logo-wrapper">
-          <!-- TODO: Use package name (from consumer app) -->
-          <!-- TODO: i18n -->
-          <img v-if="isCollapse" src="" alt="App logo">
-          <img v-else src="" alt="App logo">
+          <slot v-if="isCollapse" name="header-collapse" />
+          <slot v-else name="header-extended" />
         </router-link>
 
         <i v-if="!isCollapse" class="el-icon-arrow-left" @click="toggleCollapse" />
@@ -17,7 +15,7 @@
 
       <!-- TODO: Add route constant -->
       <el-menu-item index="history">
-        <i class="el-icon-menu"></i>
+        <i class="el-icon-files"></i>
         <span slot="title">{{ $t('m-layout.aside-component.history') }}</span>
       </el-menu-item>
 
@@ -25,7 +23,7 @@
 
       <el-submenu v-if="isSuperAdmin" index="1">
         <template slot="title">
-          <i class="el-icon-location"></i>
+          <i class="el-icon-setting"></i>
           <span>{{ $t('m-layout.aside-component.settings.title') }}</span>
         </template>
 

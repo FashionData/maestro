@@ -22,6 +22,6 @@ initializeApp(Vue, App, {
   firebase,
   config: {
     analytics: true,
-    performance: true
+    performance: true,
   }
 });

@@ -1,7 +1,13 @@
 <template>
   <el-container style="height: 100vh;">
     <aside-component>
-      <slot name="aside" />
+      <template #header-extended>
+        <slot name="header-extended" />
+      </template>
+
+      <template #header-collapse>
+        <slot name="header-collapse" />
+      </template>
     </aside-component>
 
     <container-component>
