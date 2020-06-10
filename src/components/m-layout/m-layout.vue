@@ -8,6 +8,10 @@
       <template #header-collapse>
         <slot name="header-collapse" />
       </template>
+
+      <template #menu-items>
+        <slot name="menu-items" />
+      </template>
     </aside-component>
 
     <container-component>

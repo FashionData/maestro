@@ -19,7 +19,7 @@
         <span slot="title">{{ $t('m-layout.aside-component.history') }}</span>
       </el-menu-item>
 
-      <slot />
+      <slot name="menu-items" />
 
       <el-submenu v-if="isSuperAdmin" index="1">
         <template slot="title">
