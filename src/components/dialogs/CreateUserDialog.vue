@@ -51,6 +51,11 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="24">
+          <user-account-role-list v-model="form.accountsRole" />
+        </el-col>
+      </el-row>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button :loading="isLoading" @click="$emit('close')">{{
@@ -65,9 +70,11 @@
 
 <script>
 import { ROLES, Roles } from "@/constants";
+import UserAccountRoleList from "@/components/account/UserAccountRoleList";
 
 export default {
   name: "create-user-dialog",
+  components: { UserAccountRoleList },
   props: {
     isLoading: { type: Boolean, default: false },
     show: { type: Boolean, required: true },
@@ -140,7 +147,8 @@ export default {
         email: "",
         displayName: "",
         password: "",
-        role: Roles.Suspended
+        role: Roles.Suspended,
+        accountsRole: []
       }
     };
   }

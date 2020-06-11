@@ -1,6 +1,6 @@
 import { Store } from "vuex";
-import { Role } from "../constants";
 import VueI18n from "vue-i18n";
+import { CustomClaims } from "@/utils/role";
 
 export type AnyObject = {
   [key: string]: any;
@@ -29,10 +29,9 @@ export type InstallOptions = InitializeOptions & {
   i18n: VueI18n;
 };
 
-export type User = {
+export type User = CustomClaims & {
   uid: string;
   email: string;
-  role: Role;
   displayName: string;
   photoURL: string;
   metadata: {

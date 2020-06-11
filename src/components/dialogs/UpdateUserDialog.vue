@@ -133,7 +133,7 @@ export default {
       },
       form: {
         uid: this.user.uid,
-        accountsRole: [],
+        accountsRole: this.user.customClaims?.accountsRole ?? [],
         email: this.user.email,
         emailVerified: false,
         photoURL: this.user.photoURL,

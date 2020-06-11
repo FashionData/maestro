@@ -4,7 +4,7 @@ import firebase from "firebase";
 import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
 import { Roles } from "@/constants";
-import { getRole } from "@/utils/role";
+import { getCustomClaims } from "@/utils/role";
 
 type State = {
   user: User;
@@ -106,11 +106,14 @@ export const userStore = {
         });
 
       return new Promise(async (resolve, reject) => {
-        const role = getRole(await user.getIdTokenResult(true));
+        const claims = await getCustomClaims(
+          firebase.firestore(),
+          await user.getIdTokenResult(true)
+        );
         Promise.all([setLocale, setUser, setConnectionHistory])
           .then(() => {
             commit("authenticateUser");
-            dispatch("setCurrentUser", { ...user.toJSON(), role });
+            dispatch("setCurrentUser", { ...user.toJSON(), ...claims });
             resolve();
           })
           .catch(e => reject(e));

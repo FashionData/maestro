@@ -6,6 +6,7 @@ export interface CreateUserPayload {
   photoURL?: string;
   disabled: boolean;
   role?: number;
+  accountsRole: string[];
 }
 
 export interface UpdateUserPayload extends CreateUserPayload {

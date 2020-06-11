@@ -12,6 +12,12 @@ export interface Role {
   code: number;
 }
 
+export interface AccountRole {
+  name: string;
+  identifier: string;
+  role: Role;
+}
+
 export const ROLES: { [role in Roles]: Role } = {
   [Roles.Suspended]: {
     code: Roles.Suspended,
