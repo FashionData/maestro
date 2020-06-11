@@ -24,8 +24,8 @@ export const getCustomClaims = async (
           return [
             ...acc,
             {
-              identifier: match?.identifier ?? "000000",
-              name: match?.name ?? "UNKNOWN",
+              identifier: match.identifier,
+              name: match.name,
               role: ROLES[(Number(role) as Roles) ?? 0]
             }
           ];
