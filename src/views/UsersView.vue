@@ -11,7 +11,6 @@
       />
       <el-row type="flex" justify="end">
         <p>
-          {{ $store.getters.user.accountsRole }}
           {{
             $t("users-view.your-role", {
               role: $t($store.getters.user.role.name)

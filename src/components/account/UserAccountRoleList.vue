@@ -1,6 +1,10 @@
 <template>
   <div v-if="!isLoading && accounts && accounts.length > 0">
-    <el-row v-for="(accountRole, i) in value" :key="i">
+    <el-row
+      class="account__role--row"
+      v-for="(accountRole, i) in value"
+      :key="i"
+    >
       <el-col :span="8">
         <el-select
           @change="onAccountChange(i, $event)"
@@ -129,6 +133,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.account__role--row {
+  & + & {
+    margin-top: 1rem;
+  }
+}
 .actions {
   font-size: 2rem;
   margin-left: 1rem;

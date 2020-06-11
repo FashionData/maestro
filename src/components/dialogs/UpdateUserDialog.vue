@@ -54,6 +54,9 @@
       </el-row>
       <el-row>
         <el-col :span="24">
+          <p class="account__roles--label">
+            {{ $t("users-view.account-role-label") }}
+          </p>
           <user-account-role-list v-model="form.accountsRole" />
         </el-col>
       </el-row>
@@ -153,5 +156,8 @@ export default {
   &::v-deep label {
     text-align: left;
   }
+}
+.account__roles--label {
+  margin-bottom: 1rem;
 }
 </style>

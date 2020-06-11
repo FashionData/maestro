@@ -127,6 +127,7 @@
   },
   "users-view": {
     "your-role": "Votre rôle : {role}",
+    "account-role-label": "Rôle pour les comptes",
     "table": {
       "header": {
         "email": "Email",

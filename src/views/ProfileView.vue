@@ -22,6 +22,27 @@
           <p class="text-highlight">{{ userSocialInformation.displayName }}</p>
           <p>{{ $t($store.getters.user.role.name) }}</p>
         </div>
+        <div class="bold">
+          <p @click="showAccountsRoleModal = true">
+            <!-- TODO: temp display of account roles -->
+            Account roles <i class="el-icon-notebook-2" />
+          </p>
+          <el-dialog
+            title="Roles"
+            :visible.sync="showAccountsRoleModal"
+            width="80%"
+          >
+            <ul v-if="$store.getters.user.accountsRole.length > 0">
+              <li v-for="accountRole in $store.getters.user.accountsRole">
+                <p>
+                  {{ accountRole.name }} ({{ accountRole.identifier }}) :
+                  {{ $t(accountRole.role.name) }}
+                </p>
+              </li>
+            </ul>
+            <p v-else>You have no roles in any account</p>
+          </el-dialog>
+        </div>
 
         <div>
           <p class="uppercase">{{ userSocialInformation.organization }}</p>
@@ -126,6 +147,7 @@ export default {
   name: "profile-view",
   data() {
     return {
+      showAccountsRoleModal: false,
       userSocialInformation: {},
       editTitle: false,
       photoURL: this.$store.getters.user.photoURL,

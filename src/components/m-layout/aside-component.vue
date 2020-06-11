@@ -31,8 +31,11 @@
           <span>{{ $t("m-layout.aside-component.settings.title") }}</span>
         </template>
 
-        <el-menu-item :index="userPath"
-          >{{ $t("m-layout.aside-component.settings.users") }}
+        <el-menu-item :index="userPath">
+          <i class="el-icon-user"></i>
+          <span slot="title">
+            {{ $t("m-layout.aside-component.settings.users") }}</span
+          >
         </el-menu-item>
         <el-menu-item index="/accounts">
           <i class="el-icon-goods"></i>
@@ -50,7 +53,7 @@
 </template>
 
 <script>
-import { USERS, Roles } from "@/constants";
+import { Roles, USERS } from "@/constants";
 
 export default {
   name: "aside-component",
