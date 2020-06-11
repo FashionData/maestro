@@ -52,6 +52,11 @@
           </el-form-item>
         </el-col>
       </el-row>
+      <el-row>
+        <el-col :span="24">
+          <user-account-role-list v-model="form.accountsRole" />
+        </el-col>
+      </el-row>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button :loading="isLoading" @click="$emit('close')">{{
@@ -66,9 +71,11 @@
 
 <script>
 import { ROLES } from "@/constants";
+import UserAccountRoleList from "@/components/account/UserAccountRoleList";
 
 export default {
   name: "update-user-dialog",
+  components: { UserAccountRoleList },
   props: {
     isLoading: { type: Boolean, default: false },
     user: { type: Object, required: true },
@@ -126,6 +133,7 @@ export default {
       },
       form: {
         uid: this.user.uid,
+        accountsRole: [],
         email: this.user.email,
         emailVerified: false,
         photoURL: this.user.photoURL,
