@@ -5,47 +5,44 @@
       v-for="(accountRole, i) in value"
       :key="i"
     >
-      <el-col :span="8">
-        <el-select
-          @change="onAccountChange(i, $event)"
-          :value="accountRole.split('-')[1]"
-          filterable
-          placeholder="Select"
+      <el-select
+        @change="onAccountChange(i, $event)"
+        :value="accountRole.split('-')[1]"
+        filterable
+        class="account__role--account"
+        placeholder="Select"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
         >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
-      </el-col>
-      <el-col :span="16">
-        <el-select
-          @change="onRoleChange(i, $event)"
-          :value="Number(accountRole.split('-')[0])"
-          :placeholder="$t('users-view.form.role.placeholder')"
+        </el-option>
+      </el-select>
+      <el-select
+        @change="onRoleChange(i, $event)"
+        :value="Number(accountRole.split('-')[0])"
+        :placeholder="$t('users-view.form.role.placeholder')"
+      >
+        <el-option
+          v-for="item in roles"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
         >
-          <el-option
-            v-for="item in roles"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
-        <i
-          :class="{ visible: canAddItems }"
-          class="actions el-icon-plus"
-          @click="appendItem(i)"
-        ></i>
-        <i
-          :class="{ visible: i > 0 && canRemoveItems }"
-          class="actions el-icon-delete"
-          @click="removeItem(i)"
-        ></i>
-      </el-col>
+        </el-option>
+      </el-select>
+      <i
+        :class="{ visible: canAddItems }"
+        class="actions el-icon-plus"
+        @click="appendItem(i)"
+      ></i>
+      <i
+        :class="{ visible: i > 0 && canRemoveItems }"
+        class="actions el-icon-delete"
+        @click="removeItem(i)"
+      ></i>
     </el-row>
   </div>
 </template>
@@ -137,6 +134,9 @@ export default {
   & + & {
     margin-top: 1rem;
   }
+}
+.account__role--account {
+  margin-right: 1rem;
 }
 .actions {
   font-size: 2rem;
