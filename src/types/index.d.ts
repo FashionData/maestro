@@ -1,6 +1,6 @@
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
-import { CustomClaims } from "@/utils/role";
+import { CustomClaims } from "../utils/role";
 
 export type AnyObject = {
   [key: string]: any;
