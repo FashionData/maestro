@@ -11,7 +11,19 @@ export const cloudFunctionsConfig = {
   },
   plugins: [
     baseConfig.plugins.resolve,
-    babel(baseConfig.plugins.babel),
+    babel({
+      ...baseConfig.plugins.babel,
+      runtimeHelpers: true,
+      plugins: [
+        [
+          "@babel/plugin-transform-runtime",
+          {
+            helpers: true,
+            regenerator: true
+          }
+        ]
+      ]
+    }),
     commonjs()
   ]
 };
