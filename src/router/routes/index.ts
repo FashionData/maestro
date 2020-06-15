@@ -32,7 +32,7 @@ export const routes = [
   {
     path: USERS.path,
     name: USERS.name,
-    meta: { middleware: [authMiddleware, superAdminMiddleware] },
+    meta: { middleware: [superAdminMiddleware] },
     component: UsersView
   },
   {
