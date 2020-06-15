@@ -1,4 +1,53 @@
 {
+  "aside": {
+    "accounts": "Accounts"
+  },
+  "accountStatus": {
+    "active": "Active",
+    "disabled": "Disabled",
+    "archived": "Archived"
+  },
+  "accounts-view": {
+    "dialog": {
+      "create": {
+        "title": "Create an account"
+      },
+      "update": {
+        "title": "Update an account"
+      }
+    },
+    "table": {
+      "header": {
+        "identifier": "Unique ID",
+        "name": "Name",
+        "status": "Status",
+        "operations": "Operations"
+      }
+    },
+    "form": {
+      "identifier": "Unique ID",
+      "name": "Name",
+      "status": {
+        "name": "Status",
+        "placeholder": "Choose a status"
+      },
+      "description": "Short description",
+      "website": "Website URL",
+      "contact": "Contact email",
+      "rules": {
+        "identifier": {
+          "blank": "The unique ID cannot be blank",
+          "max": "The unique ID must not be greater than {nb} characters"
+        },
+        "name": {
+          "blank": "The name cannot be blank"
+        },
+        "status": {
+          "blank": "The status cannot be blank"
+        }
+      }
+    }
+  },
   "global": {
     "add": "Add",
     "loading": "Loading...",
@@ -8,11 +57,11 @@
   },
   "role": {
     "suspended": "Suspended",
-    "viewer":"Viewer",
+    "viewer": "Viewer",
     "user": "User",
-    "writer":"Writer",
+    "writer": "Writer",
     "admin": "Admin",
-    "superAdmin":"Super admin"
+    "superAdmin": "Super admin"
   },
   "login-view": {
     "title": "Login",
@@ -78,6 +127,7 @@
   },
   "users-view": {
     "your-role": "Your role: {role}",
+    "account-role-label": "Accounts role",
     "table": {
       "header": {
         "email": "Email",

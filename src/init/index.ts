@@ -13,7 +13,7 @@ import * as components from "@/components";
 import { VueRouter } from "vue-router/types/router";
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
-import { getRole } from "@/utils/role";
+import { getCustomClaims } from "@/utils/role";
 
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -70,18 +70,24 @@ export const initializeApp = (
       metadataRef.off("value", callback);
     }
     if (user) {
-      let role = getRole(await user.getIdTokenResult());
+      let claims = await getCustomClaims(
+        firebase.firestore(),
+        await user.getIdTokenResult()
+      );
       store.commit("authenticateUser");
-      store.commit("setUser", { ...user.toJSON(), role });
+      store.commit("setUser", { ...user.toJSON(), ...claims });
       if (!app) {
         mountApp(Vue, App, router as VueRouter, store, i18nInstance);
       }
 
       metadataRef = firebase.database().ref(`metadata/${user.uid}/refreshTime`);
       callback = async () => {
-        role = getRole(await user.getIdTokenResult(true));
+        claims = await getCustomClaims(
+          firebase.firestore(),
+          await user.getIdTokenResult(true)
+        );
         store.commit("authenticateUser");
-        store.commit("setUser", { ...user.toJSON(), role });
+        store.commit("setUser", { ...user.toJSON(), ...claims });
       };
       metadataRef.on("value", callback);
     } else {

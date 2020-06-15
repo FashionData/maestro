@@ -2,7 +2,7 @@ import Vue, { PluginFunction, VueConstructor } from "vue";
 import _Vue from "vue";
 import { InitializeOptions } from "./src/types";
 import { Middleware } from "./src/types/router";
-import { Roles, Collections } from "./src/constants";
+import { Roles, Role, ROLES, Collections } from "./src/constants";
 
 interface InstallFunction extends PluginFunction<any> {
   installed?: boolean;
@@ -26,6 +26,8 @@ export {
   guestMiddleware,
   superAdminMiddleware,
   Roles,
+  Role,
+  ROLES,
   Collections,
   initializeApp
 };

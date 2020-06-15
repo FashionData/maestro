@@ -32,13 +32,20 @@ export const updateUser = (admin: any, data: UpdateUserPayload, _: any) => {
     })
     .then((result: any) => {
       const userRole = ROLES[(data.role ?? 0) as Roles];
+      const accountsRole = data.accountsRole ?? [];
       console.log(
         `Setting user ${result.data.email} to role ${userRole.name} (${userRole.code})`
+      );
+      console.log(
+        `Setting user ${result.data.email} accounts role to ${JSON.stringify(
+          accountsRole
+        )}`
       );
       return admin
         .auth()
         .setCustomUserClaims(result.data.uid, {
-          role: data.role
+          role: data.role,
+          accountsRole
         })
         .then(() => {
           const metadataRef = admin

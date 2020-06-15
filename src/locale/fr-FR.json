@@ -1,4 +1,53 @@
 {
+  "aside": {
+    "accounts": "Comptes"
+  },
+  "accountStatus": {
+    "active": "Actif",
+    "disabled": "Désactivé",
+    "archived": "Archivé"
+  },
+  "accounts-view": {
+    "dialog": {
+      "create": {
+        "title": "Créer un compte"
+      },
+      "update": {
+        "title": "Modifier un compte"
+      }
+    },
+    "table": {
+      "header": {
+        "identifier": "ID unique",
+        "name": "Nom",
+        "status": "Statut",
+        "operations": "Opérations"
+      }
+    },
+    "form": {
+      "identifier": "ID unique",
+      "name": "Nom",
+      "status": {
+        "name": "Statut",
+        "placeholder": "Choisissez un status"
+      },
+      "description": "Courte description",
+      "website": "URL du site web",
+      "contact": "Email de contact",
+      "rules": {
+        "identifier": {
+          "blank": "L'ID unique ne peut pas être vide",
+          "max": "L'ID unique ne doit pas dépasser {nb} caractères"
+        },
+        "name": {
+          "blank": "Le nom ne peut pas être vide"
+        },
+        "status": {
+          "blank": "Le status ne peut pas être vide"
+        }
+      }
+    }
+  },
   "global": {
     "add": "Ajouter",
     "loading": "Chargement...",
@@ -8,11 +57,11 @@
   },
   "role": {
     "suspended": "Suspendu",
-    "viewer":"Invité",
+    "viewer": "Invité",
     "user": "Utilisateur",
-    "writer":"Auteur",
+    "writer": "Auteur",
     "admin": "Administrateur",
-    "superAdmin":"Super administrateur"
+    "superAdmin": "Super administrateur"
   },
   "login-view": {
     "title": "Connexion",
@@ -78,6 +127,7 @@
   },
   "users-view": {
     "your-role": "Votre rôle : {role}",
+    "account-role-label": "Rôle pour les comptes",
     "table": {
       "header": {
         "email": "Email",
