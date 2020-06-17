@@ -7,7 +7,15 @@
 	align-items: center;
 	font-size: 20px;
 	box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
-
+  & .account__informations {
+    margin-right: auto;
+    &__name {
+      cursor: pointer;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
 	& > * {
 		margin-right: 17px;
 

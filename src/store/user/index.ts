@@ -3,27 +3,45 @@ import { IVueI18n } from "vue-i18n";
 import firebase from "firebase";
 import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
-import { Roles } from "@/constants";
+import { AccountRole, Roles } from "@/constants";
 import { getCustomClaims } from "@/utils/role";
 
 type State = {
   user: User;
+  selectedAccount: null | string;
   isAuthenticated: boolean;
 };
+
+const LS_ACCOUNT_KEY = "m-user-account";
 
 export const userStore = {
   state: {
     user: {},
+    selectedAccount: window?.localStorage.getItem(LS_ACCOUNT_KEY) ?? null,
     isAuthenticated: false
   },
   getters: {
     user: (state: State): User => state.user,
+    selectedAccount: (state: State): null | AccountRole => {
+      if (state.selectedAccount === null) return null;
+      return (
+        state.user.accountsRole.find(
+          r => r.identifier === state.selectedAccount
+        ) ?? null
+      );
+    },
     isGranted: (state: State) => (role: Roles) => state.user.role.code >= role,
     isAuthenticated: (state: State) => state.isAuthenticated
   },
   mutations: {
     setUser: (state: State, user: User) => {
       state.user = user;
+    },
+    setSelectedAccount: (state: State, accountIdentifier: string) => {
+      state.selectedAccount = accountIdentifier;
+    },
+    clearSelectedAccount: (state: State) => {
+      state.selectedAccount = null;
     },
     authenticateUser(state: State) {
       state.isAuthenticated = true;
@@ -36,6 +54,19 @@ export const userStore = {
     // TODO: Type
     setCurrentUser: ({ commit }: any, user: User) => {
       commit("setUser", user);
+    },
+    clearAccount: ({ commit }: any) => {
+      commit("clearSelectedAccount");
+      if (window.localStorage) {
+        window.localStorage.removeItem(LS_ACCOUNT_KEY);
+      }
+    },
+    // TODO: Type + reject
+    chooseAccount: ({ commit }: any, accountIdentifier: string) => {
+      commit("setSelectedAccount", accountIdentifier);
+      if (window.localStorage) {
+        window.localStorage.setItem(LS_ACCOUNT_KEY, accountIdentifier);
+      }
     },
     // TODO: Type + reject
     authenticateUser(
