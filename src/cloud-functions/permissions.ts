@@ -1,4 +1,5 @@
 import { CFAccountRole, Collections, ROLES, Roles } from "../constants";
+import { AccountErrors } from "../constants/errors";
 
 export const isGranted = (context: any, role: number) => {
   return context.auth?.token?.role >= role;
@@ -8,7 +9,7 @@ export const isSuperAdmin = (context: any) => {
   return context.auth?.token?.role >= Roles.SuperAdmin;
 };
 
-export const getAccountRole = async (
+export const getAccount = async (
   admin: any,
   context: any,
   data: { currentAccount: string }
@@ -18,7 +19,7 @@ export const getAccountRole = async (
     code.includes(data.currentAccount)
   );
   if (!accountRole) {
-    throw new Error("account-denied");
+    throw new Error(AccountErrors.AccountDenied);
   }
   const [role, identifier] = accountRole.split("-");
   const snapshot = await admin
@@ -32,5 +33,5 @@ export const getAccountRole = async (
       role: ROLES[(Number(role) as Roles) ?? 0]
     };
   }
-  throw new Error("invalid-account");
+  throw new Error(AccountErrors.InvalidAccount);
 };

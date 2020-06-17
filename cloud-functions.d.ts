@@ -12,7 +12,7 @@ declare const createUser: (admin: any, data: CreateUserPayload, _: any) => any;
 declare const updateUser: (admin: any, data: UpdateUserPayload, _: any) => any;
 declare const isGranted: (context: any, role: number) => boolean;
 declare const isSuperAdmin: (context: any) => boolean;
-declare const getAccountRole: (
+declare const getAccount: (
   admin: any,
   context: any,
   data: any
@@ -25,7 +25,7 @@ export {
   getAllAccounts,
   createAccount,
   updateAccount,
-  getAccountRole,
+  getAccount,
   isGranted,
   isSuperAdmin
 };
