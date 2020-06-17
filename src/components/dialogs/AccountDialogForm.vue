@@ -65,6 +65,16 @@
           </el-form-item>
         </el-tab-pane>
         <el-tab-pane label="Queries" name="queries">
+          <!-- TODO(@liinkiing): i18n -->
+          <el-form-item
+            label="Products to match and predict"
+            prop="queries.productsToMatchAndPredict"
+          >
+            <el-input
+              type="textarea"
+              v-model="form.queries.productsToMatchAndPredict"
+            ></el-input>
+          </el-form-item>
           <el-form-item
             label="Products matching reference color"
             prop="queries.matchingRefco"
@@ -152,6 +162,8 @@ export default {
             website: this.account.website,
             contact: this.account.contact,
             queries: {
+              productsToMatchAndPredict:
+                this.account.queries?.productsToMatchAndPredict ?? "",
               matchingRefco: this.account.queries?.matchingRefco ?? ""
             }
           }
@@ -163,6 +175,7 @@ export default {
             website: "",
             contact: "",
             queries: {
+              productsToMatchAndPredict: "",
               matchingRefco: ""
             }
           }
