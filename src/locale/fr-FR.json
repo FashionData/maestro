@@ -49,6 +49,9 @@
     }
   },
   "global": {
+    "form": {
+      "required": "Ce champs est requis"
+    },
     "add": "Ajouter",
     "loading": "Chargement...",
     "edit": "Éditer",

@@ -12,46 +12,70 @@
     :before-close="beforeClose"
   >
     <el-form ref="form" :model="form" :rules="rules">
-      <el-form-item
-        :label="$t('accounts-view.form.identifier')"
-        prop="identifier"
-      >
-        <el-input
-          :disabled="editMode"
-          :readonly="editMode"
-          type="age"
-          v-model="form.identifier"
-        />
-      </el-form-item>
-      <el-form-item :label="$t('accounts-view.form.name')" prop="name">
-        <el-input v-model="form.name" />
-      </el-form-item>
-      <el-form-item :label="$t('accounts-view.form.status.name')" prop="status">
-        <el-select
-          v-model="form.status"
-          :placeholder="$t('accounts-view.form.status.placeholder')"
-        >
-          <el-option
-            v-for="item in statuses"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+      <el-tabs v-model="activeTab">
+        <el-tab-pane label="Informations" name="informations">
+          <el-form-item
+            :label="$t('accounts-view.form.identifier')"
+            prop="identifier"
           >
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item
-        :label="$t('accounts-view.form.description')"
-        prop="description"
-      >
-        <el-input v-model="form.description" />
-      </el-form-item>
-      <el-form-item :label="$t('accounts-view.form.website')" prop="website">
-        <el-input v-model="form.website" />
-      </el-form-item>
-      <el-form-item :label="$t('accounts-view.form.contact')" prop="contact">
-        <el-input v-model="form.contact" />
-      </el-form-item>
+            <el-input
+              :disabled="editMode"
+              :readonly="editMode"
+              type="age"
+              v-model="form.identifier"
+            />
+          </el-form-item>
+          <el-form-item :label="$t('accounts-view.form.name')" prop="name">
+            <el-input v-model="form.name" />
+          </el-form-item>
+          <el-form-item
+            :label="$t('accounts-view.form.status.name')"
+            prop="status"
+          >
+            <el-select
+              v-model="form.status"
+              :placeholder="$t('accounts-view.form.status.placeholder')"
+            >
+              <el-option
+                v-for="item in statuses"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item
+            :label="$t('accounts-view.form.description')"
+            prop="description"
+          >
+            <el-input v-model="form.description" />
+          </el-form-item>
+          <el-form-item
+            :label="$t('accounts-view.form.website')"
+            prop="website"
+          >
+            <el-input v-model="form.website" />
+          </el-form-item>
+          <el-form-item
+            :label="$t('accounts-view.form.contact')"
+            prop="contact"
+          >
+            <el-input v-model="form.contact" />
+          </el-form-item>
+        </el-tab-pane>
+        <el-tab-pane label="Queries" name="queries">
+          <el-form-item
+            label="Products matching reference color"
+            prop="queries.matchingRefco"
+          >
+            <el-input
+              type="textarea"
+              v-model="form.queries.matchingRefco"
+            ></el-input>
+          </el-form-item>
+        </el-tab-pane>
+      </el-tabs>
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button :loading="isLoading" @click="$emit('close')">{{
@@ -81,7 +105,17 @@ export default {
     const editMode = !!(this.account && this.account.uid);
     return {
       editMode,
+      activeTab: "informations",
       rules: {
+        queries: {
+          matchingRefco: [
+            {
+              required: true,
+              message: $t("global.form.required"),
+              trigger: ["blur"]
+            }
+          ]
+        },
         identifier: [
           {
             required: !editMode,
@@ -116,7 +150,10 @@ export default {
             status: this.account.status,
             description: this.account.description,
             website: this.account.website,
-            contact: this.account.contact
+            contact: this.account.contact,
+            queries: {
+              matchingRefco: this.account.queries?.matchingRefco ?? ""
+            }
           }
         : {
             identifier: null,
@@ -124,7 +161,10 @@ export default {
             status: AccountStatus.Active,
             description: "",
             website: "",
-            contact: ""
+            contact: "",
+            queries: {
+              matchingRefco: ""
+            }
           }
     };
   },

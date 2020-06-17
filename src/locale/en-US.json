@@ -49,6 +49,9 @@
     }
   },
   "global": {
+    "form": {
+      "required": "This field is required"
+    },
     "add": "Add",
     "loading": "Loading...",
     "edit": "Edit",

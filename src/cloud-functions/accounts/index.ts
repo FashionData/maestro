@@ -9,7 +9,15 @@ export const getAllAccounts = async (admin: any, data: any, context: any) => {
 };
 
 export const createAccount = async (admin: any, data: any, context: any) => {
-  const { identifier, name, status, description, website, contact } = data;
+  const {
+    identifier,
+    name,
+    status,
+    description,
+    website,
+    contact,
+    queries
+  } = data;
   const match = await admin
     .firestore()
     .collection(Collections.accounts)
@@ -27,14 +35,15 @@ export const createAccount = async (admin: any, data: any, context: any) => {
       status,
       description,
       website,
-      contact
+      contact,
+      queries
     })
     .then((ref: any) => ref.get())
     .then((account: any) => ({ data: account.data() }));
 };
 
 export const updateAccount = async (admin: any, data: any, context: any) => {
-  const { uid, name, status, description, website, contact } = data;
+  const { uid, name, status, description, website, contact, queries } = data;
   return admin
     .firestore()
     .collection(Collections.accounts)
@@ -45,7 +54,8 @@ export const updateAccount = async (admin: any, data: any, context: any) => {
         status,
         description,
         website,
-        contact
+        contact,
+        queries
       },
       { merge: true }
     );
