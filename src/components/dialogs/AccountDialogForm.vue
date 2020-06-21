@@ -64,10 +64,14 @@
             <el-input v-model="form.contact" />
           </el-form-item>
         </el-tab-pane>
-        <el-tab-pane label="Queries" name="queries">
-          <!-- TODO(@liinkiing): i18n -->
+        <el-tab-pane
+          :label="$t('accounts-view.dialog.queries.label')"
+          name="queries"
+        >
           <el-form-item
-            label="Products to match and predict"
+            :label="
+              $t('accounts-view.dialog.queries.productsToMatchAndPredict')
+            "
             prop="queries.productsToMatchAndPredict"
           >
             <el-input
@@ -76,7 +80,7 @@
             ></el-input>
           </el-form-item>
           <el-form-item
-            label="Products matching reference color"
+            :label="$t('accounts-view.dialog.queries.matchingRefco')"
             prop="queries.matchingRefco"
           >
             <el-input

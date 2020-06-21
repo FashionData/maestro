@@ -2,13 +2,11 @@
   <div class="account__chooser">
     <div v-if="userAccountsRole.length === 0">
       <h2>
-        <!-- TODO(@liinkiing): i18n -->
-        Sorry, you are not associated to an account. Please contact your
-        administrator
+        {{ $t("account-chooser.no-accounts") }}
       </h2>
     </div>
     <div v-else>
-      <h2>Select your account</h2>
+      <h2>{{ $t("account-chooser.select-account") }}</h2>
       <el-form
         @submit.native.prevent="onSubmit"
         ref="form"
@@ -20,7 +18,7 @@
             v-model="form.account"
             filterable
             class="account__role--account"
-            placeholder="Select"
+            :placeholder="$t('account-chooser.select-placeholder')"
           >
             <el-option
               v-for="item in options"
@@ -34,7 +32,7 @@
             :disabled="form.account === null"
             type="primary"
             native-type="submit"
-            >Confirm</el-button
+            >{{ $t("global.confirm") }}</el-button
           >
         </el-form-item>
       </el-form>

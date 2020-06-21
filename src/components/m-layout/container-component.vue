@@ -2,9 +2,8 @@
   <el-container>
     <el-header class="header">
       <div class="account__informations">
-        <!-- TODO(@liinkiing): i18n -->
         <a
-          title="Change account"
+          :title="$t('account-chooser.change-account')"
           class="account__informations__name"
           @click.prevent="changeAccount"
           >{{ $store.getters.selectedAccount.name }}</a
