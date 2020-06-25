@@ -2,7 +2,13 @@ import Vue, { PluginFunction, VueConstructor } from "vue";
 import _Vue from "vue";
 import { InitializeOptions } from "./src/types";
 import { Middleware } from "./src/types/router";
-import { Roles, Role, ROLES, Collections } from "./src/constants";
+import {
+  Roles,
+  Role,
+  ROLES,
+  Collections,
+  AccountErrors
+} from "./src/constants";
 
 interface InstallFunction extends PluginFunction<any> {
   installed?: boolean;
@@ -29,5 +35,6 @@ export {
   Role,
   ROLES,
   Collections,
+  AccountErrors,
   initializeApp
 };

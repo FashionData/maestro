@@ -2,6 +2,7 @@ import { VueConstructor } from "vue";
 import { AnyObject, ConfigurationOptions } from "@/types";
 import { REGION } from "@/constants/firebase";
 import { log } from "@/utils/console";
+import { USER_MODULE } from "@/init/store";
 
 export const configureFirebase = (
   Vue: VueConstructor,
@@ -10,11 +11,12 @@ export const configureFirebase = (
 ) => {
   Vue.prototype.$firebase = firebase;
 
-  Vue.prototype.$httpsCallableFunction = (
+  Vue.prototype.$httpsCallableFunction = function(
     name: string,
     query: { [key: string]: string | number } = {},
     data: AnyObject = {}
-  ) => {
+  ) {
+    const currentAccount = this.$store.state[USER_MODULE].selectedAccount;
     const parsedQuery = Object.entries(query)
       .reduce((acc, entry) => {
         return acc + entry[0] + "=" + entry[1] + "&";
@@ -36,7 +38,10 @@ export const configureFirebase = (
         `${name}${hasQuery ? "?" + parsedQuery : ""}`
       );
 
-      callableFunction(data)
+      callableFunction({
+        ...data,
+        ...(currentAccount ? { currentAccount } : {})
+      })
         .then(resolve)
         .catch((err: Error) => reject(err));
     });

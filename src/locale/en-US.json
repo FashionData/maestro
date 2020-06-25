@@ -2,6 +2,12 @@
   "aside": {
     "accounts": "Accounts"
   },
+  "account-chooser": {
+    "no-accounts": "Sorry, you are not associated to an account. Please contact your administrator.",
+    "select-account": "Select your account",
+    "select-placeholder": "Choose an account",
+    "change-account": "Change account"
+  },
   "accountStatus": {
     "active": "Active",
     "disabled": "Disabled",
@@ -14,6 +20,11 @@
       },
       "update": {
         "title": "Update an account"
+      },
+      "queries": {
+        "label": "Queries",
+        "productsToMatchAndPredict": "Products to match and predict",
+        "matchingRefco": "Products matching reference color"
       }
     },
     "table": {
@@ -49,6 +60,9 @@
     }
   },
   "global": {
+    "form": {
+      "required": "This field is required"
+    },
     "add": "Add",
     "loading": "Loading...",
     "edit": "Edit",

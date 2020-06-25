@@ -18,6 +18,16 @@ export interface AccountRole {
   role: Role;
 }
 
+export interface CFAccountRole extends AccountRole {
+  description: string;
+  contact: string;
+  queries: {
+    [key: string]: string;
+  };
+  status: "ACTIVE" | "DISABLED" | "ARCHIVED";
+  website: string;
+}
+
 export const ROLES: { [role in Roles]: Role } = {
   [Roles.Suspended]: {
     code: Roles.Suspended,

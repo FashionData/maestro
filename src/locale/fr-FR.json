@@ -2,6 +2,12 @@
   "aside": {
     "accounts": "Comptes"
   },
+  "account-chooser": {
+    "no-accounts": "Désolé, vous n'êtes associé à aucun compte. Veuillez contacter votre administrateur.",
+    "select-account": "Sélectionnez un compte",
+    "select-placeholder": "Choisissez un compte",
+    "change-account": "Changer de compte"
+  },
   "accountStatus": {
     "active": "Actif",
     "disabled": "Désactivé",
@@ -14,6 +20,11 @@
       },
       "update": {
         "title": "Modifier un compte"
+      },
+      "queries": {
+        "label": "Requêtes",
+        "productsToMatchAndPredict": "Produits à matcher et prédire",
+        "matchingRefco": "Produits corresponds à une référence couleur"
       }
     },
     "table": {
@@ -49,6 +60,9 @@
     }
   },
   "global": {
+    "form": {
+      "required": "Ce champs est requis"
+    },
     "add": "Ajouter",
     "loading": "Chargement...",
     "edit": "Éditer",
