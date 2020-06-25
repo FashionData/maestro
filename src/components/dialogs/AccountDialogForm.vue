@@ -121,15 +121,6 @@ export default {
       editMode,
       activeTab: "informations",
       rules: {
-        queries: {
-          matchingRefco: [
-            {
-              required: true,
-              message: $t("global.form.required"),
-              trigger: ["blur"]
-            }
-          ]
-        },
         identifier: [
           {
             required: !editMode,
