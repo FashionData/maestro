@@ -1,14 +1,18 @@
 <template>
   <el-container>
     <el-header class="header">
-      <div class="account__informations">
+      <div class="account__name">
+        <p v-if="$store.getters.user.accountsRole.length === 1">{{ $store.getters.selectedAccount.name }}</p>
         <a
+          v-else
           :title="$t('account-chooser.change-account')"
-          class="account__informations__name"
+          class="account__name__link"
           @click.prevent="changeAccount"
-          >{{ $store.getters.selectedAccount.name }}</a
         >
+          {{ $store.getters.selectedAccount.name }}
+        </a>
       </div>
+
       <i class="el-icon-search" />
       <i class="el-icon-bell" />
       <i class="el-icon-chat-square" />
