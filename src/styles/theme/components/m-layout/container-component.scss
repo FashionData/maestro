@@ -7,9 +7,9 @@
 	align-items: center;
 	font-size: 20px;
 	box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
-  & .account__informations {
+  & .account__name {
     margin-right: auto;
-    &__name {
+    &__link {
       cursor: pointer;
       &:hover {
         opacity: 0.5;

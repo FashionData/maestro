@@ -1,11 +1,6 @@
 <template>
   <el-container style="height: 100vh;">
-    <account-chooser
-      v-if="
-        $store.getters.isAuthenticated &&
-          $store.getters.selectedAccount === null
-      "
-    />
+    <account-chooser v-if="$store.getters.isAuthenticated && $store.getters.selectedAccount === null" />
     <template v-if="$store.getters.selectedAccount !== null">
       <aside-component>
         <template #header-extended>
