@@ -21,7 +21,7 @@ export interface AccountRole {
 export interface CFAccountRole extends AccountRole {
   description: string;
   contact: string;
-  queries: {
+  bigQuery: {
     [key: string]: string;
   };
   status: "ACTIVE" | "DISABLED" | "ARCHIVED";

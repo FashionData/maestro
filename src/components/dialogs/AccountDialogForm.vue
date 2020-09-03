@@ -151,8 +151,8 @@ export default {
           website: this.account.website,
           contact: this.account.contact,
           bigQuery: {
-            account: this.account.queries?.account ?? "",
-            dataset: this.account.queries?.dataset ?? ""
+            account: this.account.bigQuery?.account ?? "",
+            dataset: this.account.bigQuery?.dataset ?? ""
           }
         }
         : {
