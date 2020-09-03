@@ -5,6 +5,7 @@ import { LS_LANGUAGE_KEY } from "@/init/plugins/vue-i18n";
 import { Collections } from "@/constants/firebase";
 import { AccountRole, Roles } from "@/constants";
 import { getCustomClaims } from "@/utils/role";
+import {Store} from "vuex";
 
 type State = {
   user: User;
@@ -14,8 +15,9 @@ type State = {
 
 const LS_ACCOUNT_KEY = "m-user-account";
 
-export const userStore = {
+export const userStore: Store<State> = {
   state: {
+    // @ts-ignore
     user: {},
     selectedAccount: window?.localStorage.getItem(LS_ACCOUNT_KEY) ?? null,
     isAuthenticated: false

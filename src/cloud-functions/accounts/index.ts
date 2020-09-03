@@ -1,6 +1,6 @@
 import { Collections } from "../../constants";
 
-export const getAllAccounts = async (admin: any, data: any, context: any) => {
+export const getAllAccounts = async (admin: any, _: any, __: any) => {
   const snapshot = await admin
     .firestore()
     .collection(Collections.accounts)
@@ -8,7 +8,7 @@ export const getAllAccounts = async (admin: any, data: any, context: any) => {
   return snapshot.docs.map((doc: any) => ({ uid: doc.id, ...doc.data() }));
 };
 
-export const createAccount = async (admin: any, data: any, context: any) => {
+export const createAccount = async (admin: any, data: any, _: any) => {
   const {
     identifier,
     name,
@@ -16,7 +16,7 @@ export const createAccount = async (admin: any, data: any, context: any) => {
     description,
     website,
     contact,
-    queries
+    bigQuery
   } = data;
   const match = await admin
     .firestore()
@@ -36,14 +36,14 @@ export const createAccount = async (admin: any, data: any, context: any) => {
       description,
       website,
       contact,
-      queries
+      bigQuery
     })
     .then((ref: any) => ref.get())
     .then((account: any) => ({ data: account.data() }));
 };
 
-export const updateAccount = async (admin: any, data: any, context: any) => {
-  const { uid, name, status, description, website, contact, queries } = data;
+export const updateAccount = async (admin: any, data: any, _: any) => {
+  const { uid, name, status, description, website, contact, bigQuery } = data;
   return admin
     .firestore()
     .collection(Collections.accounts)
@@ -55,7 +55,7 @@ export const updateAccount = async (admin: any, data: any, context: any) => {
         description,
         website,
         contact,
-        queries
+        bigQuery
       },
       { merge: true }
     );

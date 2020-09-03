@@ -21,10 +21,10 @@
       "update": {
         "title": "Modifier un compte"
       },
-      "queries": {
-        "label": "Requêtes",
-        "productsToMatchAndPredict": "Produits à matcher et prédire",
-        "matchingRefco": "Produits corresponds à une référence couleur"
+      "big-query": {
+        "label": "BigQuery",
+        "account": "Account",
+        "dataset": "Dataset"
       }
     },
     "table": {

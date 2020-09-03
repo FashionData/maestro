@@ -65,28 +65,22 @@
           </el-form-item>
         </el-tab-pane>
         <el-tab-pane
-          :label="$t('accounts-view.dialog.queries.label')"
-          name="queries"
+          :label="$t('accounts-view.dialog.big-query.label')"
+          name="big-query"
         >
           <el-form-item
             :label="
-              $t('accounts-view.dialog.queries.productsToMatchAndPredict')
+              $t('accounts-view.dialog.big-query.account')
             "
-            prop="queries.productsToMatchAndPredict"
+            prop="bigQuery.account"
           >
-            <el-input
-              type="textarea"
-              v-model="form.queries.productsToMatchAndPredict"
-            ></el-input>
+            <el-input v-model="form.bigQuery.account" />
           </el-form-item>
           <el-form-item
-            :label="$t('accounts-view.dialog.queries.matchingRefco')"
-            prop="queries.matchingRefco"
+            :label="$t('accounts-view.dialog.big-query.dataset')"
+            prop="bigQuery.dataset"
           >
-            <el-input
-              type="textarea"
-              v-model="form.queries.matchingRefco"
-            ></el-input>
+            <el-input v-model="form.bigQuery.dataset" />
           </el-form-item>
         </el-tab-pane>
       </el-tabs>
@@ -149,31 +143,30 @@ export default {
       },
       form: editMode
         ? {
-            uid: this.account.uid,
-            identifier: this.account.identifier,
-            name: this.account.name,
-            status: this.account.status,
-            description: this.account.description,
-            website: this.account.website,
-            contact: this.account.contact,
-            queries: {
-              productsToMatchAndPredict:
-                this.account.queries?.productsToMatchAndPredict ?? "",
-              matchingRefco: this.account.queries?.matchingRefco ?? ""
-            }
+          uid: this.account.uid,
+          identifier: this.account.identifier,
+          name: this.account.name,
+          status: this.account.status,
+          description: this.account.description,
+          website: this.account.website,
+          contact: this.account.contact,
+          bigQuery: {
+            account: this.account.queries?.account ?? "",
+            dataset: this.account.queries?.dataset ?? ""
           }
+        }
         : {
-            identifier: null,
-            name: "",
-            status: AccountStatus.Active,
-            description: "",
-            website: "",
-            contact: "",
-            queries: {
-              productsToMatchAndPredict: "",
-              matchingRefco: ""
-            }
+          identifier: null,
+          name: "",
+          status: AccountStatus.Active,
+          description: "",
+          website: "",
+          contact: "",
+          bigQuery: {
+            account: "",
+            dataset: ""
           }
+        }
     };
   },
   computed: {

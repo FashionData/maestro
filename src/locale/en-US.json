@@ -21,10 +21,10 @@
       "update": {
         "title": "Update an account"
       },
-      "queries": {
-        "label": "Queries",
-        "productsToMatchAndPredict": "Products to match and predict",
-        "matchingRefco": "Products matching reference color"
+      "big-query": {
+        "label": "BigQuery",
+        "account": "Account",
+        "dataset": "Dataset"
       }
     },
     "table": {

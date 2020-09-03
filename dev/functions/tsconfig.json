@@ -7,11 +7,14 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2018",
-    "lib": ["es2018"]
+    "lib": ["es2018", "dom"]
   },
   "compileOnSave": true,
   "include": [
     "src",
     "src/cloud-functions"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
