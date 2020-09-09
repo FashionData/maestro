@@ -17,12 +17,6 @@
         />
       </el-header>
 
-      <!-- TODO: Add route constant -->
-      <el-menu-item index="history">
-        <i class="el-icon-files"></i>
-        <span slot="title">{{ $t("m-layout.aside-component.history") }}</span>
-      </el-menu-item>
-
       <slot name="menu-items" />
 
       <el-submenu v-if="isSuperAdmin" index="1">

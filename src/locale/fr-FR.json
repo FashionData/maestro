@@ -126,7 +126,6 @@
   },
   "m-layout": {
     "aside-component": {
-      "history": "Historique",
       "settings": {
         "title": "Réglages",
         "users": "Utilisateurs"

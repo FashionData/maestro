@@ -13,10 +13,12 @@
         </a>
       </div>
 
+      <!--
       <i class="el-icon-search" />
       <i class="el-icon-bell" />
       <i class="el-icon-chat-square" />
       <i class="el-icon-star-off" />
+      -->
 
       <el-dropdown>
         <el-avatar class="avatar" :src="$store.getters.user.photoURL" />
