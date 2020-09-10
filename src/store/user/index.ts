@@ -24,6 +24,11 @@ export const userStore: Store<State> = {
   },
   getters: {
     user: (state: State): User => state.user,
+    userSocialInformation: (state: State) => ({
+      email: state.user.email,
+      displayName: state.user.displayName,
+      photoURL: state.user.photoURL,
+    }),
     selectedAccount: (state: State): null | AccountRole => {
       if (state.selectedAccount === null) return null;
       return (
