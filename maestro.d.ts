@@ -2,14 +2,7 @@ import Vue, { PluginFunction, VueConstructor } from "vue";
 import _Vue from "vue";
 import { InitializeOptions } from "./src/types";
 import { Middleware } from "./src/types/router";
-import { DateFormats } from "./src/types/date-formats";
-import {
-  Roles,
-  Role,
-  ROLES,
-  Collections,
-  AccountErrors
-} from "./src/constants";
+import { AccountErrors, Collections, DateFormats, Role, Roles, ROLES } from "./src/constants";
 
 interface InstallFunction extends PluginFunction<any> {
   installed?: boolean;
