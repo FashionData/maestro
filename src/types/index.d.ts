@@ -19,10 +19,10 @@ export type ConfigurationOptions = {
 };
 
 export type InitializeOptions = {
-  store: Store<any>;
-  router: AnyObject;
-  firebase: AnyObject;
   config?: ConfigurationOptions;
+  firebase: AnyObject;
+  router: AnyObject;
+  store: Store<any>;
 };
 
 export type InstallOptions = InitializeOptions & {
