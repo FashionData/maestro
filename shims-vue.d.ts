@@ -1,5 +1,5 @@
 import Vue from "vue";
-import VueMoment from "vue-moment";
+import moment from 'moment';
 import firebase from "firebase";
 
 declare module "vue/types/vue" {
@@ -11,7 +11,7 @@ declare module "vue/types/vue" {
       data?: any
     ) => Promise<firebase.functions.HttpsCallableResult>;
     $isGranted: (role: number) => boolean;
-    $moment: VueMoment;
+    $moment: typeof moment;
     $perf: any;
   }
 }
