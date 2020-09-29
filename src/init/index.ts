@@ -7,6 +7,7 @@ import { configureRouter, injectHomePage } from "@/init/router";
 import { configureFirebase } from "@/init/firebase";
 import { installElementUi } from "@/init/plugins/element-ui";
 import { installVueDebounce } from "@/init/plugins/vue-debounce";
+import { installVueMoment } from "@/init/plugins/vue-moment";
 import * as fb from "firebase";
 import { i18n } from "@/init/plugins/vue-i18n";
 import * as components from "@/components";
@@ -52,14 +53,8 @@ export const initializeApp = (
   injectLoader();
 
   const i18nInstance = i18n(Vue, options.config?.i18n);
-  const { store, router, firebase, config } = options;
-  const installOptions: InstallOptions = {
-    store,
-    router,
-    firebase,
-    i18n: i18nInstance,
-    config
-  };
+  const { config, firebase, router, store } = options;
+  const installOptions: InstallOptions = { config, firebase, i18n: i18nInstance, router, store };
 
   injectHomePage(router);
 
@@ -111,6 +106,7 @@ export const install: InstallFunction = function installMaestro(
   configureFirebase(Vue, options.firebase, options.config);
   installElementUi(Vue, options.i18n);
   installVueDebounce(Vue);
+  installVueMoment(Vue);
 
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);

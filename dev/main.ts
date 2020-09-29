@@ -17,11 +17,11 @@ const store = new Vuex.Store({});
 const router = new VueRouter({ mode: "history" });
 
 initializeApp(Vue, App, {
-  store,
-  router,
-  firebase,
   config: {
     analytics: true,
     performance: true,
-  }
+  },
+  firebase,
+  router,
+  store,
 });

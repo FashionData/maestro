@@ -35,5 +35,8 @@
 <script lang="ts">
 export default {
   name: 'app',
+  mounted() {
+    console.log(this.$moment("02-08-2020", "MMDDYYYY").isoWeek());
+  }
 };
 </script>
