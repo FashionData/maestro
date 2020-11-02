@@ -22,7 +22,11 @@ export interface CFAccountRole extends AccountRole {
   description: string;
   contact: string;
   bigQuery: {
-    [key: string]: string;
+    account: string,
+    datasets: {
+      sda: string,
+      bda: string,
+    }
   };
   status: "ACTIVE" | "DISABLED" | "ARCHIVED";
   website: string;
