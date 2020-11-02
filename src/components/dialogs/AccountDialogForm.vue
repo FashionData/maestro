@@ -201,7 +201,6 @@ export default {
     submitForm() {
       this.$refs.form.validate(valid => {
         if (valid && !this.isLoading) {
-          console.log(this.form);
           this.$emit("submit", this.form);
         } else {
           return false;
