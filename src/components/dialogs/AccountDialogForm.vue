@@ -69,19 +69,32 @@
           name="big-query"
         >
           <el-form-item
-            :label="
-              $t('accounts-view.dialog.big-query.account')
-            "
+            :label="$t('accounts-view.dialog.big-query.account')"
             prop="bigQuery.account"
           >
             <el-input v-model="form.bigQuery.account" />
           </el-form-item>
-          <el-form-item
-            :label="$t('accounts-view.dialog.big-query.dataset')"
-            prop="bigQuery.dataset"
-          >
-            <el-input v-model="form.bigQuery.dataset" />
-          </el-form-item>
+
+          <h2>{{ $t('accounts-view.dialog.big-query.datasets.title') }}</h2>
+          <el-row :gutter="25">
+            <el-col :span="12">
+              <el-form-item
+                :label="$t('accounts-view.dialog.big-query.datasets.sda')"
+                prop="bigQuery.dataset"
+              >
+                <el-input v-model="form.bigQuery.datasets.sda" />
+              </el-form-item>
+            </el-col>
+
+            <el-col :span="12">
+              <el-form-item
+                :label="$t('accounts-view.dialog.big-query.datasets.bda')"
+                prop="bigQuery.dataset"
+              >
+                <el-input v-model="form.bigQuery.datasets.bda" />
+              </el-form-item>
+            </el-col>
+          </el-row>
         </el-tab-pane>
       </el-tabs>
     </el-form>
@@ -152,7 +165,10 @@ export default {
           contact: this.account.contact,
           bigQuery: {
             account: this.account.bigQuery?.account ?? "",
-            dataset: this.account.bigQuery?.dataset ?? ""
+            datasets: {
+              sda: this.account.bigQuery?.datasets.sda ?? "",
+              bda: this.account.bigQuery?.datasets.bda ?? "",
+            }
           }
         }
         : {
@@ -164,7 +180,10 @@ export default {
           contact: "",
           bigQuery: {
             account: "",
-            dataset: ""
+            datasets: {
+              sda: "",
+              bda: ""
+            }
           }
         }
     };
@@ -182,6 +201,7 @@ export default {
     submitForm() {
       this.$refs.form.validate(valid => {
         if (valid && !this.isLoading) {
+          console.log(this.form);
           this.$emit("submit", this.form);
         } else {
           return false;
