@@ -47,12 +47,12 @@ export const configureFirebase = (
     });
   };
 
-  if (config?.hasOwnProperty("analytics")) {
+  if (config?.analytics) {
     firebase.analytics();
     log("Firebase analytics enabled");
   }
 
-  if (config?.hasOwnProperty("performance")) {
+  if (config?.performance) {
     Vue.prototype.$perf = () => {
       return firebase.performance();
     };
