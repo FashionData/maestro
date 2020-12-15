@@ -16,8 +16,6 @@ import { Store } from "vuex";
 import VueI18n from "vue-i18n";
 import { getCustomClaims } from "@/utils/role";
 
-import 'remixicon/fonts/remixicon.css';
-
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface InstallFunction extends PluginFunction<any> {
