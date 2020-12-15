@@ -6,7 +6,7 @@ import App from "./App.vue";
 import * as firebase from "firebase";
 import { initializeApp } from "@/main";
 
-import "@/styles/theme/index.scss";
+import "../src/styles/index.scss";
 import "./config/firebase";
 
 Vue.use(Vuex);

@@ -1,6 +1,6 @@
-@import "common/vars";
-@import "../reset";
-@import "../shared/index";
+@import "src/styles/theme/common/vars";
+@import "src/styles/reset";
+@import "src/styles/shared/index";
 
 html {
 	font-size: 62.5%;
@@ -18,9 +18,15 @@ body {
 	box-sizing: border-box;
 }
 
+hr {
+  height: 0.1rem;
+  background-color: $--border-color-base;
+  border: none;
+}
+
 $--font-path: '~element-ui/lib/theme-chalk/fonts' !default;
 
-@import "views/index";
-@import "components/index";
+@import "src/styles/theme/views/index";
+@import "src/styles/theme/components/index";
 
 @import "node_modules/element-ui/packages/theme-chalk/src/index";
