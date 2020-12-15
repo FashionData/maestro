@@ -1,6 +1,6 @@
-@import "src/styles/theme/common/vars";
-@import "src/styles/reset";
-@import "src/styles/shared/index";
+@import "./theme/common/vars";
+@import "./reset";
+@import "./shared/index";
 
 html {
 	font-size: 62.5%;
@@ -26,7 +26,7 @@ hr {
 
 $--font-path: '~element-ui/lib/theme-chalk/fonts' !default;
 
-@import "src/styles/theme/views/index";
-@import "src/styles/theme/components/index";
+@import "./theme/views/index";
+@import "./theme/components/index";
 
 @import "node_modules/element-ui/packages/theme-chalk/src/index";
