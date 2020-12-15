@@ -108,6 +108,8 @@ export const install: InstallFunction = function installMaestro(
   installVueDebounce(Vue);
   installVueMoment(Vue);
 
+  import('remixicon/fonts/remixicon.css');
+
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);
   });
