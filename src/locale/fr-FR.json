@@ -84,14 +84,15 @@
   "login-view": {
     "title": "Connexion",
     "form": {
-      "email-placeholder": "Email",
-      "password-placeholder": "Mot de passe",
+      "email-label": "Email",
+      "password-label": "Mot de passe",
       "buttons": {
         "classic": "Se connecter",
         "socials": {
           "google": "Google"
         }
-      }
+      },
+      "forgot-password": "Mot de passe oublié ?"
     },
     "message": {
       "error": "Echec de l'authentification"

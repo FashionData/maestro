@@ -84,14 +84,15 @@
   "login-view": {
     "title": "Login",
     "form": {
-      "email-placeholder": "Email",
-      "password-placeholder": "Password",
+      "email-label": "Email",
+      "password-label": "Password",
       "buttons": {
         "classic": "Login",
         "socials": {
           "google": "Google"
         }
-      }
+      },
+      "forgot-password": "Forgot password?"
     },
     "message": {
       "error": "Authentication failed"

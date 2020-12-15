@@ -1,49 +1,34 @@
 <template>
   <div class="login-view">
-    <el-card>
+    <el-card class="login-card">
       <h2>{{ $t("login-view.title") }}</h2>
-      <el-form
-        class="login-form"
-        :model="model"
-        ref="form"
-        @submit.native.prevent="authenticateUser"
-      >
+      <el-form :model="model" ref="form" @submit.native.prevent="authenticateUser">
         <el-form-item prop="username">
-          <el-input
-            v-model="model.email"
-            :placeholder="$t('login-view.form.email-placeholder')"
-            prefix-icon="fa fa-user"
-          />
+          <p>{{ $t('login-view.form.email-label') }}</p>
+          <el-input v-model="model.email" />
         </el-form-item>
+
         <el-form-item prop="password">
-          <el-input
-            v-model="model.password"
-            :placeholder="$t('login-view.form.password-placeholder')"
-            type="password"
-            prefix-icon="fas fa-lock"
-          />
+          <div class="d-flex justify-space-between">
+            <p>{{ $t('login-view.form.password-label') }}</p>
+            <!--
+            TODO: Add forgot password
+            <router-link to="/">{{ $t("login-view.form.forgot-password") }}</router-link>
+            -->
+          </div>
+          <el-input v-model="model.password" type="password" />
         </el-form-item>
-        <el-form-item>
-          <el-button
-            :loading="isLoading"
-            type="primary"
-            native-type="submit"
-            block
-          >
-            {{ $t("login-view.form.buttons.classic") }}
-          </el-button>
-        </el-form-item>
-        <el-form-item>
-          <el-button
-            :loading="isLoading"
-            type="primary"
-            block
-            @click="googleAuthentication"
-          >
-            {{ $t("login-view.form.buttons.socials.google") }}
-          </el-button>
-        </el-form-item>
+
+        <el-button :loading="isLoading" type="primary" native-type="submit" class="login-btn">
+          {{ $t("login-view.form.buttons.classic") }}
+        </el-button>
       </el-form>
+
+      <hr />
+
+      <el-button :loading="isLoading" type="primary" class="login-with-google-btn" @click="googleAuthentication">
+        {{ $t("login-view.form.buttons.socials.google") }}
+      </el-button>
     </el-card>
   </div>
 </template>
