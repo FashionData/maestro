@@ -19,14 +19,19 @@
           <el-input v-model="model.password" type="password" />
         </el-form-item>
 
-        <el-button :loading="isLoading" type="primary" native-type="submit" class="login-btn">
+        <el-button :loading="isClassicAuthLoading" type="primary" native-type="submit" class="login-btn">
           {{ $t("login-view.form.buttons.classic") }}
         </el-button>
       </el-form>
 
       <hr />
 
-      <el-button :loading="isLoading" type="primary" class="login-with-google-btn" @click="googleAuthentication">
+      <el-button
+        :loading="isGoogleAuthLoading"
+        type="primary"
+        class="login-with-google-btn"
+        @click="googleAuthentication"
+      >
         {{ $t("login-view.form.buttons.socials.google") }}
       </el-button>
     </el-card>
@@ -45,7 +50,8 @@ export default {
         email: "",
         password: ""
       },
-      isLoading: false
+      isClassicAuthLoading: false,
+      isGoogleAuthLoading: false
     };
   },
   methods: {
@@ -57,7 +63,6 @@ export default {
           user
         })
         .then(() => {
-          this.isLoading = false;
           this.$router.push(
             this.$route.query.redirect
               ? this.$route.query.redirect.toString()
@@ -67,7 +72,6 @@ export default {
         .catch(() => this.errorCallback());
     },
     errorCallback() {
-      this.isLoading = false;
       this.$message({
         type: "error",
         message: this.$t("login-view.message.error"),
@@ -77,21 +81,33 @@ export default {
     authenticateUser() {
       const { email, password } = this.model;
 
-      this.isLoading = true;
+      this.isClassicAuthLoading = true;
       this.$firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(({ user }) => this.successCallback(user))
-        .catch(() => this.errorCallback());
+        .then(({ user }) => {
+          this.successCallback(user);
+          this.isClassicAuthLoading = false;
+        })
+        .catch(() => {
+          this.errorCallback();
+          this.isClassicAuthLoading = false;
+        });
     },
     googleAuthentication() {
       const provider = new this.$firebase.auth.GoogleAuthProvider();
-      this.isLoading = true;
+      this.isGoogleAuthLoading = true;
       this.$firebase
         .auth()
         .signInWithPopup(provider)
-        .then(({ user }) => this.successCallback(user))
-        .catch(() => this.errorCallback());
+        .then(({ user }) => {
+          this.successCallback(user);
+          this.isGoogleAuthLoading = false;
+        })
+        .catch(() => {
+          this.errorCallback();
+          this.isGoogleAuthLoading = false;
+        });
     }
   }
 };
