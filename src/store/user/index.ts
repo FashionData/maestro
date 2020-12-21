@@ -53,7 +53,7 @@ export const userStore: Store<State> = {
     authenticateUser(state: State) {
       state.isAuthenticated = true;
     },
-    logout(state: State) {
+    logoutUser(state: State) {
       state.isAuthenticated = false;
     }
   },
@@ -160,7 +160,7 @@ export const userStore: Store<State> = {
     // TODO: Type + reject
     logout({ commit }: any) {
       return new Promise(resolve => {
-        commit("logout");
+        commit("logoutUser");
         resolve();
       });
     }
