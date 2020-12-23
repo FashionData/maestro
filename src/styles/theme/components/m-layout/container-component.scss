@@ -39,5 +39,7 @@
 }
 
 .main {
+  margin: 0 auto;
 	padding: $--main-padding * 2 $--main-padding;
+  max-width: 200rem;
 }
