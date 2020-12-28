@@ -54,6 +54,7 @@ ul.el-menu {
   .el-menu-item i {
     font-size: 1.8rem; // TODO: Use @extend or fs classes
     margin-right: .8rem; // TODO: Use spaces
+    font-weight: normal;
   }
 
 	.el-menu-item.is-active {
