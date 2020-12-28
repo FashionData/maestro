@@ -11,7 +11,7 @@
 
       <template #menu-items>
         <el-menu-item index="/test">
-          <i class="el-icon-s-data"></i>
+          <i class="ri-bar-chart-fill" />
           <!-- TODO: i18n -->
           <span slot="title">Test</span>
         </el-menu-item>

@@ -50,6 +50,12 @@ ul.el-menu {
 		color: $--color-white;
 	}
 
+  .el-submenu__title i,
+  .el-menu-item i {
+    font-size: 1.8rem; // TODO: Use @extend or fs classes
+    margin-right: .8rem; // TODO: Use spaces
+  }
+
 	.el-menu-item.is-active {
 		display: block;
 
