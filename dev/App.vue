@@ -10,10 +10,9 @@
       </template>
 
       <template #menu-items>
-        <el-menu-item index="/test">
-          <i class="ri-bar-chart-fill" />
-          <!-- TODO: i18n -->
-          <span slot="title">Test</span>
+        <el-menu-item v-for="menuItem in menuItems" :key="menuItem.index" :index="menuItem.index">
+          <i :class="menuItem.icon" />
+          <span slot="title">{{ menuItem.title }}</span>
         </el-menu-item>
       </template>
 
@@ -33,7 +32,20 @@
 </template>
 
 <script lang="ts">
+import { VIRTUAL_DISPLAYS } from "./constants/routes";
+
 export default {
   name: 'app',
+  computed: {
+    menuItems() {
+      return [
+        {
+          icon: 'ri-table-line',
+          index: VIRTUAL_DISPLAYS.path,
+          title: this.$t('app.menu-items.virtual-displays'),
+        }
+      ]
+    }
+  }
 };
 </script>
