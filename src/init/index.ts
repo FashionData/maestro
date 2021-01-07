@@ -8,6 +8,7 @@ import { configureFirebase } from "@/init/firebase";
 import { installElementUi } from "@/init/plugins/element-ui";
 import { installVueDebounce } from "@/init/plugins/vue-debounce";
 import { installVueMoment } from "@/init/plugins/vue-moment";
+import { installVueVirtualScroller } from "@/init/plugins/vue-virtual-scroller";
 import * as fb from "firebase";
 import { i18n } from "@/init/plugins/vue-i18n";
 import * as components from "@/components";
@@ -107,6 +108,7 @@ export const install: InstallFunction = function installMaestro(
   installElementUi(Vue, options.i18n);
   installVueDebounce(Vue);
   installVueMoment(Vue);
+  installVueVirtualScroller(Vue);
 
   Object.entries(components).forEach(([componentName, component]) => {
     Vue.component(componentName, component);
