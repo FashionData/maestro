@@ -1,0 +1,35 @@
+$spacer: 0.4rem;
+
+@for $i from 0 through 16 {
+  $value: $spacer * $i;
+
+  .p-#{$i} {
+    padding: $value;
+  }
+
+  .px-#{$i} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+
+  .py-#{$i} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+
+  .pt-#{$i} {
+    padding-top: $value;
+  }
+
+  .pb-#{$i} {
+    padding-bottom: $value;
+  }
+
+  .pl-#{$i} {
+    padding-left: $value;
+  }
+
+  .pr-#{$i} {
+    padding-right: $value;
+  }
+}

@@ -1,0 +1,35 @@
+$spacer: 0.4rem;
+
+@for $i from 0 through 16 {
+  $value: $spacer * $i;
+
+  .m-#{$i} {
+    margin: $value;
+  }
+
+  .mx-#{$i} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+
+  .my-#{$i} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+
+  .mt-#{$i} {
+    margin-top: $value;
+  }
+
+  .mb-#{$i} {
+    margin-bottom: $value;
+  }
+
+  .ml-#{$i} {
+    margin-left: $value;
+  }
+
+  .mr-#{$i} {
+    margin-right: $value;
+  }
+}
