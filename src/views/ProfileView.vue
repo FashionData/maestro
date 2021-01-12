@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="32" class="d-flex align-stretch">
     <el-col :span="8">
-      <el-card class="profile-card t-align-center full-height">
+      <el-card class="profile-card text--center full-height">
         <el-upload
           class="avatar-uploader"
           action="https://jsonplaceholder.typicode.com/posts/"
@@ -24,7 +24,7 @@
         </div>
 
         <div>
-          <p class="uppercase">{{ userSocialInformation.organization }}</p>
+          <p class="text--uppercase">{{ userSocialInformation.organization }}</p>
         </div>
 
         <div class="user-title">

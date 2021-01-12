@@ -1,0 +1,72 @@
+.m-virtual-displays {
+  .filters {
+    & > * {
+      @extend .mr-4;
+    }
+  }
+
+  .actions {
+    i {
+      @extend .cursor--pointer;
+      @extend .pr-3;
+      @extend .py-2;
+      color: $--color-info;
+      font-size: 2rem;
+      transition: color .3s ease;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.active {
+        @extend .text--primary;
+      }
+    }
+  }
+
+  .table-display {
+    .headers,
+    .row {
+      @extend .d-flex;
+
+      & > * {
+        @extend .px-2;
+        width: auto;
+
+        &:first-child {
+          @extend .pl-4;
+        }
+
+        &:last-child {
+          @extend .pr-4;
+        }
+      }
+    }
+
+    .vue-recycle-scroller__item-view {
+      $row-border-value: 1px solid $--border-color-base;
+
+      .row {
+        border: $row-border-value;
+        border-bottom: none;
+        transition: background-color .3s ease;
+
+
+        .column {
+          @extend .d-flex;
+          @extend .align-center;
+        }
+      }
+
+      &:last-child {
+        .row {
+          border-bottom: $row-border-value;
+        }
+      }
+
+      &:hover {
+        background-color: rgba($--color-primary, 0.15);
+      }
+    }
+  }
+}
