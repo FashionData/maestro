@@ -10,8 +10,8 @@
         <el-input v-model="search" />
       </template>
 
-      <template v-slot:item.test1="{ header, item }">
-        <p>Hello</p>
+      <template v-slot:item.test1="{ index, header, item }">
+        <p>Hello {{ index }}</p>
       </template>
 
       <template v-slot:item.actions="{ header, item }">

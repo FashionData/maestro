@@ -35,7 +35,7 @@
         :item-size="tableItemSize"
         :key-field="keyField"
         :style="{ height }"
-        v-slot="{ item }"
+        v-slot="{ index, item }"
       >
         <div class="row" :style="{ height: `${tableItemSize}px` }">
           <template v-for="header in headers" :style="{ width: columnWidth }">
@@ -43,6 +43,7 @@
               <slot
                 v-if="$scopedSlots[`item.${header.value}`]"
                 :name="`item.${header.value}`"
+                v-bind:index="index"
                 v-bind:header="header"
                 v-bind:item="item"
               />
