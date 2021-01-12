@@ -1,6 +1,11 @@
 <template>
   <div>
-    <m-virtual-displays :headers="headers" :items="filteredItems" @on-filters-reset="onFiltersReset">
+    <m-virtual-displays
+      :custom-displays="customDisplays"
+      :headers="headers"
+      :items="filteredItems"
+      @on-filters-reset="onFiltersReset"
+    >
       <template #filters>
         <el-input v-model="search" />
       </template>
@@ -11,6 +16,14 @@
 
       <template v-slot:item.actions="{ header, item }">
         <el-button>Hello</el-button>
+      </template>
+
+      <template v-slot:displays.custom="{ item }">
+        <p>CUSTOM DISPLAY</p>
+      </template>
+
+      <template v-slot:displays.map="{ item }">
+        <p>MAP</p>
       </template>
     </m-virtual-displays>
   </div>
@@ -26,6 +39,12 @@ export default {
     search: '',
   }),
   computed: {
+    customDisplays() {
+      return [
+        { type: 'custom', icon: 'ri-grid-line' },
+        { type: 'map', icon: 'ri-map-line' },
+      ]
+    },
     headers() {
       return [
         { text: 'Name', value: 'name' },
