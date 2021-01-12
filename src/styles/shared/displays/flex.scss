@@ -3,10 +3,12 @@
 }
 
 .flex {
+  // TODO: Use --
 	&-wrap {
 		flex-wrap: wrap;
 	}
 
+  // TODO: Use --
 	&-column {
 		@extend .d-flex;
 		flex-direction: column;
@@ -14,32 +16,43 @@
 }
 
 .align {
+  // TODO: Use --
 	&-center {
 		align-items: center;
 	}
 
+  // TODO: Use --
 	&-end {
 		align-items: flex-end;
 	}
 
+  // TODO: Use --
 	&-stretch {
 		align-items: stretch;
 	}
 
+  // TODO: Use --
 	&-self-center {
 		align-self: center;
 	}
 }
 
 .justify {
+  // TODO: Use --
 	&-center {
 		justify-content: center;
 	}
 
+  &--end {
+    justify-content: flex-end;
+  }
+
+  // TODO: Use --
 	&-space-between {
 		justify-content: space-between;
 	}
 
+  // TODO: Use --
 	&-space-around {
 		justify-content: space-around;
 	}

@@ -1,0 +1,41 @@
+.text {
+  &--primary {
+    color: $--color-primary;
+  }
+
+  &--secondary {
+    color: $--color-text-secondary;
+  }
+
+  &--base {
+    color: $--color-text-secondary;
+  }
+
+  &--disabled {
+    color: $--font-color-disabled-base;
+  }
+
+  &--success {
+    color: $--color-success;
+  }
+
+  &--info {
+    color: $--color-info;
+  }
+
+  &--danger {
+    color: $--color-danger;
+  }
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.ultra-bold {
+  font-weight: 700;
+}

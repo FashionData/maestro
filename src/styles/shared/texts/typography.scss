@@ -1,11 +1,12 @@
-.title {
-	font-size: applyFontSize(heading-1);
-}
-
-.text-highlight {
-	color: $--color-text-secondary;
+.regular {
+  font-weight: 400;
 }
 
 .bold {
-	font-weight: bold;
+  font-weight: 600;
 }
+
+.ultra-bold {
+  font-weight: 700;
+}
+

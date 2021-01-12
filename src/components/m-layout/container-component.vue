@@ -40,7 +40,7 @@
 
     <el-main style="padding: 0">
       <header v-if="title" class="main-header">
-        <h1 class="title">{{ title }}</h1>
+        <h1 class="fs--extra-large">{{ title }}</h1>
       </header>
 
       <div class="main">
