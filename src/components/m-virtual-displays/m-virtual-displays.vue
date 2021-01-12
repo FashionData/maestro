@@ -48,7 +48,7 @@
                   v-bind:header="header"
                   v-bind:item="item"
                 />
-                <p v-else :class="{ 'text--primary': header.textPrimary }">{{ item[header.value] }}</p>
+                <p v-else :class="{ 'text--primary bold': header.textPrimary }">{{ item[header.value] }}</p>
               </div>
             </template>
           </div>
