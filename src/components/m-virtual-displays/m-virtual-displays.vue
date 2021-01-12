@@ -18,61 +18,63 @@
       </div>
     </div>
 
-    <div v-if="displayType === 'table'" class="table-display">
-      <div class="headers mb-6">
-        <div
-          v-for="header in headers"
-          :key="header.value"
-          class="text--info text--uppercase"
-          :style="{ width: columnWidth }"
-        >
-          {{ header.text }}
+    <div v-loading="loading">
+      <div v-if="displayType === 'table'" class="table-display">
+        <div class="headers mb-6">
+          <div
+            v-for="header in headers"
+            :key="header.value"
+            class="text--info text--uppercase"
+            :style="{ width: columnWidth }"
+          >
+            {{ header.text }}
+          </div>
         </div>
+
+        <RecycleScroller
+          :items="items"
+          :item-size="tableItemSize"
+          :key-field="keyField"
+          :style="{ height }"
+          v-slot="{ index, item }"
+        >
+          <div class="row" :style="{ height: `${tableItemSize}px` }">
+            <template v-for="header in headers" :style="{ width: columnWidth }">
+              <div class="column" :style="{ width: columnWidth }">
+                <slot
+                  v-if="$scopedSlots[`item.${header.value}`]"
+                  :name="`item.${header.value}`"
+                  v-bind:index="index"
+                  v-bind:header="header"
+                  v-bind:item="item"
+                />
+                <p v-else :class="{ 'text--primary': header.textPrimary }">{{ item[header.value] }}</p>
+              </div>
+            </template>
+          </div>
+        </RecycleScroller>
       </div>
 
       <RecycleScroller
+        v-if="displayType === 'grid'"
         :items="items"
-        :item-size="tableItemSize"
-        :key-field="keyField"
+        :item-size="gridItemSize"
+        key-field="id"
         :style="{ height }"
-        v-slot="{ index, item }"
+        v-slot="{ item }"
       >
-        <div class="row" :style="{ height: `${tableItemSize}px` }">
-          <template v-for="header in headers" :style="{ width: columnWidth }">
-            <div class="column" :style="{ width: columnWidth }">
-              <slot
-                v-if="$scopedSlots[`item.${header.value}`]"
-                :name="`item.${header.value}`"
-                v-bind:index="index"
-                v-bind:header="header"
-                v-bind:item="item"
-              />
-              <p v-else :class="{ 'text--primary': header.textPrimary }">{{ item[header.value] }}</p>
-            </div>
-          </template>
-        </div>
+        <el-card class="card">
+          <pre>{{ item }}</pre>
+          <el-button>CLICK</el-button>
+        </el-card>
       </RecycleScroller>
+
+      <template v-for="customDisplay in customSlots">
+        <div v-if="customDisplay === `displays.${displayType}`" :key="customDisplay">
+          <slot :name="customDisplay" />
+        </div>
+      </template>
     </div>
-
-    <RecycleScroller
-      v-if="displayType === 'grid'"
-      :items="items"
-      :item-size="gridItemSize"
-      key-field="id"
-      :style="{ height }"
-      v-slot="{ item }"
-    >
-      <el-card class="card">
-        <pre>{{ item }}</pre>
-        <el-button>CLICK</el-button>
-      </el-card>
-    </RecycleScroller>
-
-    <template v-for="customDisplay in customSlots">
-      <div v-if="customDisplay === `displays.${displayType}`" :key="customDisplay">
-        <slot :name="customDisplay" />
-      </div>
-    </template>
   </div>
 </template>
 
@@ -87,6 +89,7 @@ export default {
   name: "m-virtual-displays",
   props: {
     customDisplays: Array,
+    loading: Boolean,
     headers: {
       type: Array,
       required: true,
