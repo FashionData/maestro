@@ -106,7 +106,7 @@
             </el-card>
 
             <div class="card-expansion" v-if="expandedCardIndex === index">
-              <slot name="cards.item.extended" />
+              <slot name="cards.item.extended" v-bind:item="item" />
             </div>
           </DynamicScrollerItem>
         </DynamicScroller>
