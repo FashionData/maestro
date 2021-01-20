@@ -11,7 +11,7 @@
           <i
             v-for="display in displays"
             :key="display.type"
-            :class="{ [display.icon]: true, 'active': displayType === display }"
+            :class="{ [display.icon]: true, 'active': displayType === display.type }"
             @click="setDisplayType(display.type)"
           />
         </template>
@@ -42,8 +42,8 @@
             <template v-for="header in headers" :style="{ width: columnWidth }">
               <div class="column" :style="{ width: columnWidth }">
                 <slot
-                  v-if="$scopedSlots[`item.${header.value}`]"
-                  :name="`item.${header.value}`"
+                  v-if="$scopedSlots[`table.item.${header.value}`]"
+                  :name="`table.item.${header.value}`"
                   v-bind:index="index"
                   v-bind:header="header"
                   v-bind:item="item"
@@ -53,6 +53,63 @@
             </template>
           </div>
         </RecycleScroller>
+      </div>
+
+      <div v-if="displayType === 'cards'" class="cards-display">
+        <div class="headers mb-6" :class="{ 'headers--expandable-cards': $scopedSlots['cards.item.extended'] }">
+          <div
+            v-for="header in headers"
+            :key="header.value"
+            class="text--info text--uppercase"
+            :style="{ width: columnWidth }"
+          >
+            {{ header.text }}
+          </div>
+        </div>
+
+        <DynamicScroller
+          :items="items"
+          :min-item-size="cardSize"
+          :style="{ height }"
+          v-slot="{ index, item }"
+        >
+          <DynamicScrollerItem :item="item" active class="pb-10">
+            <el-card
+              body-style="display: flex; align-items: center; padding: 0; height: 100%;"
+              :style="{ height: `${cardSize}px` }"
+            >
+              <div>
+                <el-button
+                  v-if="$scopedSlots['cards.item.extended']"
+                  :type="expandedCardIndex === index ? 'primary' : 'default'"
+                  size="small"
+                  icon="ri-arrow-right-s-line ri-lg"
+                  circle
+                  class="expandable-button p-1"
+                  :class="{ 'expandable-button--active': expandedCardIndex === index }"
+                  @click="toggleCardExpansion(index)"
+                />
+              </div>
+
+              <template v-for="header in headers" :style="{ width: columnWidth }">
+                <div class="column" :style="{ width: columnWidth }">
+                  <slot
+                    v-if="$scopedSlots[`cards.item.${header.value}`]"
+                    :name="`cards.item.${header.value}`"
+                    v-bind:index="index"
+                    v-bind:header="header"
+                    v-bind:item="item"
+                  />
+                  <p v-else :class="{ 'text--primary bold': header.textPrimary }">{{ item[header.value] }}</p>
+                </div>
+              </template>
+            </el-card>
+
+            <div class="card-expansion" v-if="expandedCardIndex === index">
+              <slot name="cards.item.extended" />
+            </div>
+          </DynamicScrollerItem>
+        </DynamicScroller>
       </div>
 
       <RecycleScroller
@@ -89,6 +146,10 @@ export default {
   name: "m-virtual-displays",
   props: {
     customDisplays: Array,
+    defaultDisplays: {
+      type: Array,
+      default: () => ['table'],
+    },
     loading: Boolean,
     headers: {
       type: Array,
@@ -110,19 +171,25 @@ export default {
       type: Number,
       default: 84,
     },
+    cardSize: {
+      type: Number,
+      default: 84,
+    },
     gridItemSize: {
       type: Number,
       default: 256,
     },
   },
   data: () => ({
-    displayType: 'table'
+    displayType: '',
+    expandedCardIndex: null,
   }),
   computed: {
     displays() {
       return [
-        { type: 'table', icon: 'ri-table-line' },
-        // TODO: Use grid display by default `{ type: 'grid', icon: 'ri-grid-fill' }`,
+        ...(this.defaultDisplays.includes('table') ? [{ type: 'table', icon: 'ri-table-line' }] : []),
+        ...(this.defaultDisplays.includes('cards') ? [{ type: 'cards', icon: 'ri-layout-row-line' }] : []),
+        ...(this.defaultDisplays.includes('grid') ? [{ type: 'grid', icon: 'ri-grid-fill' }] : []),
         ...(this.customDisplays ? this.customDisplays : []),
       ];
     },
@@ -139,6 +206,9 @@ export default {
       return Object.keys(this.$scopedSlots).filter(slotName => slotName.includes('displays.'));
     }
   },
+  created() {
+    this.displayType = this.defaultDisplays[0];
+  },
   methods: {
     emitResetFilters() {
       this.$emit('on-filters-reset')
@@ -146,6 +216,13 @@ export default {
     setDisplayType(type) {
       this.displayType = type;
     },
+    toggleCardExpansion(index) {
+      if (this.expandedCardIndex === index) {
+        this.expandedCardIndex = null;
+      } else {
+        this.expandedCardIndex = index;
+      }
+    }
   }
 };
 </script>

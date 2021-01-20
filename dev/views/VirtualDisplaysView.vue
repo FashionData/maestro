@@ -1,6 +1,7 @@
 <template>
   <div>
     <m-virtual-displays
+      :default-displays="['table', 'cards', 'grid']"
       :custom-displays="customDisplays"
       :headers="headers"
       :items="filteredItems"
@@ -10,12 +11,24 @@
         <el-input v-model="search" />
       </template>
 
-      <template v-slot:item.test1="{ index, header, item }">
+      <template v-slot:table.item.test1="{ index, header, item }">
         <p>Hello {{ index }}</p>
       </template>
 
-      <template v-slot:item.actions="{ header, item }">
+      <template v-slot:table.item.actions="{ header, item }">
         <el-button>Hello</el-button>
+      </template>
+
+      <template v-slot:cards.item.actions="{ header, item }">
+        <el-button>Hello</el-button>
+      </template>
+
+      <template v-slot:cards.item.extended="{ header, item }">
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
       </template>
 
       <template v-slot:displays.custom="{ item }">
