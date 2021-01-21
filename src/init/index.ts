@@ -2,6 +2,7 @@ import _Vue, { PluginFunction, VueConstructor } from "vue";
 import { InitializeOptions, InstallOptions } from "@/types";
 import { checkConfiguration } from "@/init/configuration";
 import { injectLoader, removeLoader } from "@/init/loader";
+import { injectPrototypes } from "@/init/prototypes";
 import { configureStore } from "@/init/store";
 import { configureRouter, injectHomePage } from "@/init/router";
 import { configureFirebase } from "@/init/firebase";
@@ -52,6 +53,7 @@ export const initializeApp = (
 ) => {
   checkConfiguration(options);
   injectLoader();
+  injectPrototypes();
 
   const i18nInstance = i18n(Vue, options.config?.i18n);
   const { config, firebase, router, store } = options;

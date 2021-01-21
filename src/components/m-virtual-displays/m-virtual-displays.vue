@@ -48,7 +48,9 @@
                   v-bind:header="header"
                   v-bind:item="item"
                 />
-                <p v-else :class="{ 'text--primary bold': header.textPrimary }">{{ item[header.value] }}</p>
+                <p v-else :class="{ 'text--primary bold': header.textPrimary }">
+                  {{ getItemValue(item, header.value) }}
+                </p>
               </div>
             </template>
           </div>
@@ -100,7 +102,9 @@
                     v-bind:header="header"
                     v-bind:item="item"
                   />
-                  <p v-else :class="{ 'text--primary bold': header.textPrimary }">{{ item[header.value] }}</p>
+                  <p v-else :class="{ 'text--primary bold': header.textPrimary }">
+                    {{ getItemValue(item, header.value) }}
+                  </p>
                 </div>
               </template>
             </el-card>
@@ -215,6 +219,14 @@ export default {
     },
     setDisplayType(type) {
       this.displayType = type;
+    },
+    getItemValue(item, headerValue) {
+      const splitHeaderValue = headerValue.split('.');
+      if (splitHeaderValue.length === 1) {
+        return item[headerValue];
+      } else {
+        return Object.byString(item, headerValue);
+      }
     },
     toggleCardExpansion(index) {
       if (this.expandedCardIndex === index) {

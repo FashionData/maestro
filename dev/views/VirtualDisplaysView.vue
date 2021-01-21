@@ -66,7 +66,7 @@ export default {
         { text: 'Test 3', value: 'test3' },
         { text: 'Test 4', value: 'test4', textPrimary: true },
         { text: 'Test 5', value: 'test5' },
-        { text: 'Test 6', value: 'test6' },
+        { text: 'Test 6', value: 'test6.value.value2[1]' },
         { text: '', value: 'actions' },
       ];
     },
@@ -80,7 +80,11 @@ export default {
         test3: 'test3',
         test4: 'test4',
         test5: 'test5',
-        test6: 'test6',
+        test6: {
+          value: {
+            value2: ['nested-test1', 'nested-test2']
+          }
+        },
       });
       return list;
     },
