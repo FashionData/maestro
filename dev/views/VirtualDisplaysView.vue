@@ -29,6 +29,7 @@
         <p>Hello</p>
         <p>Hello</p>
         <p>Hello</p>
+        <el-button>Button</el-button>
       </template>
 
       <template v-slot:displays.custom="{ item }">
