@@ -6,6 +6,7 @@
       :headers="headers"
       :items="filteredItems"
       @on-filters-reset="onFiltersReset"
+      @on-card-extend-toggle="onCardExtendToggle"
     >
       <template #filters>
         <el-input v-model="search" />
@@ -96,6 +97,9 @@ export default {
   methods: {
     onFiltersReset() {
       this.search = '';
+    },
+    onCardExtendToggle({ isExtended, item }) {
+      console.log(isExtended, item);
     }
   }
 };

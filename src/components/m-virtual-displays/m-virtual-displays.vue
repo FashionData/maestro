@@ -83,13 +83,13 @@
               <div>
                 <el-button
                   v-if="$scopedSlots['cards.item.extended']"
-                  :type="expandedCardIndex === index ? 'primary' : 'default'"
+                  :type="extentedCardIndex === index ? 'primary' : 'default'"
                   size="small"
                   icon="ri-arrow-right-s-line ri-lg"
                   circle
                   class="expandable-button p-1"
-                  :class="{ 'expandable-button--active': expandedCardIndex === index }"
-                  @click="toggleCardExpansion(index)"
+                  :class="{ 'expandable-button--active': extentedCardIndex === index }"
+                  @click="toggleCardExtension(index, item)"
                 />
               </div>
 
@@ -109,7 +109,7 @@
               </template>
             </el-card>
 
-            <div class="card-expansion" v-if="expandedCardIndex === index">
+            <div class="card-expansion" v-if="extentedCardIndex === index">
               <slot name="cards.item.extended" v-bind:item="item" />
             </div>
           </DynamicScrollerItem>
@@ -186,7 +186,7 @@ export default {
   },
   data: () => ({
     displayType: '',
-    expandedCardIndex: null,
+    extentedCardIndex: null,
   }),
   computed: {
     displays() {
@@ -228,12 +228,9 @@ export default {
         return Object.byString(item, headerValue);
       }
     },
-    toggleCardExpansion(index) {
-      if (this.expandedCardIndex === index) {
-        this.expandedCardIndex = null;
-      } else {
-        this.expandedCardIndex = index;
-      }
+    toggleCardExtension(index, item) {
+      this.extentedCardIndex = this.extentedCardIndex === index ? null : index;
+      this.$emit('on-card-extend-toggle', { isExtended: this.extentedCardIndex === index, item });
     }
   }
 };
