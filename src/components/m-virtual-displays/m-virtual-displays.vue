@@ -40,7 +40,7 @@
         >
           <div class="row" :style="{ height: `${tableItemSize}px` }">
             <template v-for="header in headers" :style="{ width: columnWidth }">
-              <div class="column" :style="{ width: columnWidth }">
+              <div class="column" :class="{ 'text--primary bold': header.textPrimary }" :style="{ width: columnWidth }">
                 <slot
                   v-if="$scopedSlots[`table.item.${header.value}`]"
                   :name="`table.item.${header.value}`"
@@ -48,7 +48,7 @@
                   v-bind:header="header"
                   v-bind:item="item"
                 />
-                <p v-else :class="{ 'text--primary bold': header.textPrimary }">
+                <p v-else>
                   {{ getItemValue(item, header.value) }}
                 </p>
               </div>
@@ -94,7 +94,11 @@
               </div>
 
               <template v-for="header in headers" :style="{ width: columnWidth }">
-                <div class="column" :style="{ width: columnWidth }">
+                <div
+                  class="column"
+                  :class="{ 'text--primary bold': header.textPrimary }"
+                  :style="{ width: columnWidth }"
+                >
                   <slot
                     v-if="$scopedSlots[`cards.item.${header.value}`]"
                     :name="`cards.item.${header.value}`"
@@ -102,7 +106,7 @@
                     v-bind:header="header"
                     v-bind:item="item"
                   />
-                  <p v-else :class="{ 'text--primary bold': header.textPrimary }">
+                  <p v-else>
                     {{ getItemValue(item, header.value) }}
                   </p>
                 </div>
