@@ -72,6 +72,7 @@
         <DynamicScroller
           :items="items"
           :min-item-size="cardSize"
+          :key-field="keyField"
           :style="{ height }"
           v-slot="{ index, item }"
         >
