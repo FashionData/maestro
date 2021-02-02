@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div v-loading="loading">
+    <div v-if="items.length > 0" v-loading="loading">
       <div v-if="displayType === 'table'" class="table-display">
         <div class="headers mb-6">
           <div
@@ -140,6 +140,10 @@
           <slot :name="customDisplay" />
         </div>
       </template>
+    </div>
+
+    <div v-else>
+      <p>{{ $t('components.m-virtual-displays.no-data') }}</p>
     </div>
   </div>
 </template>

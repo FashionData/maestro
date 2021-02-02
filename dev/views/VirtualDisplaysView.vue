@@ -91,7 +91,8 @@ export default {
       return list;
     },
     filteredItems() {
-      return this.search.length > 0 ? this.items.filter(item => item.name.includes(this.search)) : this.items;
+      // return this.search.length > 0 ? this.items.filter(item => item.name.includes(this.search)) : this.items;
+      return [];
     }
   },
   methods: {

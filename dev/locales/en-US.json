@@ -3,5 +3,10 @@
     "menu-items": {
       "virtual-displays": "Virtual displays"
     }
+  },
+  "components": {
+    "m-virtual-displays": {
+      "no-data": "No data has been found."
+    }
   }
 }
