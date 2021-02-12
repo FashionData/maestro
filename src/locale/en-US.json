@@ -143,6 +143,11 @@
       }
     }
   },
+  "components": {
+    "m-virtual-displays": {
+      "no-data": "No data has been found."
+    }
+  },
   "users-view": {
     "your-role": "Your role: {role}",
     "account-role-label": "Accounts role",
