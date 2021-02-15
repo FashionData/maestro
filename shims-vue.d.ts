@@ -15,6 +15,6 @@ declare module "vue/types/vue" {
     $moment: typeof moment;
     $perf: any;
     axios: AxiosInstance;
-    $https: AxiosInstance;
+    $http: AxiosInstance;
   }
 }
