@@ -1,6 +1,7 @@
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
-import { CustomClaims } from "../utils/role";
+import { AxiosRequestConfig } from "axios";
+import { CustomClaims } from "@/utils/role";
 
 export type AnyObject = {
   [key: string]: any;
@@ -16,7 +17,7 @@ export type ConfigurationOptions = {
   analytics?: boolean;
   performance?: boolean;
   i18n?: I18nConfig;
-  axios?: boolean,
+  axios?: AxiosRequestConfig;
 };
 
 export type InitializeOptions = {

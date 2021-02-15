@@ -1,7 +1,10 @@
 import { VueConstructor } from "vue";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import VueAxios from "vue-axios";
 
-export const installVueAxios = (Vue: VueConstructor, axiosConfig: boolean | undefined) => {
-  if (axiosConfig) Vue.use(VueAxios, axios);
+export const installVueAxios = (Vue: VueConstructor, axiosConfig: AxiosRequestConfig | undefined) => {
+  if (axiosConfig) {
+    Vue.use(VueAxios, axios);
+    Vue.axios.defaults.baseURL = axiosConfig.baseURL;
+  }
 };
