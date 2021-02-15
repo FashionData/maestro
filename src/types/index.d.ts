@@ -16,6 +16,7 @@ export type ConfigurationOptions = {
   analytics?: boolean;
   performance?: boolean;
   i18n?: I18nConfig;
+  axios?: boolean,
 };
 
 export type InitializeOptions = {

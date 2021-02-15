@@ -17,6 +17,7 @@ import { VueRouter } from "vue-router/types/router";
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
 import { getCustomClaims } from "@/utils/role";
+import {installVueAxios} from "@/init/plugins/vue-axios";
 
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -108,6 +109,7 @@ export const install: InstallFunction = function installMaestro(
   configureRouter(options.router);
   configureFirebase(Vue, options.firebase, options.config);
   installElementUi(Vue, options.i18n);
+  installVueAxios(Vue, options.config?.axios);
   installVueDebounce(Vue);
   installVueMoment(Vue);
   installVueVirtualScroller(Vue);
