@@ -1,6 +1,7 @@
 import Vue from "vue";
 import moment from 'moment';
 import firebase from "firebase";
+import { AxiosInstance } from "axios";
 
 declare module "vue/types/vue" {
   interface Vue {
@@ -13,5 +14,7 @@ declare module "vue/types/vue" {
     $isGranted: (role: number) => boolean;
     $moment: typeof moment;
     $perf: any;
+    axios: AxiosInstance;
+    $https: AxiosInstance;
   }
 }
