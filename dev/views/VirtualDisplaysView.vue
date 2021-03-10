@@ -62,12 +62,12 @@ export default {
     },
     headers() {
       return [
-        { text: 'Name', value: 'name' },
+        { text: 'Name', value: 'name', width: 180 },
         { text: 'Test 1', value: 'test1' },
         { text: 'Test 2', value: 'test2', textPrimary: true },
         { text: 'Test 3', value: 'test3' },
         { text: 'Test 4', value: 'test4', textPrimary: true },
-        { text: 'Test 5', value: 'test5' },
+        { text: 'Test 5', value: 'test5', width: 240 },
         { text: 'Test 6', value: 'test6.value.value2[1]' },
         { text: '', value: 'actions' },
       ];
@@ -91,8 +91,7 @@ export default {
       return list;
     },
     filteredItems() {
-      // return this.search.length > 0 ? this.items.filter(item => item.name.includes(this.search)) : this.items;
-      return [];
+      return this.search.length > 0 ? this.items.filter(item => item.name.includes(this.search)) : this.items;
     }
   },
   methods: {

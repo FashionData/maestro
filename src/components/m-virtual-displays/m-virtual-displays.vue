@@ -22,10 +22,10 @@
       <div v-if="displayType === 'table'" class="table-display">
         <div class="headers mb-6">
           <div
-            v-for="header in headers"
+            v-for="(header, index) in headers"
             :key="header.value"
             class="text--info text--uppercase"
-            :style="{ width: columnWidth }"
+            :style="{ width: header.width ? `${header.width}px` : getColumnWidth(index) }"
           >
             {{ header.text }}
           </div>
@@ -39,8 +39,8 @@
           v-slot="{ index, item }"
         >
           <div class="row" :style="{ height: `${tableItemSize}px` }">
-            <template v-for="header in headers" :style="{ width: columnWidth }">
-              <div class="column" :class="{ 'text--primary bold': header.textPrimary }" :style="{ width: columnWidth }">
+            <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
+              <div class="column" :class="{ 'text--primary bold': header.textPrimary }" :style="{ width: getColumnWidth(index) }">
                 <slot
                   v-if="$scopedSlots[`table.item.${header.value}`]"
                   :name="`table.item.${header.value}`"
@@ -60,10 +60,10 @@
       <div v-if="displayType === 'cards'" class="cards-display">
         <div class="headers mb-6" :class="{ 'headers--expandable-cards': $scopedSlots['cards.item.extended'] }">
           <div
-            v-for="header in headers"
+            v-for="(header, index) in headers"
             :key="header.value"
             class="text--info text--uppercase"
-            :style="{ width: columnWidth }"
+            :style="{ width: getColumnWidth(index) }"
           >
             {{ header.text }}
           </div>
@@ -94,11 +94,11 @@
                 />
               </div>
 
-              <template v-for="header in headers" :style="{ width: columnWidth }">
+              <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
                 <div
                   class="column"
                   :class="{ 'text--primary bold': header.textPrimary }"
-                  :style="{ width: columnWidth }"
+                  :style="{ width: getColumnWidth(index) }"
                 >
                   <slot
                     v-if="$scopedSlots[`cards.item.${header.value}`]"
@@ -209,9 +209,6 @@ export default {
     hasFilters() {
       return this.$slots.filters;
     },
-    columnWidth() {
-      return `${100 / Object.values(this.headers[0]).length}%`;
-    },
     currentDisplay() {
       return this.displays.find(display => display.type === this.displayType);
     },
@@ -228,6 +225,17 @@ export default {
     },
     setDisplayType(type) {
       this.displayType = type;
+    },
+    getColumnWidth(index) {
+      let widthDefined = 0;
+      let nonWidthHeaders = 0;
+      for (let i = 0; i < this.headers.length; i++) {
+        const { width } = this.headers[i];
+        width ? widthDefined += width : nonWidthHeaders += 1;
+      }
+      return this.headers[index].width
+        ? `${this.headers[index].width}px`
+        : `calc((100% - ${widthDefined}px) / ${nonWidthHeaders})`;
     },
     getItemValue(item, headerValue) {
       const splitHeaderValue = headerValue.split('.');
