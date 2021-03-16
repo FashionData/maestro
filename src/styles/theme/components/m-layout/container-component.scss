@@ -25,19 +25,6 @@
 	}
 }
 
-.main-header {
-	@extend .d-flex;
-	@extend .align-center;
-
-	padding: $--main-padding;
-	min-height: 12rem;
-	background-color: $--color-primary-light-9;
-
-	.title {
-		margin: 0;
-	}
-}
-
 .main {
   margin: 0 auto;
 	padding: $--main-padding * 2 $--main-padding;

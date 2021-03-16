@@ -39,10 +39,6 @@
     </el-header>
 
     <el-main style="padding: 0">
-      <header v-if="title" class="main-header">
-        <h1 class="fs--extra-large">{{ title }}</h1>
-      </header>
-
       <div class="main">
         <slot />
       </div>
@@ -67,12 +63,6 @@ export default {
     logoutRouteName() {
       return LOGOUT.name;
     },
-    title() {
-      const formattedPath = this.$route.path
-        .replace("/", "")
-        .replace(/[^\w\s]/gi, " ");
-      return formattedPath.charAt(0).toUpperCase() + formattedPath.slice(1);
-    }
   }
 };
 </script>
