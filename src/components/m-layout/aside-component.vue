@@ -1,9 +1,9 @@
 <template>
-  <el-aside :width="isCollapse ? '64px' : '250px'">
-    <el-menu router :collapse="isCollapse" class="d-flex flex-column">
+  <el-aside :width="asideWidth">
+    <el-menu router :collapse="isCollapse" class="aside-menu">
       <el-header
-        class="menu-header d-flex justify-space-between align-center"
-        :class="{ 'menu-header--collapse justify-center': isCollapse }"
+        class="aside-menu-header d-flex justify-space-between align-center"
+        :class="{ 'aside-menu-header--collapse justify-center': isCollapse }"
       >
         <router-link to="/" class="logo-wrapper">
           <slot v-if="isCollapse" name="header-collapse" />
@@ -37,7 +37,7 @@
 
       <i
         v-if="isCollapse"
-        class="expand-menu-arrow el-icon-arrow-right"
+        class="expand-aside-menu-arrow el-icon-arrow-right"
         @click="toggleCollapse"
       />
     </el-menu>
@@ -55,6 +55,9 @@ export default {
     };
   },
   computed: {
+    asideWidth() {
+      return this.isCollapse ? '64px' : '250px';
+    },
     isSuperAdmin() {
       return this.$isGranted(Roles.SuperAdmin);
     },
