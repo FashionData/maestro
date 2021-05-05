@@ -45,6 +45,12 @@
   }
 
   .table-display {
+    .headers > * {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     .vue-recycle-scroller__item-view {
       $row-border-value: 1px solid $--border-color-base;
 

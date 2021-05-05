@@ -63,7 +63,7 @@ export default {
     headers() {
       return [
         { text: 'Name', value: 'name', width: 180 },
-        { text: 'Test 1', value: 'test1' },
+        { text: 'Long title test 1', value: 'test1' },
         { text: 'Test 2', value: 'test2', textPrimary: true },
         { text: 'Test 3', value: 'test3' },
         { text: 'Test 4', value: 'test4', textPrimary: true },
