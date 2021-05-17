@@ -1,5 +1,5 @@
 <template>
-  <div class="m-virtual-displays">
+  <el-card shadow="none" class="m-virtual-displays">
     <div class="d-flex justify-space-between mb-13">
       <div class="filters d-flex">
         <slot name="filters" />
@@ -145,7 +145,7 @@
     <div v-else>
       <p>{{ $t('components.m-virtual-displays.no-data') }}</p>
     </div>
-  </div>
+  </el-card>
 </template>
 
 <script>

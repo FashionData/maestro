@@ -1,6 +1,8 @@
 @import '~remixicon/fonts/remixicon.css';
 @import '~vue-virtual-scroller/dist/vue-virtual-scroller.css';
 
+@import "./themes/default/vars.css";
+
 @import "./theme/common/vars";
 @import "./reset";
 @import "./shared/index";
@@ -11,6 +13,7 @@ html {
 
 body {
 	margin: 0;
+  background-color: var(--body-background-color);
 	font-size: applyFontSize(medium);
 	font-family: Avenir, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;

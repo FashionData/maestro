@@ -1,4 +1,18 @@
 {
+  "layouts": {
+    "logged-in": {
+      "page-titles": {
+        "home": "Homepage",
+        "profile": "Profile",
+        "users": "Users"
+      },
+      "header-menu": {
+        "profile": "Profile",
+        "change-account": "Change account",
+        "logout": "Logout"
+      }
+    }
+  },
   "aside": {
     "accounts": "Accounts"
   },
@@ -128,20 +142,6 @@
   },
   "not-found": {
     "title": "Page not found"
-  },
-  "m-layout": {
-    "aside-component": {
-      "settings": {
-        "title": "Settings",
-        "users": "Users"
-      }
-    },
-    "container-component": {
-      "dropdown-menu": {
-        "profile": "Profile",
-        "logout": "Logout"
-      }
-    }
   },
   "components": {
     "m-virtual-displays": {

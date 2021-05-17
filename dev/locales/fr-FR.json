@@ -1,4 +1,11 @@
 {
+  "layouts": {
+    "logged-in": {
+      "page-titles": {
+        "virtual-displays": "Affichages virtuels"
+      }
+    }
+  },
   "app": {
     "menu-items": {
       "virtual-displays": "Affichages virtuels"

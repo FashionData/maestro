@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import AsideComponent from "@/components/m-layout/aside-component.vue";
-import ContainerComponent from "@/components/m-layout/container-component.vue";
-import AccountChooser from "@/components/m-layout/account-chooser.vue";
+import AsideComponent from "@/components/layouts/logged-in/aside-component.vue";
+import ContainerComponent from "@/components/layouts/logged-in/container-component.vue";
+import AccountChooser from "@/components/layouts/logged-in/account-chooser.vue";
 
 export default {
-  name: "m-layout",
+  name: "logged-in-layout",
   components: { AccountChooser, ContainerComponent, AsideComponent },
   beforeCreate() {
     const accountsRole = this.$store.getters.user.accountsRole;

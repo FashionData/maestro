@@ -13,6 +13,7 @@ import { installVueVirtualScroller } from "@/init/plugins/vue-virtual-scroller";
 import * as fb from "firebase";
 import { i18n } from "@/init/plugins/vue-i18n";
 import * as components from "@/components";
+import * as layouts from "@/layouts";
 import { VueRouter } from "vue-router/types/router";
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
@@ -114,7 +115,7 @@ export const install: InstallFunction = function installMaestro(
   installVueMoment(Vue);
   installVueVirtualScroller(Vue);
 
-  Object.entries(components).forEach(([componentName, component]) => {
+  Object.entries({ ...components, ...layouts }).forEach(([componentName, component]) => {
     Vue.component(componentName, component);
   });
 };

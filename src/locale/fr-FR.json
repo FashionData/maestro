@@ -1,6 +1,17 @@
 {
-  "aside": {
-    "accounts": "Comptes"
+  "layouts": {
+    "logged-in": {
+      "page-titles": {
+        "home": "Page d'accueil",
+        "profile": "Profil",
+        "users": "Utilisateurs"
+      },
+      "header-menu": {
+        "profile": "Profil",
+        "change-account": "Changer de compte",
+        "logout": "Se déconnecter"
+      }
+    }
   },
   "account-chooser": {
     "no-accounts": "Désolé, vous n'êtes associé à aucun compte. Veuillez contacter votre administrateur.",
@@ -128,20 +139,6 @@
   },
   "not-found": {
     "title": "Page non trouvée"
-  },
-  "m-layout": {
-    "aside-component": {
-      "settings": {
-        "title": "Réglages",
-        "users": "Utilisateurs"
-      }
-    },
-    "container-component": {
-      "dropdown-menu": {
-        "profile": "Profile",
-        "logout": "Se déconnecter"
-      }
-    }
   },
   "components": {
     "m-virtual-displays": {

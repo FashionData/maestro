@@ -17,7 +17,7 @@
       />
     </el-header>
 
-    <el-card class="aside-menu" :class="{ 'aside-menu--collapsed': isCollapse }">
+    <el-card shadow="none" class="aside-menu" :class="{ 'aside-menu--collapsed': isCollapse }">
       <el-menu router :collapse="isCollapse">
         <slot name="menu-items" />
 

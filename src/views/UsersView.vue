@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <el-card shadow="none">
     <p v-if="isLoading">{{ $t("global.loading") }}</p>
 
     <template v-else>
@@ -59,7 +59,7 @@
         </el-table>
       </el-row>
     </template>
-  </div>
+  </el-card>
 </template>
 
 <script>

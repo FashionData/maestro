@@ -5,8 +5,8 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+  background-color: var(--color-white);
 	font-size: 20px;
-	box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.06);
 
   & .account__name {
     margin-right: auto;
@@ -25,10 +25,18 @@
 			margin-right: 0;
 		}
 	}
+
+  .dropdown {
+    background-color: red;
+    a {
+      color: initial;
+      text-decoration: none;
+    }
+  }
 }
 
 .main {
   margin: 0 auto;
-	padding: $--main-padding * 2 $--main-padding;
+	padding: $--main-padding;
   max-width: 200rem;
 }
