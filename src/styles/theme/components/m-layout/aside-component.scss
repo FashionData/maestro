@@ -1,16 +1,15 @@
 @import "../../common/vars";
 
-.aside-menu-header,
-ul.aside-menu {
-	border: none;
-	background-color: $--color-primary;
-
-	* {
-		color: $--color-white;
-	}
+.aside-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .aside-menu-header {
+  * {
+    // color: $--color-white;
+  }
+
   .logo-wrapper {
     display: flex;
     align-items: center;
@@ -30,63 +29,29 @@ ul.aside-menu {
   }
 }
 
-ul.aside-menu {
-  $expand-menu-arrow-height: 50px;
+.el-card.aside-menu {
+  flex: 1;
+  margin: $--main-padding 0 $--main-padding $--main-padding;
 
-  @extend .d-flex;
-  @extend .flex-column;
-  padding-bottom: $expand-menu-arrow-height;
-	height: 100%;
+  &--collapsed {
+    margin: $--main-padding 0;
 
-	.el-menu-item,
-  .el-menu-item i,
-  .el-submenu__title i,{
-		color: $--color-white;
-	}
+    div.el-card__body {
+      @extend .p-0;
 
-  .el-submenu__title i,
-  .el-menu-item i {
-    font-size: 1.8rem; // TODO: Use @extend or fs classes
-    margin-right: .8rem; // TODO: Use spaces
-    font-weight: normal;
-  }
-
-  .el-menu-item:hover,
-  .el-menu-item:focus,
-  .el-submenu__title:hover,
-  .el-submenu__title:focus {
-    background-color: $--color-primary-light-1;
-    font-weight: bold;
-  }
-
-  .el-menu-item {
-    background-color: $--color-primary;
-
-    &.is-active {
-      display: block;
-
-      &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: .5rem;
-        height: 100%;
-        background-color: $--color-text-secondary;
+      .el-menu-item,
+      .el-submenu {
+        text-align: center;
       }
     }
   }
 
-  .expand-aside-menu-arrow {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    padding: 0 17px;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: $expand-menu-arrow-height;
-    font-size: 30px;
+  .el-card__body {
+    @extend .px-0;
+    height: 100%;
+
+    .el-menu {
+      border: none;
+    }
   }
 }

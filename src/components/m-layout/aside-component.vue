@@ -1,58 +1,62 @@
 <template>
-  <el-aside :width="asideWidth">
-    <el-menu router :collapse="isCollapse" class="aside-menu">
-      <el-header
-        class="aside-menu-header d-flex justify-space-between align-center"
-        :class="{ 'aside-menu-header--collapse justify-center': isCollapse }"
-      >
-        <router-link to="/" class="logo-wrapper">
-          <slot v-if="isCollapse" name="header-collapse" />
-          <slot v-else name="header-extended" />
-        </router-link>
-
-        <i
-          v-if="!isCollapse"
-          class="el-icon-arrow-left"
-          @click="toggleCollapse"
-        />
-      </el-header>
-
-      <slot name="menu-items" />
-
-      <el-submenu v-if="isSuperAdmin" index="1">
-        <template slot="title">
-          <i class="ri-settings-3-line" />
-          <span>{{ $t("m-layout.aside-component.settings.title") }}</span>
-        </template>
-
-        <el-menu-item :index="userPath">
-          <i class="ri-user-3-line" />
-          <span slot="title">{{ $t("m-layout.aside-component.settings.users") }}</span>
-        </el-menu-item>
-        <el-menu-item index="/accounts">
-          <i class="el-icon-goods"></i>
-          <span slot="title">{{ $t("aside.accounts") }}</span>
-        </el-menu-item>
-      </el-submenu>
+  <el-aside :width="asideWidth" class="aside-wrapper">
+    <el-header
+      class="aside-menu-header d-flex justify-space-between align-center"
+      :class="{ 'aside-menu-header--collapse': isCollapse }"
+    >
+      <router-link to="/" class="logo-wrapper">
+        <slot v-if="isCollapse" name="header-collapse" />
+        <slot v-else name="header-extended" />
+      </router-link>
 
       <i
-        v-if="isCollapse"
-        class="expand-aside-menu-arrow el-icon-arrow-right"
+        v-if="!isToNarrow"
+        class="cursor--pointer"
+        :class="isCollapse ? 'el-icon-arrow-right' : 'el-icon-arrow-left'"
         @click="toggleCollapse"
       />
-    </el-menu>
+    </el-header>
+
+    <el-card class="aside-menu" :class="{ 'aside-menu--collapsed': isCollapse }">
+      <el-menu router :collapse="isCollapse">
+        <slot name="menu-items" />
+
+        <el-submenu v-if="isSuperAdmin" index="1">
+          <template slot="title">
+            <i class="ri-settings-3-line" />
+            <span>{{ $t("m-layout.aside-component.settings.title") }}</span>
+          </template>
+
+          <el-menu-item :index="userPath">
+            <i class="ri-user-3-line" />
+            <span slot="title">{{ $t("m-layout.aside-component.settings.users") }}</span>
+          </el-menu-item>
+          <el-menu-item index="/accounts">
+            <i class="el-icon-goods"></i>
+            <span slot="title">{{ $t("aside.accounts") }}</span>
+          </el-menu-item>
+        </el-submenu>
+      </el-menu>
+    </el-card>
   </el-aside>
 </template>
 
 <script>
 import { Roles, USERS } from "@/constants";
 
+const BREAKPOINT = 980;
+
 export default {
   name: "aside-component",
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
+      isToNarrow: false,
     };
+  },
+  mounted() {
+    this.checkAutoCollapse();
+    window.addEventListener('resize', this.checkAutoCollapse, true);
   },
   computed: {
     asideWidth() {
@@ -66,6 +70,15 @@ export default {
   methods: {
     toggleCollapse() {
       this.isCollapse = !this.isCollapse;
+    },
+    checkAutoCollapse() {
+      if (!this.isCollapse && document.body.clientWidth <= BREAKPOINT) {
+        this.isCollapse = true;
+        this.isToNarrow = true;
+      } else if (this.isCollapse && document.body.clientWidth > BREAKPOINT) {
+        this.isCollapse = false;
+        this.isToNarrow = false;
+      }
     }
   }
 };
