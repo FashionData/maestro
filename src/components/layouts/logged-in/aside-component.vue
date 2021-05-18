@@ -17,9 +17,13 @@
       />
     </el-header>
 
-    <el-card shadow="none" class="aside-menu" :class="{ 'aside-menu--collapsed': isCollapse }">
+    <el-card shadow="none" id="aside-menu-card" class="aside-menu" :class="{ 'aside-menu--collapsed': isCollapse }">
       <el-menu router :collapse="isCollapse">
         <slot name="menu-items" />
+
+        <p>Hello</p>
+        <p>Hello</p>
+        <p>Hello</p>
 
         <el-submenu v-if="isSuperAdmin" index="1">
           <template slot="title">
@@ -31,8 +35,8 @@
             <i class="ri-user-3-line" />
             <span slot="title">{{ $t("m-layout.aside-component.settings.users") }}</span>
           </el-menu-item>
-          <el-menu-item index="/accounts">
-            <i class="el-icon-goods"></i>
+          <el-menu-item :index="accountPath">
+            <i class="el-icon-goods" />
             <span slot="title">{{ $t("aside.accounts") }}</span>
           </el-menu-item>
         </el-submenu>
@@ -42,7 +46,7 @@
 </template>
 
 <script>
-import { Roles, USERS } from "@/constants";
+import { ACCOUNTS, Roles, USERS } from "@/constants";
 
 const BREAKPOINT = 980;
 
@@ -65,7 +69,8 @@ export default {
     isSuperAdmin() {
       return this.$isGranted(Roles.SuperAdmin);
     },
-    userPath: () => USERS.path
+    userPath: () => USERS.path,
+    accountPath: () => ACCOUNTS.path,
   },
   methods: {
     toggleCollapse() {
@@ -79,7 +84,7 @@ export default {
         this.isCollapse = false;
         this.isToNarrow = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>

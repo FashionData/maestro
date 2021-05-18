@@ -1,15 +1,17 @@
 :root {
   /* UI ELEMENTS COLORS */
   --body-background-color: #F7F5FF;
+  --menu-paragraph-color: #78859B;
+  --menu-item-text-color: var(--color-primary);
 
   /* TODO: Complete variables */
-  /*!* COLORS *!
-  --color-primary: #4652C1;
-  --color-secondary: #040849;
-  --color-primary-rgb: 70, 82, 193;
-  --color-primary-light-rgb: 228, 230, 247;
-  --color-info: #a3a5cb;
-  --color-success: #1FBFB8;
+  /* COLORS */
+  --color-primary: #409EFF;
+  --color-secondary: #8ddbf3;
+  /*--color-primary-rgb: 70, 82, 193;
+  --color-primary-light-rgb: 228, 230, 247;*/
+  --color-info: #B1BBD4;
+  /*--color-success: #1FBFB8;
   --color-success--rgb: 31, 191, 184;
   --color-success-light-rgb: 223, 245, 244;
   --color-warning: #FFB14B;

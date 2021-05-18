@@ -8,6 +8,16 @@
   background-color: var(--color-white);
 	font-size: 20px;
 
+  &:after {
+    content: '';
+    position: fixed;
+    top: 6rem;
+    left: 0;
+    width: 100vw;
+    height: 0.1rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+  }
+
   & .account__name {
     margin-right: auto;
     &__link {
