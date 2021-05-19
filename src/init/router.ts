@@ -29,7 +29,7 @@ export const configureRouter = (router: AnyObject) => {
 export const injectHomePage = (router: AnyObject) => {
   if (
     !router.options.routes ||
-    !router.options.routes.find((route: Route) => (route.path = "/"))
+    !router.options.routes.find((route: Route) => (route.path === "/"))
   ) {
     router.addRoutes([
       {
