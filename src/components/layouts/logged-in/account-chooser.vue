@@ -1,39 +1,25 @@
 <template>
   <div class="account__chooser">
     <div v-if="userAccountsRole.length === 0">
-      <h2>
-        {{ $t("account-chooser.no-accounts") }}
-      </h2>
+      <h2>{{ $t("account-chooser.no-accounts") }}</h2>
     </div>
+
     <div v-else>
       <h2>{{ $t("account-chooser.select-account") }}</h2>
-      <el-form
-        @submit.native.prevent="onSubmit"
-        ref="form"
-        :model="form"
-        :rules="rules"
-      >
+      <el-form ref="form" :model="form" :rules="rules" @submit.native.prevent="onSubmit">
         <el-form-item prop="account">
           <el-select
             v-model="form.account"
             filterable
-            class="account__role--account"
             :placeholder="$t('account-chooser.select-placeholder')"
+            class="mr-5"
           >
-            <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            >
-            </el-option>
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
           </el-select>
-          <el-button
-            :disabled="form.account === null"
-            type="primary"
-            native-type="submit"
-            >{{ $t("global.confirm") }}</el-button
-          >
+
+          <el-button type="primary" native-type="submit" :disabled="form.account === null">
+            {{ $t("global.confirm") }}
+          </el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -68,20 +54,13 @@ export default {
     }
   },
   data() {
-    const $t = this.$t.bind(this);
     return {
-      rules: {
-        account: [
-          {
-            required: true,
-            message: $t("global.form.required"),
-            trigger: ["blur"]
-          }
-        ]
-      },
       form: {
         account: null
-      }
+      },
+      rules: {
+        account: [{ required: true, message: this.$t("global.form.required"), trigger: "blur" }]
+      },
     };
   }
 };
@@ -95,11 +74,11 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 100;
-  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  & h2 {
+
+  h2 {
     text-align: center;
   }
 }
