@@ -21,10 +21,6 @@
       <el-menu router :collapse="isCollapse">
         <slot name="menu-items" />
 
-        <p>Hello</p>
-        <p>Hello</p>
-        <p>Hello</p>
-
         <el-submenu v-if="isSuperAdmin" index="1">
           <template slot="title">
             <i class="ri-settings-3-line" />
