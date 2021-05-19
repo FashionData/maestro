@@ -6,7 +6,7 @@
       </div>
 
       <el-dropdown trigger="click">
-        <el-avatar size="small" icon="ri-user-fill" :src="$store.getters.user.photoURL" class="cursor--pointer" />
+        <el-avatar size="medium" icon="ri-user-fill" :src="$store.getters.user.photoURL" class="cursor--pointer" />
 
         <el-dropdown-menu slot="dropdown" class="avatar-dropdown">
           <div class="pl-3 mt-1 mb-3">
