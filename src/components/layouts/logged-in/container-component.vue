@@ -18,10 +18,10 @@
             :key="headerMenuItem.label"
             :divided="index === 0 || headerMenuItem.divided"
           >
-            <router-link :to="{ name: headerMenuItem.routeName }" class="d-flex align-center cta--classic-text">
+            <div class="d-flex align-center cta--classic-text" @click="headerMenuItem.clickAction">
               <i class="text--primary fs--large" :class="headerMenuItem.icon"></i>
               <span class="ml-1 fs--small">{{ headerMenuItem.label }}</span>
-            </router-link>
+            </div>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -40,11 +40,6 @@ import { LOGOUT, PROFILE } from "@/constants/routes";
 
 export default {
   name: "container-component",
-  methods: {
-    changeAccount() {
-      this.$store.dispatch("clearAccount");
-    }
-  },
   computed: {
     pageTitle() {
       const page = this.$route.path.split('/')[1];
@@ -61,18 +56,18 @@ export default {
         {
           icon: 'ri-profile-line',
           label: this.$t('layouts.logged-in.header-menu.profile'),
-          routeName: PROFILE.name,
+          clickAction: () => this.$router.push({ name: PROFILE.name }),
         },
         (this.$store.getters.user.accountsRole.length > 1 && {
           icon: 'ri-user-settings-line',
           label: this.$t('layouts.logged-in.header-menu.change-account'),
-          routeName: PROFILE.name,
+          clickAction: () => this.$store.dispatch("clearAccount"),
         }),
         {
           divided: true,
           icon: 'ri-logout-box-r-line',
           label: this.$t('layouts.logged-in.header-menu.logout'),
-          route: LOGOUT.name,
+          clickAction: () => this.$router.push({ name: LOGOUT.name }),
         },
       ];
     },
