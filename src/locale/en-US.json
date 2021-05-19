@@ -149,7 +149,6 @@
     }
   },
   "users-view": {
-    "your-role": "Your role: {role}",
     "account-role-label": "Accounts role",
     "table": {
       "header": {

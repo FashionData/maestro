@@ -1,0 +1,9 @@
+.separated-blocks {
+  & > * {
+    @extend .mb-5;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
