@@ -36,7 +36,8 @@
 
     div.el-card__body {
       p {
-        display: none;
+        visibility: hidden;
+        height: 0;
       }
 
       .el-menu-item .el-tooltip,
