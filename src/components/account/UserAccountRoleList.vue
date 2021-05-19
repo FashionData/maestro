@@ -1,48 +1,27 @@
 <template>
   <div v-if="!isLoading && accounts && accounts.length > 0">
-    <el-row
-      class="account__role--row"
-      v-for="(accountRole, i) in value"
-      :key="i"
-    >
+    <el-row v-for="(accountRole, i) in value" :key="i" class="account__role--row">
       <el-select
-        @change="onAccountChange(i, $event)"
         :value="accountRole.split('-')[1]"
         filterable
-        class="account__role--account"
         placeholder="Select"
+        class="account__role--account"
+        @change="onAccountChange(i, $event)"
       >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
+        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
+
       <el-select
-        @change="onRoleChange(i, $event)"
         :value="Number(accountRole.split('-')[0])"
         :placeholder="$t('users-view.form.role.placeholder')"
+        @change="onRoleChange(i, $event)"
       >
-        <el-option
-          v-for="item in roles"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        >
-        </el-option>
+        <el-option v-for="item in roles" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
-      <i
-        :class="{ visible: canAddItems }"
-        class="actions el-icon-plus"
-        @click="appendItem(i)"
-      ></i>
-      <i
-        :class="{ visible: i > 0 && canRemoveItems }"
-        class="actions el-icon-delete"
-        @click="removeItem(i)"
-      ></i>
+
+      <i class="actions el-icon-plus" :class="{ visible: canAddItems }" @click="appendItem(i)" />
+
+      <i class="actions el-icon-delete" :class="{ visible: i > 0 && canRemoveItems }" @click="removeItem(i)" />
     </el-row>
   </div>
 </template>
@@ -130,25 +109,31 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.account__role--row {
-  & + & {
-    margin-top: 1rem;
+.account__role {
+  &--row {
+    & + & {
+      margin-top: 1rem;
+    }
+
+    .actions {
+      font-size: 2rem;
+      margin-left: 1rem;
+      opacity: 0.5;
+      pointer-events: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.visible {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
   }
-}
-.account__role--account {
-  margin-right: 1rem;
-}
-.actions {
-  font-size: 2rem;
-  margin-left: 1rem;
-  opacity: 0.5;
-  pointer-events: none;
-  &.visible {
-    opacity: 1;
-    pointer-events: all;
-  }
-  &:hover {
-    cursor: pointer;
+
+  &--account {
+    margin-right: 1rem;
   }
 }
 </style>
