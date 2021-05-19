@@ -78,9 +78,11 @@
     "node": ">=8"
   },
   "dependencies": {
+    "@types/lodash.merge": "^4.6.6",
     "@types/vue-moment": "^4.0.0",
     "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
+    "lodash.merge": "^4.6.2",
     "remixicon": "^2.5.0",
     "vue-axios": "^3.2.4",
     "vue-debounce": "^2.5.7",

@@ -1,6 +1,9 @@
 {
   "layouts": {
     "logged-in": {
+      "menu-items": {
+        "virtual-displays": "Affichages virtuels"
+      },
       "page-titles": {
         "virtual-displays": "Affichages virtuels"
       }

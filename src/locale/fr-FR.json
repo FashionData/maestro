@@ -1,7 +1,14 @@
 {
   "layouts": {
     "logged-in": {
+      "menu-items": {
+        "settings": {
+          "title": "Paramètres",
+          "users": "Utilisateurs"
+        }
+      },
       "page-titles": {
+        "accounts": "Comptes",
         "home": "Page d'accueil",
         "profile": "Profil",
         "users": "Utilisateurs"

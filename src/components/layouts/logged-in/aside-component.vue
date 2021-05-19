@@ -24,12 +24,12 @@
         <el-submenu v-if="isSuperAdmin" index="1">
           <template slot="title">
             <i class="ri-settings-3-line" />
-            <span>{{ $t("m-layout.aside-component.settings.title") }}</span>
+            <span>{{ $t("layouts.logged-in.menu-items.settings.title") }}</span>
           </template>
 
           <el-menu-item :index="userPath">
             <i class="ri-user-3-line" />
-            <span slot="title">{{ $t("m-layout.aside-component.settings.users") }}</span>
+            <span>{{ $t("layouts.logged-in.menu-items.settings.users") }}</span>
           </el-menu-item>
           <el-menu-item :index="accountPath">
             <i class="el-icon-goods" />
