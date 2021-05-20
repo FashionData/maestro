@@ -1,6 +1,7 @@
 import _Vue, { PluginFunction, VueConstructor } from "vue";
 import { InitializeOptions, InstallOptions } from "@/types";
 import { checkConfiguration } from "@/init/configuration";
+import { injectExternalScripts } from "@/init/external-scripts";
 import { injectLoader, removeLoader } from "@/init/loader";
 import { injectPrototypes } from "@/init/prototypes";
 import { configureStore } from "@/init/store";
@@ -18,7 +19,7 @@ import { VueRouter } from "vue-router/types/router";
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
 import { getCustomClaims } from "@/utils/role";
-import {installVueAxios} from "@/init/plugins/vue-axios";
+import { installVueAxios } from "@/init/plugins/vue-axios";
 
 // Define typescript interfaces for autoinstaller
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,6 +57,7 @@ export const initializeApp = (
   checkConfiguration(options);
   injectLoader();
   injectPrototypes();
+  if (options.config?.externalScripts) injectExternalScripts(options.config.externalScripts);
 
   const i18nInstance = i18n(Vue, options.config?.i18n);
   const { config, firebase, router, store } = options;

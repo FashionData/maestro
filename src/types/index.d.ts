@@ -13,8 +13,14 @@ export type I18nConfig = {
   fr?: AnyObject;
 };
 
+export interface ExternalScript {
+  productionOnly: boolean;
+  scriptString: string;
+}
+
 export type ConfigurationOptions = {
   analytics?: boolean;
+  externalScripts?: ExternalScript[];
   performance?: boolean;
   i18n?: I18nConfig;
   axios?: AxiosRequestConfig;
