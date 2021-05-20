@@ -2,11 +2,11 @@
 @import "../../../shared/displays/flex";
 
 .header {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
+  @extend .d-flex;
+  @extend .justify-space-between;
+  @extend .align-center;
   background-color: var(--color-white);
-	font-size: 20px;
+	font-size: 20px; // TODO: Extend fs class
 
   &:after {
     content: '';
@@ -19,7 +19,6 @@
   }
 
   & .account__name {
-    margin-right: auto;
     &__link {
       cursor: pointer;
       &:hover {

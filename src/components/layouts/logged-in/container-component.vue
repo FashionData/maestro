@@ -9,8 +9,8 @@
         <el-avatar size="medium" icon="ri-user-fill" :src="$store.getters.user.photoURL" class="cursor--pointer" />
 
         <el-dropdown-menu slot="dropdown" class="avatar-dropdown">
-          <div class="pl-3 mt-1 mb-3">
-            <span class="text--primary ml-1 fs--small bold">{{ userDisplayName }} - {{ selectedAccountName }}</span>
+          <div class="px-5 mt-1 mb-3">
+            <span class="text--primary fs--small bold">{{ userDisplayName }} - {{ selectedAccountName }}</span>
           </div>
 
           <el-dropdown-item
