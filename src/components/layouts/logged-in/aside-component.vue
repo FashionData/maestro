@@ -18,10 +18,10 @@
     </el-header>
 
     <el-card shadow="none" class="aside-menu" :class="{ 'aside-menu--collapsed': isCollapse }">
-      <el-menu router :collapse="isCollapse">
+      <el-menu router :collapse="isCollapse" class="separated-blocks">
         <slot name="menu-items" />
 
-        <el-submenu v-if="isSuperAdmin" index="1">
+        <el-submenu v-if="isSuperAdmin" index="1" class="bottom-menu-items">
           <template slot="title">
             <i class="ri-settings-3-line" />
             <span>{{ $t("layouts.logged-in.menu-items.settings.title") }}</span>

@@ -64,8 +64,12 @@
     .el-menu {
       border: none;
 
-      p {
+      p,
+      .bottom-menu-items {
         @extend .mt-6;
+      }
+
+      p {
         @extend .mb-2;
         @extend .bold;
         @extend .fs--small;
