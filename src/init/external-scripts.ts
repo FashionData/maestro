@@ -1,10 +1,7 @@
-import { ExternalScript } from "@/types";
-
-export const injectExternalScripts = (externalScripts: ExternalScript[]) => {
+export const injectExternalScripts = (externalScripts: string[]) => {
   externalScripts.forEach(externalScript => {
-    if (externalScript.productionOnly && process.env.NODE_ENV === "development") return;
     const scriptTag = document.createElement('script')
-    scriptTag.text = externalScript.scriptString;
+    scriptTag.text = externalScript;
     document.head.appendChild(scriptTag)
   })
 }
