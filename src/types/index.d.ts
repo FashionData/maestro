@@ -1,6 +1,7 @@
 import { Store } from "vuex";
 import VueI18n from "vue-i18n";
 import { AxiosRequestConfig } from "axios";
+import { User as FirebaseUser } from "firebase";
 import { CustomClaims } from "../utils/role";
 
 export type AnyObject = {
@@ -24,6 +25,9 @@ export type ConfigurationOptions = {
 export type InitializeOptions = {
   config?: ConfigurationOptions;
   firebase: AnyObject;
+  hooks?: {
+    authenticatedUser: (user: FirebaseUser) => void;
+  }
   router: AnyObject;
   store: Store<any>;
 };

@@ -78,6 +78,7 @@ export const initializeApp = (
       );
       store.commit("authenticateUser");
       store.commit("setUser", { ...user.toJSON(), ...claims });
+      if (options.hooks?.authenticatedUser) options.hooks.authenticatedUser(user);
       if (!app) {
         mountApp(Vue, App, router as VueRouter, store, i18nInstance);
       }
