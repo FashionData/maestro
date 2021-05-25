@@ -58,11 +58,11 @@ export default {
           label: this.$t('layouts.logged-in.header-menu.profile'),
           clickAction: () => this.$router.push({ name: PROFILE.name }),
         },
-        (this.$store.getters.user.accountsRole.length > 1 && {
+        ...(this.$store.getters.user.accountsRole.length > 1 ? [{
           icon: 'ri-user-settings-line',
           label: this.$t('layouts.logged-in.header-menu.change-account'),
           clickAction: () => this.$store.dispatch("clearAccount"),
-        }),
+        }] : []),
         {
           divided: true,
           icon: 'ri-logout-box-r-line',
