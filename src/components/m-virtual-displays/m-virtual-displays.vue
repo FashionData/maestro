@@ -5,7 +5,7 @@
       shadow="none"
       body-style="display: flex; justify-content: space-between; align-content: center;"
     >
-      <div class="filters d-flex">
+      <div class="filters d-flex align-center">
         <slot name="filters" />
       </div>
 
