@@ -55,6 +55,7 @@
   .table-display {
     .vue-recycle-scroller__item-view {
       $row-border-value: 1px solid $--border-color-base;
+      padding-right: 2rem;
 
       .row {
         border: $row-border-value;
@@ -82,7 +83,7 @@
 
   .cards-display {
     .headers.headers--expandable-cards {
-      padding-left: 4.9rem;
+      padding-right: 2rem;
 
       & > *:first-child {
         @extend .pl-2;
@@ -113,7 +114,7 @@
 
       &--active {
         i {
-          transform: rotate(90deg);
+          transform: rotate(180deg);
         }
       }
     }
@@ -121,6 +122,8 @@
     .el-card {
       z-index: 1;
       position: relative;
+      border-radius: 20px;
+      border: none;
     }
 
     .card-expansion {

@@ -171,6 +171,10 @@ export default {
       default: () => ['table'],
     },
     loading: Boolean,
+    showHeaders: {
+      type: Boolean,
+      default: true
+    },
     headers: {
       type: Array,
       required: true,
@@ -189,11 +193,11 @@ export default {
     },
     tableItemSize: {
       type: Number,
-      default: 84,
+      default: 83,
     },
     cardSize: {
       type: Number,
-      default: 84,
+      default: 83,
     },
     gridItemSize: {
       type: Number,
