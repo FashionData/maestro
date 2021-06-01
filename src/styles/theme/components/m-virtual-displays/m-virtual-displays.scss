@@ -1,4 +1,6 @@
 .m-virtual-displays {
+  @extend .separated-blocks;
+
   .filters {
     & > * {
       @extend .mr-4;
