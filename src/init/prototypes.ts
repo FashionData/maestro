@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { AnyObject } from "@/types";
 
 declare global {
@@ -21,4 +22,12 @@ export const injectPrototypes = () => {
     }
     return o;
   }
+
+  Vue.prototype.$roundToOneDecimal = (numberToRound: number) => {
+    return Math.round(numberToRound * 10) / 10;
+  };
+
+  Vue.prototype.$roundToTwoDecimals = (numberToRound: number) => {
+    return Math.round((numberToRound + Number.EPSILON) * 100) / 100;
+  };
 }

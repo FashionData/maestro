@@ -1,4 +1,3 @@
-import Vue from "vue";
 import moment from 'moment';
 import firebase from "firebase";
 import { AxiosInstance } from "axios";
@@ -16,5 +15,7 @@ declare module "vue/types/vue" {
     $perf: any;
     axios: AxiosInstance;
     $http: AxiosInstance;
-  }
+    $roundToOneDecimal: (numberToRound: number) => number;
+    $roundToTwoDecimals: (numberToRound: number) => number;
+    }
 }
