@@ -87,19 +87,6 @@
                 body-style="display: flex; align-items: center; padding: 0; height: 100%;"
                 :style="{ height: `${cardSize}px` }"
               >
-                <div>
-                  <el-button
-                    v-if="$scopedSlots['cards.item.extended']"
-                    :type="extentedCardIndex === index ? 'primary' : 'default'"
-                    size="small"
-                    icon="ri-arrow-right-s-line ri-lg"
-                    circle
-                    class="expandable-button p-1"
-                    :class="{ 'expandable-button--active': extentedCardIndex === index }"
-                    @click="toggleCardExtension(index, item)"
-                  />
-                </div>
-
                 <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
                   <div
                     class="column"
@@ -118,6 +105,18 @@
                     </p>
                   </div>
                 </template>
+                <div>
+                  <el-button
+                    v-if="$scopedSlots['cards.item.extended']"
+                    :type="extentedCardIndex === index ? 'primary' : 'default'"
+                    size="small"
+                    icon="ri-arrow-right-s-line ri-lg"
+                    circle
+                    class="expandable-button p-1"
+                    :class="{ 'expandable-button--active': extentedCardIndex === index }"
+                    @click="toggleCardExtension(index, item)"
+                  />
+                </div>
               </el-card>
 
               <div class="card-expansion" v-if="extentedCardIndex === index">
@@ -171,10 +170,6 @@ export default {
       default: () => ['table'],
     },
     loading: Boolean,
-    showHeaders: {
-      type: Boolean,
-      default: true
-    },
     headers: {
       type: Array,
       required: true,
