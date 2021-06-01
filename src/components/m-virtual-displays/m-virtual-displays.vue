@@ -22,9 +22,9 @@
       </div>
     </el-card>
 
-    <el-card shadow="none" v-loading="loading">
+    <div v-loading="loading">
       <template v-if="items.length > 0">
-        <div v-if="displayType === 'table'" class="table-display">
+        <el-card v-if="displayType === 'table'" shadow="none" class="table-display">
           <div v-if="headersHaveText" class="headers mb-6">
             <div
               v-for="(header, index) in headers"
@@ -60,10 +60,10 @@
               </template>
             </div>
           </RecycleScroller>
-        </div>
+        </el-card>
 
         <div v-if="displayType === 'cards'" class="cards-display">
-          <div class="headers mb-6" :class="{ 'headers--expandable-cards': $scopedSlots['cards.item.extended'] }">
+          <div class="headers mt-8 mb-5" :class="{ 'headers--expandable-cards': $scopedSlots['cards.item.extended'] }">
             <div
               v-for="(header, index) in headers"
               :key="header.value"
@@ -81,8 +81,9 @@
             :style="{ height }"
             v-slot="{ index, item }"
           >
-            <DynamicScrollerItem :item="item" active class="pb-10">
+            <DynamicScrollerItem :item="item" active class="mb-5">
               <el-card
+                shadow="none"
                 body-style="display: flex; align-items: center; padding: 0; height: 100%;"
                 :style="{ height: `${cardSize}px` }"
               >
@@ -150,7 +151,7 @@
       <div v-else :style="{ height }">
         <p>{{ $t('components.m-virtual-displays.no-data') }}</p>
       </div>
-    </el-card>
+    </div>
   </div>
 </template>
 

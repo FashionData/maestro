@@ -26,6 +26,12 @@
     }
   }
 
+  .headers > * {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   .table-display .headers,
   .table-display .row,
   .cards-display .headers,
@@ -47,12 +53,6 @@
   }
 
   .table-display {
-    .headers > * {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
     .vue-recycle-scroller__item-view {
       $row-border-value: 1px solid $--border-color-base;
 
@@ -86,6 +86,10 @@
 
       & > *:first-child {
         @extend .pl-2;
+      }
+
+      & > *:last-child {
+        @extend .pr-2;
       }
     }
 
