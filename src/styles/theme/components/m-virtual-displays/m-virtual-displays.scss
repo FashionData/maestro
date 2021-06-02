@@ -126,6 +126,7 @@
       position: relative;
       border-radius: 20px;
       border: none;
+      @extend .mr-5;
 
       &__body {
         @extend .p-5;
