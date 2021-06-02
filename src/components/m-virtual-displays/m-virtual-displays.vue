@@ -81,10 +81,8 @@
             :style="{ height }"
             v-slot="{ index, item }"
           >
-            <DynamicScrollerItem :item="item" active class="mb-5">
-              <el-card
-                shadow="none"
-              >
+            <DynamicScrollerItem :item="item" active class="pb-5">
+              <el-card shadow="none">
                 <div class="columns-container">
                   <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
                     <div
@@ -118,6 +116,7 @@
                     />
                   </div>
                 </div>
+
                 <div class="card-expansion" v-if="extentedCardIndex === index">
                   <slot name="cards.item.extended" :item="item" />
                 </div>

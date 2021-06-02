@@ -126,7 +126,6 @@
       position: relative;
       border-radius: 20px;
       border: none;
-      margin-right: 2rem;
 
       &__body {
         @extend .p-5;
@@ -147,8 +146,7 @@
 
     .card-expansion {
       @extend .pt-6;
-      @extend .pb-4;
-      @extend .px-5;
+      @extend .px-0;
     }
   }
 }
