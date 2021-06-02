@@ -46,17 +46,17 @@
 
   .table-display .row,
   .cards-display .row {
-    padding: 0 2rem;
+    @extend .px-5;
   }
 
   .cards-display .headers {
-    margin-right: 2rem;
+    @extend .mr-5;
   }
 
   .table-display {
     .vue-recycle-scroller__item-view {
       $row-border-value: 1px solid $--border-color-base;
-      margin-right: 2rem;
+      @extend .mr-5;
 
       .row {
         border: $row-border-value;
@@ -84,7 +84,7 @@
 
   .cards-display {
     .headers.headers--expandable-cards {
-      padding-right: 2rem;
+      @extend .pr-5;
 
       & > *:first-child {
         @extend .pl-2;
@@ -129,7 +129,7 @@
       margin-right: 2rem;
 
       &__body {
-        padding: 2rem;
+        @extend .p-5;
         display: flex;
         flex-direction: column;
       }
@@ -140,7 +140,7 @@
         height: 100%;
 
         .column:not(:first-of-type, :last-of-type) {
-         margin-right: 2rem
+          @extend .mr-5;
         }
       }
     }
