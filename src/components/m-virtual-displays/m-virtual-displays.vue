@@ -49,9 +49,9 @@
                   <slot
                     v-if="$scopedSlots[`table.item.${header.value}`]"
                     :name="`table.item.${header.value}`"
-                    v-bind:index="index"
-                    v-bind:header="header"
-                    v-bind:item="item"
+                    :index="index"
+                    :header="header"
+                    :item="item"
                   />
                   <p v-else>
                     {{ getItemValue(item, header.value) }}
@@ -96,9 +96,9 @@
                       <slot
                         v-if="$scopedSlots[`cards.item.${header.value}`]"
                         :name="`cards.item.${header.value}`"
-                        v-bind:index="index"
-                        v-bind:header="header"
-                        v-bind:item="item"
+                        :index="index"
+                        :header="header"
+                        :item="item"
                       />
                       <p v-else>
                         {{ getItemValue(item, header.value) }}
@@ -119,7 +119,7 @@
                   </div>
                 </div>
                 <div class="card-expansion" v-if="extentedCardIndex === index">
-                  <slot name="cards.item.extended" v-bind:item="item" />
+                  <slot name="cards.item.extended" :item="item" />
                 </div>
               </el-card>
             </DynamicScrollerItem>
