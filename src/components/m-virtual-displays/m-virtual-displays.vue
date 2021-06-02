@@ -45,7 +45,7 @@
           >
             <div class="row" :style="{ height: `${tableItemSize}px` }">
               <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
-                <div class="column" :class="{ 'text--primary bold': header.textPrimary }" :style="{ width: getColumnWidth(index) }">
+                <div :key="index" class="column" :class="{ 'text--primary bold': header.textPrimary }" :style="{ width: getColumnWidth(index) }">
                   <slot
                     v-if="$scopedSlots[`table.item.${header.value}`]"
                     :name="`table.item.${header.value}`"
@@ -84,44 +84,44 @@
             <DynamicScrollerItem :item="item" active class="mb-5">
               <el-card
                 shadow="none"
-                body-style="display: flex; align-items: center; padding: 0; height: 100%;"
-                :style="{ height: `${cardSize}px` }"
               >
-                <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
-                  <div
-                    class="column"
-                    :class="{ 'text--primary bold': header.textPrimary }"
-                    :style="{ width: getColumnWidth(index) }"
-                  >
-                    <slot
-                      v-if="$scopedSlots[`cards.item.${header.value}`]"
-                      :name="`cards.item.${header.value}`"
-                      v-bind:index="index"
-                      v-bind:header="header"
-                      v-bind:item="item"
+                <div class="columns-container">
+                  <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
+                    <div
+                      class="column"
+                      :class="{ 'text--primary bold': header.textPrimary }"
+                      :style="{ width: getColumnWidth(index) }"
+                      :key="index"
+                    >
+                      <slot
+                        v-if="$scopedSlots[`cards.item.${header.value}`]"
+                        :name="`cards.item.${header.value}`"
+                        v-bind:index="index"
+                        v-bind:header="header"
+                        v-bind:item="item"
+                      />
+                      <p v-else>
+                        {{ getItemValue(item, header.value) }}
+                      </p>
+                    </div>
+                  </template>
+                  <div>
+                    <el-button
+                      v-if="$scopedSlots['cards.item.extended']"
+                      :type="extentedCardIndex === index ? 'primary' : 'default'"
+                      size="small"
+                      icon="ri-arrow-right-s-line ri-lg"
+                      circle
+                      class="expandable-button p-1"
+                      :class="{ 'expandable-button--active': extentedCardIndex === index }"
+                      @click="toggleCardExtension(index, item)"
                     />
-                    <p v-else>
-                      {{ getItemValue(item, header.value) }}
-                    </p>
                   </div>
-                </template>
-                <div>
-                  <el-button
-                    v-if="$scopedSlots['cards.item.extended']"
-                    :type="extentedCardIndex === index ? 'primary' : 'default'"
-                    size="small"
-                    icon="ri-arrow-right-s-line ri-lg"
-                    circle
-                    class="expandable-button p-1"
-                    :class="{ 'expandable-button--active': extentedCardIndex === index }"
-                    @click="toggleCardExtension(index, item)"
-                  />
+                </div>
+                <div class="card-expansion" v-if="extentedCardIndex === index">
+                  <slot name="cards.item.extended" v-bind:item="item" />
                 </div>
               </el-card>
-
-              <div class="card-expansion" v-if="extentedCardIndex === index">
-                <slot name="cards.item.extended" v-bind:item="item" />
-              </div>
             </DynamicScrollerItem>
           </DynamicScroller>
         </div>

@@ -41,15 +41,12 @@
     & > * {
       @extend .px-2;
       width: auto;
-
-      &:first-child {
-        @extend .pl-5;
-      }
-
-      &:last-child {
-        @extend .pr-5;
-      }
     }
+  }
+
+  .table-display .row,
+  .cards-display .row {
+    padding: 0 2rem;
   }
 
   .cards-display .headers {
@@ -59,7 +56,7 @@
   .table-display {
     .vue-recycle-scroller__item-view {
       $row-border-value: 1px solid $--border-color-base;
-      padding-right: 2rem;
+      margin-right: 2rem;
 
       .row {
         border: $row-border-value;
@@ -130,15 +127,28 @@
       border-radius: 20px;
       border: none;
       margin-right: 2rem;
+
+      &__body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .columns-container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        .column:not(:first-of-type, :last-of-type) {
+         margin-right: 2rem
+        }
+      }
     }
 
     .card-expansion {
       @extend .pt-6;
       @extend .pb-4;
       @extend .px-5;
-      transform: translateY(-1rem);
-      background-color: $--color-white;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.09);
     }
   }
 }
