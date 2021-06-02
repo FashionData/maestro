@@ -118,6 +118,7 @@
                     />
                   </div>
                 </div>
+
                 <div class="card-expansion" v-if="extentedCardIndex === index">
                   <slot name="cards.item.extended" v-bind:item="item" />
                 </div>
