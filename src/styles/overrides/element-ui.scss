@@ -1,4 +1,29 @@
+ul.el-pager li.active {
+  color: var(--color-secondary);
+}
+
+
+
 div.el-card {
   border: none;
   border-radius: 1.5rem;
+
+  &--overflow-visible {
+    overflow: visible;
+  }
+}
+
+
+
+.el-popover {
+  p {
+    word-break: break-word;
+  }
+}
+
+
+
+/* INPUT */
+textarea.el-textarea__inner {
+  resize: none;
 }
