@@ -3,13 +3,15 @@
 @import "./mixins";
 @import "./ui";
 
+@import "./colors/backgrounds";
+@import "./colors/texts";
+
 @import "./displays/elements";
 @import "./displays/flex";
 
 @import "./spaces";
 
 @import "./texts/alignments";
-@import "./texts/colors";
 @import "./texts/ctas";
 @import "./texts/font-sizes";
 @import "./texts/transformations";

@@ -1,0 +1,40 @@
+.bg {
+  &--primary {
+    background-color: var(--color-primary);
+  }
+
+  &--secondary {
+    background-color: var(--color-secondary);
+  }
+
+  &--base {
+    background-color: $--color-text-secondary;
+  }
+
+  &--disabled {
+    background-color: $--font-color-disabled-base;
+  }
+
+  &--success {
+    background-color: $--color-success;
+  }
+
+  &--info {
+    background-color: var(--color-info);
+  }
+
+  &--warning {
+    background-color: $--color-warning;
+  }
+
+  &--danger {
+    background-color: $--color-danger;
+  }
+}
+
+@for $i from 1 through 9 {
+  .bg--primary-lighter-#{$i} {
+    background-color: rgba(var(--color-primary-rgb), 1 - $i * 0.1);
+  }
+}
+

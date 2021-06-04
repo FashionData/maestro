@@ -1,10 +1,10 @@
 .text {
   &--primary {
-    color: $--color-primary;
+    color: var(--color-primary);
   }
 
   &--secondary {
-    color: $--color-text-secondary;
+    color: var(--color-secondary);
   }
 
   &--base {
@@ -20,7 +20,7 @@
   }
 
   &--info {
-    color: $--color-info;
+    color: var(--color-info);
   }
 
   &--warning {
@@ -30,16 +30,4 @@
   &--danger {
     color: $--color-danger;
   }
-}
-
-.regular {
-  font-weight: 400;
-}
-
-.bold {
-  font-weight: 600;
-}
-
-.ultra-bold {
-  font-weight: 700;
 }
