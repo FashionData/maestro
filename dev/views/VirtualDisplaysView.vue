@@ -51,6 +51,7 @@ export default {
   name: "virtual-displays-view",
   components: { MVirtualDisplays },
   data: () => ({
+    activeNames: [],
     search: '',
   }),
   computed: {
