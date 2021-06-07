@@ -11,6 +11,10 @@
     color: $--color-text-secondary;
   }
 
+  &--white {
+    color: var(--color-white);
+  }
+
   &--disabled {
     color: $--font-color-disabled-base;
   }
