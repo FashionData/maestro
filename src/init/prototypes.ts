@@ -30,4 +30,8 @@ export const injectPrototypes = () => {
   Vue.prototype.$roundToTwoDecimals = (numberToRound: number) => {
     return Math.round((numberToRound + Number.EPSILON) * 100) / 100;
   };
+
+  Vue.prototype.$formatWithSign = (numberToFormat: number) => {
+    return Math.sign(numberToFormat) > 0 ? `+${numberToFormat}` : numberToFormat;
+  };
 }

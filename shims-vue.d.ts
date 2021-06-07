@@ -17,5 +17,6 @@ declare module "vue/types/vue" {
     $http: AxiosInstance;
     $roundToOneDecimal: (numberToRound: number) => number;
     $roundToTwoDecimals: (numberToRound: number) => number;
+    $formatWithSign: (numberToFormat: number) => string | number;
     }
 }
