@@ -67,6 +67,10 @@
         .column {
           @extend .d-flex;
           @extend .align-center;
+
+          p {
+            word-break: break-word;
+          }
         }
       }
 
