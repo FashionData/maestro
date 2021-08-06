@@ -78,7 +78,6 @@ export const initializeApp = (
       );
       store.commit("authenticateUser");
       store.commit("setUser", { ...user.toJSON(), ...claims });
-      if (options.hooks?.authenticatedUser) options.hooks.authenticatedUser(user);
       if (!app) {
         mountApp(Vue, App, router as VueRouter, store, i18nInstance);
       }
@@ -93,6 +92,7 @@ export const initializeApp = (
         store.commit("setUser", { ...user.toJSON(), ...claims });
       };
       metadataRef.on("value", callback);
+      if (options.hooks?.authenticatedUser) options.hooks.authenticatedUser(user);
     } else {
       if (!app) {
         mountApp(Vue, App, router as VueRouter, store, i18nInstance);
