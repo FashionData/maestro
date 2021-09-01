@@ -35,22 +35,23 @@
   .table-display .headers,
   .table-display .row,
   .cards-display .headers,
-  .cards-display .el-card__body {
+  .cards-display .row {
     @extend .d-flex;
 
     & > * {
-      @extend .px-2;
+      @extend .px-4;
       width: auto;
     }
   }
 
   .table-display .row,
   .cards-display .row {
-    @extend .px-5;
+    @extend .py-4;
   }
 
-  .cards-display .headers {
-    @extend .mr-5;
+  .table-display .column,
+  .cards-display .column {
+    word-break: break-all;
   }
 
   .table-display {
@@ -83,42 +84,8 @@
   }
 
   .cards-display {
-    .headers.headers--expandable-cards {
-      @extend .pr-5;
-
-      & > *:first-child {
-        @extend .pl-2;
-      }
-
-      & > *:last-child {
-        @extend .pr-2;
-      }
-    }
-
-    .expandable-button {
-      $expandable-button-size: 2.5rem;
-
-      @extend .d-flex;
-      @extend .justify-center;
-      @extend .align-center;
-      @extend .p-0;
-      width: $expandable-button-size;
-      height: $expandable-button-size;
-
-      i {
-        @extend .d-flex;
-        @extend .justify-center;
-        @extend .align-center;
-        width: 100%;
-        height: 100%;
-        transform: rotate(90deg);
-      }
-
-      &--active {
-        i {
-          transform: rotate(-90deg);
-        }
-      }
+    &--expandable {
+      background-color: red;
     }
 
     .el-card {
@@ -126,21 +93,43 @@
       position: relative;
       border-radius: 20px;
       border: none;
-      @extend .mr-5;
 
       &__body {
-        @extend .p-5;
+        @extend .p-0;
         display: flex;
+        justify-content: center;
         flex-direction: column;
       }
 
-      .columns-container {
+      .row {
         display: flex;
         align-items: center;
         height: 100%;
+      }
 
-        .column:not(:first-of-type, :last-of-type) {
-          @extend .mr-5;
+      .expandable-button {
+        $expandable-button-size: 2.5rem;
+
+        @extend .d-flex;
+        @extend .justify-center;
+        @extend .align-center;
+        @extend .p-0;
+        width: $expandable-button-size;
+        height: $expandable-button-size;
+
+        i {
+          @extend .d-flex;
+          @extend .justify-center;
+          @extend .align-center;
+          width: 100%;
+          height: 100%;
+          transform: rotate(90deg);
+        }
+
+        &--active {
+          i {
+            transform: rotate(-90deg);
+          }
         }
       }
     }

@@ -36,14 +36,14 @@
             </div>
           </div>
 
-          <RecycleScroller
+          <DynamicScroller
             :items="items"
-            :item-size="tableItemSize"
+            :min-item-size="minTableItemHeight"
             :key-field="keyField"
             :style="{ height }"
             v-slot="{ index, item }"
           >
-            <div class="row" :style="{ height: `${tableItemSize}px` }">
+            <DynamicScrollerItem :item="item" active class="row" :style="{ minHeight: `${minTableItemHeight}px` }">
               <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
                 <div :key="index" class="column" :class="{ 'text--primary bold': header.textPrimary }" :style="{ width: getColumnWidth(index) }">
                   <slot
@@ -58,12 +58,12 @@
                   </p>
                 </div>
               </template>
-            </div>
-          </RecycleScroller>
+            </DynamicScrollerItem>
+          </DynamicScroller>
         </el-card>
 
         <div v-if="displayType === 'cards'" class="cards-display">
-          <div class="headers mt-8 mb-5" :class="{ 'headers--expandable-cards': $scopedSlots['cards.item.extended'] }">
+          <div class="headers mt-8 mb-5">
             <div
               v-for="(header, index) in headers"
               :key="header.value"
@@ -76,14 +76,14 @@
 
           <DynamicScroller
             :items="items"
-            :min-item-size="cardSize"
+            :min-item-size="minCardItemHeight"
             :key-field="keyField"
             :style="{ height }"
             v-slot="{ index, item }"
           >
             <DynamicScrollerItem :item="item" active class="pb-5">
-              <el-card shadow="none">
-                <div class="columns-container">
+              <el-card shadow="none" :body-style="{ minHeight: `${minCardItemHeight}px` }">
+                <div class="row">
                   <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
                     <div
                       class="column"
@@ -103,9 +103,8 @@
                       </p>
                     </div>
                   </template>
-                  <div>
+                  <div v-if="$scopedSlots['cards.item.extended']" :style="{ width: expandableButtonColumnWidth }">
                     <el-button
-                      v-if="$scopedSlots['cards.item.extended']"
                       :type="extentedCardIndex === index ? 'primary' : 'default'"
                       size="small"
                       icon="ri-arrow-right-s-line ri-lg"
@@ -185,11 +184,11 @@ export default {
       type: String,
       default: 'id',
     },
-    tableItemSize: {
+    minTableItemHeight: {
       type: Number,
       default: 83,
     },
-    cardSize: {
+    minCardItemHeight: {
       type: Number,
       default: 83,
     },
@@ -227,6 +226,9 @@ export default {
       }
       return headersHaveText;
     },
+    expandableButtonColumnWidth() {
+      return '6rem';
+    },
     customSlots() {
       return Object.keys(this.$scopedSlots).filter(slotName => slotName.includes('displays.'));
     }
@@ -250,7 +252,7 @@ export default {
       }
       return this.headers[index].width
         ? `${this.headers[index].width}px`
-        : `calc((100% - ${widthDefined}px) / ${nonWidthHeaders})`;
+        : `calc((100% - ${this.$scopedSlots['cards.item.extended'] ? this.expandableButtonColumnWidth : '0px'} - ${widthDefined}px) / ${nonWidthHeaders})`;
     },
     getItemValue(item, headerValue) {
       const splitHeaderValue = headerValue.split('.');
