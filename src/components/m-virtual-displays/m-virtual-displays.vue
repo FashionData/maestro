@@ -31,6 +31,7 @@
               :key="header.value"
               class="text--info text--uppercase"
               :style="{ width: header.width ? `${header.width}px` : getColumnWidth(index) }"
+              :title="header.text"
             >
               {{ header.text }}
             </div>
@@ -69,6 +70,7 @@
               :key="header.value"
               class="text--info text--uppercase"
               :style="{ width: getColumnWidth(index) }"
+              :title="header.text"
             >
               {{ header.text }}
             </div>
