@@ -30,7 +30,7 @@ const sizes = {
 export default {
   name: "m-img",
   props: {
-    src: { type: String, required: true },
+    src: { type: String },
     alt: { type: String },
     size: { type: String, validator: (value) => Object.values(sizes).includes(value), default: sizes.medium },
     fit: { type: String, validator: (value) => ['fill', 'contain', 'cover', 'none', 'scale-down'].includes(value) },
@@ -38,6 +38,7 @@ export default {
     lazy: { type: Boolean },
     scrollContainer: { type: [String, HTMLElement] },
     width: { type: String },
+    height: { type: String },
     borderRadius: { type: String },
     rounded: { type: Boolean },
   },
@@ -58,7 +59,11 @@ export default {
       }
     },
     imgHeight() {
-      return this.rounded ? this.imgWidth : 'auto';
+      if (this.height) {
+        return this.height;
+      } else {
+        return this.rounded ? this.imgWidth : 'auto';
+      }
     }
   }
 };

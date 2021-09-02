@@ -14,6 +14,11 @@
     </div>
 
     <div>
+      <h1>Custom height</h1>
+      <m-img :src="src" alt="Alt text" size="extra-large" fit="cover" height="45rem" />
+    </div>
+
+    <div>
       <h1>Not loading</h1>
       <m-img src="" alt="Alt text" />
     </div>
