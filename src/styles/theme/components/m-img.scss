@@ -1,0 +1,26 @@
+.m-img {
+  &--rounded {
+    border-radius: 50%;
+  }
+
+  .loading-error {
+    @extend .flex-center;
+    @extend .flex-column;
+    @extend .py-4;
+    @extend .px-2;
+    @extend .fs--extra-small;
+    background-color: #f2f2f8;
+    text-align: center;
+
+    i {
+      @extend .mb-2;
+      @extend .text--danger;
+      font-size: 2.4rem;
+    }
+
+    p {
+      max-width: 20rem;
+      word-break: break-word;
+    }
+  }
+}

@@ -13,6 +13,12 @@
 		@extend .d-flex;
 		flex-direction: column;
 	}
+
+  &-center {
+    @extend .d-flex;
+    @extend .justify-center;
+    @extend .align-center;
+  }
 }
 
 .align {

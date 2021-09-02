@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { VIRTUAL_DISPLAYS } from "./constants/routes";
+import { IMG, VIRTUAL_DISPLAYS } from "./constants/routes";
 
 export default {
   name: 'app',
@@ -40,10 +40,15 @@ export default {
     menuItems() {
       return [
         {
+          icon: 'ri-image-line',
+          index: IMG.path,
+          title: this.$t('app.menu-items.img'),
+        },
+        {
           icon: 'ri-table-line',
           index: VIRTUAL_DISPLAYS.path,
           title: this.$t('app.menu-items.virtual-displays'),
-        }
+        },
       ]
     }
   }

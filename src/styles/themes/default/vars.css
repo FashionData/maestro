@@ -11,12 +11,13 @@
   --color-primary-rgb: 64, 158, 255;
   /*--color-primary-light-rgb: 228, 230, 247;*/
   --color-info: #B1BBD4;
+  --color-light-grey: #F3F5F9;
   /*--color-success: #1FBFB8;
   --color-success--rgb: 31, 191, 184;
   --color-success-light-rgb: 223, 245, 244;
-  --color-warning: #FFB14B;
+  --color-warning: #FFB14B;*/
   --color-danger: #FF4B5E;
-  --color-complementary: #1082E6;
+  /*--color-complementary: #1082E6;
   --color-disabled: #b2c6dd;
   --color-disabled-rgb: 178, 198, 221;*/
   --color-white: #FFFFFF;
