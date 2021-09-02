@@ -1,1 +1,2 @@
-export { default as MVirtualDisplays } from './m-virtual-displays/m-virtual-displays.vue';
+export { default as MImg } from './m-img.vue';
+export { default as MVirtualDisplays } from './m-virtual-displays.vue';

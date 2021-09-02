@@ -19,12 +19,12 @@
   </el-image>
 </template>
 
-<script lang="ts">
-enum Sizes {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-  ExtraLarge = 'extra-large',
+<script>
+const sizes = {
+  small: 'small',
+  medium: 'medium',
+  large: 'large',
+  extraLarge: 'extra-large',
 };
 
 export default {
@@ -32,8 +32,8 @@ export default {
   props: {
     src: { type: String, required: true },
     alt: { type: String },
-    size: { type: String, validator: (value: Sizes) => Object.values(Sizes).includes(value), default: Sizes.Medium },
-    fit: { type: String, validator: (value: string) => ['fill', 'contain', 'cover', 'none', 'scale-down'].includes(value) },
+    size: { type: String, validator: (value) => Object.values(sizes).includes(value), default: sizes.medium },
+    fit: { type: String, validator: (value) => ['fill', 'contain', 'cover', 'none', 'scale-down'].includes(value) },
     previewSrcList: { type: Array },
     lazy: { type: Boolean },
     scrollContainer: { type: [String, HTMLElement] },
@@ -43,17 +43,18 @@ export default {
   },
   computed: {
     imgWidth() {
-      if (!this.size) return;
+      if (!this.size) return '';
       if (this.width) return this.width;
 
       switch (this.size) {
-        case Sizes.Small:
+        case sizes.small:
           return '4.5rem';
-        case Sizes.Medium:
+        case sizes.medium:
           return '7rem';
-        case Sizes.Large:
+        case sizes.large:
           return '12rem';
-        case Sizes.ExtraLarge:
+        case sizes.e
+          xtraLarge:
           return '19rem';
       }
     },

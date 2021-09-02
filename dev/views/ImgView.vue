@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import MImg from "../../src/components/m-virtual-displays/m-img";
+import MImg from "../../src/components/m-img";
 
 export default {
   name: "img-view",

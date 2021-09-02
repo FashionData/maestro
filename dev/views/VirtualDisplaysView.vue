@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import MVirtualDisplays from "../../src/components/m-virtual-displays/m-virtual-displays.vue";
+import MVirtualDisplays from "../../src/components/m-virtual-displays.vue";
 
 export default {
   name: "virtual-displays-view",
