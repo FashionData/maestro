@@ -19,12 +19,12 @@
   </el-image>
 </template>
 
-<script>
-const sizes = {
-  small: 'small',
-  medium: 'medium',
-  large: 'large',
-  extraLarge: 'extra-large',
+<script lang="ts">
+enum Sizes {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+  ExtraLarge = 'extra-large',
 };
 
 export default {
@@ -32,8 +32,8 @@ export default {
   props: {
     src: { type: String, required: true },
     alt: { type: String },
-    size: { type: String, validator: (value) => Object.values(sizes).includes(value), default: sizes.medium },
-    fit: { type: String, validator: (value) => ['fill', 'contain', 'cover', 'none', 'scale-down'].includes(value) },
+    size: { type: String, validator: (value: Sizes) => Object.values(Sizes).includes(value), default: Sizes.Medium },
+    fit: { type: String, validator: (value: string) => ['fill', 'contain', 'cover', 'none', 'scale-down'].includes(value) },
     previewSrcList: { type: Array },
     lazy: { type: Boolean },
     scrollContainer: { type: [String, HTMLElement] },
@@ -47,13 +47,13 @@ export default {
       if (this.width) return this.width;
 
       switch (this.size) {
-        case sizes.small:
+        case Sizes.Small:
           return '4.5rem';
-        case sizes.medium:
+        case Sizes.Medium:
           return '7rem';
-        case sizes.large:
+        case Sizes.Large:
           return '12rem';
-        case sizes.extraLarge:
+        case Sizes.ExtraLarge:
           return '19rem';
       }
     },
