@@ -116,9 +116,11 @@
                   </div>
                 </div>
 
-                <div class="card-expansion" v-if="extentedCardIndex === index">
-                  <slot name="cards.item.extended" :item="item" />
-                </div>
+                <transition name="slide-fade">
+                  <div class="card-expansion" v-if="extentedCardIndex === index">
+                    <slot name="cards.item.extended" :item="item" />
+                  </div>
+                </transition>
               </el-card>
             </DynamicScrollerItem>
           </DynamicScroller>
@@ -153,11 +155,7 @@
 </template>
 
 <script>
-/**
- * TODO: Add props
- * - item-size: Multiple value for different displays
- * - displays: To show button displays
- */
+const DEFAULT_MIN_ITEM_HEIGHT = 60;
 
 export default {
   name: "m-virtual-displays",
@@ -186,11 +184,11 @@ export default {
     },
     minTableItemHeight: {
       type: Number,
-      default: 83,
+      default: DEFAULT_MIN_ITEM_HEIGHT,
     },
     minCardItemHeight: {
       type: Number,
-      default: 83,
+      default: DEFAULT_MIN_ITEM_HEIGHT,
     },
     gridItemSize: {
       type: Number,

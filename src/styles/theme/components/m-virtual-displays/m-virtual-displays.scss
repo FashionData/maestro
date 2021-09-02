@@ -135,8 +135,7 @@
     }
 
     .card-expansion {
-      @extend .pt-6;
-      @extend .px-0;
+      @extend .p-4;
     }
   }
 }
