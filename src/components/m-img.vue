@@ -53,8 +53,7 @@ export default {
           return '7rem';
         case sizes.large:
           return '12rem';
-        case sizes.e
-          xtraLarge:
+        case sizes.extraLarge:
           return '19rem';
       }
     },
