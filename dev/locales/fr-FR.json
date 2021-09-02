@@ -2,16 +2,19 @@
   "layouts": {
     "logged-in": {
       "menu-items": {
-        "virtual-displays": "Affichages virtuels"
+        "virtual-displays": "Affichages virtuels",
+        "img": "Image"
       },
       "page-titles": {
-        "virtual-displays": "Affichages virtuels"
+        "virtual-displays": "Affichages virtuels",
+        "img": "Image"
       }
     }
   },
   "app": {
     "menu-items": {
-      "virtual-displays": "Affichages virtuels"
+      "virtual-displays": "Affichages virtuels",
+      "img": "Image"
     }
   }
 }
