@@ -24,6 +24,9 @@ initializeApp(Vue, App, {
   config: {
     analytics: true,
     performance: true,
+    axios: {
+      baseURL: 'https://tailer-api-nqonovswsq-ew.a.run.app//product-autopilot',
+    },
     i18n: {
       fr: frLocale,
       en: enLocale,

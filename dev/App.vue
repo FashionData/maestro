@@ -32,13 +32,18 @@
 </template>
 
 <script lang="ts">
-import { IMG, VIRTUAL_DISPLAYS } from "./constants/routes";
+import { API_PERFORMANCE, IMG, VIRTUAL_DISPLAYS } from "./constants/routes";
 
 export default {
   name: 'app',
   computed: {
     menuItems() {
       return [
+        {
+          icon: 'ri-dashboard-3-line',
+          index: API_PERFORMANCE.path,
+          title: this.$t('app.menu-items.api-performance'),
+        },
         {
           icon: 'ri-image-line',
           index: IMG.path,

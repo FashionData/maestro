@@ -2,19 +2,22 @@
   "layouts": {
     "logged-in": {
       "menu-items": {
-        "virtual-displays": "Affichages virtuels",
-        "img": "Image"
+        "api-performance": "Performance API",
+        "img": "Image",
+        "virtual-displays": "Affichages virtuels"
       },
       "page-titles": {
-        "virtual-displays": "Affichages virtuels",
-        "img": "Image"
+        "api-performance": "Performance API",
+        "img": "Image",
+        "virtual-displays": "Affichages virtuels"
       }
     }
   },
   "app": {
     "menu-items": {
-      "virtual-displays": "Affichages virtuels",
-      "img": "Image"
+      "api-performance": "Performance API",
+      "img": "Image",
+      "virtual-displays": "Affichages virtuels"
     }
   }
 }
