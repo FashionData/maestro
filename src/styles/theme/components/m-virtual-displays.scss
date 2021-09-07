@@ -84,17 +84,13 @@
   }
 
   .cards-display {
-    &--expandable {
-      background-color: red;
-    }
-
-    .el-card {
+    .card {
       z-index: 1;
       position: relative;
       border-radius: 20px;
       border: none;
 
-      &__body {
+      & > .el-card__body {
         @extend .p-0;
         display: flex;
         justify-content: center;

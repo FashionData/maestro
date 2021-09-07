@@ -84,7 +84,7 @@
             v-slot="{ index, item }"
           >
             <DynamicScrollerItem :item="item" active class="pb-5">
-              <el-card shadow="none" :body-style="{ minHeight: `${minCardItemHeight}px` }">
+              <el-card shadow="none" :body-style="{ minHeight: `${minCardItemHeight}px` }" class="card">
                 <div class="row">
                   <template v-for="(header, index) in headers" :style="{ width: getColumnWidth(index) }">
                     <div
