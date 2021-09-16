@@ -8,11 +8,7 @@
 export default {
   name: "api-performance-view",
   mounted() {
-    this.$http.get('test/somedata', {
-      headers: {
-        'Authorization': `Bearer ${this.$store.state['m-user'].user.stsTokenManager.accessToken}`
-      }
-    });
+    this.$get('test/somedata');
   }
 };
 </script>

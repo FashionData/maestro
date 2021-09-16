@@ -68,16 +68,13 @@ export const initializeApp = (
   Vue.use(install, installOptions);
 
   firebase.auth().onAuthStateChanged(async (user: fb.User) => {
-    if (callback) {
-      metadataRef.off("value", callback);
-    }
+    if (callback) metadataRef.off("value", callback);
+
     if (user) {
-      let claims = await getCustomClaims(
-        firebase.firestore(),
-        await user.getIdTokenResult()
-      );
+      let claims = await getCustomClaims(firebase.firestore(), await user.getIdTokenResult());
       store.commit("authenticateUser");
       store.commit("setUser", { ...user.toJSON(), ...claims });
+
       if (!app) {
         mountApp(Vue, App, router as VueRouter, store, i18nInstance);
       }
@@ -113,7 +110,7 @@ export const install: InstallFunction = function installMaestro(
   configureRouter(options.router);
   configureFirebase(Vue, options.firebase, options.config);
   installElementUi(Vue, options.i18n);
-  installVueAxios(Vue, options.config?.axios);
+  installVueAxios(Vue, options.config?.axios, options.store);
   installVueDebounce(Vue);
   installVueMoment(Vue);
   installVueVirtualScroller(Vue);
