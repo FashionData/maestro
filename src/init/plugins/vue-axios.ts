@@ -2,7 +2,7 @@ import { VueConstructor } from "vue";
 import axios, { AxiosRequestConfig } from "axios";
 import VueAxios from "vue-axios";
 import { Store } from "vuex";
-import { AnyObject } from "@/types";
+import { AnyObject } from "../../types";
 
 export const installVueAxios = (Vue: VueConstructor, axiosConfig: AxiosRequestConfig | undefined, store: Store<any>) => {
   if (axiosConfig) {
