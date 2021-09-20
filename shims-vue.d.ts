@@ -1,7 +1,7 @@
 import moment from 'moment';
 import firebase from "firebase";
 import { AxiosRequestConfig, AxiosStatic } from "axios";
-import { AnyObject } from "@/types";
+import { AnyObject } from "./src/types";
 
 declare module "vue/types/vue" {
   interface Vue {
