@@ -24,11 +24,15 @@ export const installVueAxios = (Vue: VueConstructor, axiosConfig: AxiosRequestCo
     }
 
     Vue.prototype.$post = function(url: string, payload: AnyObject, requestConfig: AxiosRequestConfig) {
+      const mUserState = store.state['m-user'];
       return Vue.prototype.$http.post(
         url,
-        payload,
         {
-          headers: getCommonHeader(store.state['m-user'].user.stsTokenManager?.accessToken),
+          ...payload,
+          accountId: mUserState.selectedAccount,
+        },
+        {
+          headers: getCommonHeader(mUserState.user.stsTokenManager?.accessToken),
           ...requestConfig,
         },
       );
