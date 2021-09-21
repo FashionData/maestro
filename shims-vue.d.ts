@@ -1,7 +1,6 @@
 import moment from 'moment';
 import firebase from "firebase";
-import { AxiosRequestConfig, AxiosStatic } from "axios";
-import { AnyObject } from "./src/types";
+import { AxiosRequestConfig, AxiosResponse, AxiosStatic } from "axios";
 
 declare module "vue/types/vue" {
   interface Vue {
@@ -11,8 +10,12 @@ declare module "vue/types/vue" {
       query?: { [key: string]: string | number },
       data?: any
     ) => Promise<firebase.functions.HttpsCallableResult>;
-    $get: (url: string, requestConfig?: AxiosRequestConfig) => any;
-    $post: (url: string, payload: AnyObject, requestConfig?: AxiosRequestConfig) => any;
+    $get: (url: string, requestConfig?: AxiosRequestConfig) => AxiosResponse;
+    $post: (
+      url: string,
+      payload: { accountId: string; [key: string]: any; },
+      requestConfig?: AxiosRequestConfig
+    ) => AxiosResponse;
     $isGranted: (role: number) => boolean;
     $moment: typeof moment;
     $perf: any;
